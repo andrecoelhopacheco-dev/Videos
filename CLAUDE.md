@@ -1,7 +1,13 @@
 # Vídeos — estúdio de motion graphics e edição do Claude
 
-Ambiente de trabalho para o Claude **criar motion graphics, editar vídeos e entregar MP4**. Separado de propósito
-do repositório `projeto-andre` (Pokémon Clash Arena): nada aqui depende dele, e nada lá deve ser mexido a partir daqui.
+Ambiente de trabalho para o Claude **criar motion graphics, editar vídeos e entregar MP4**.
+
+> **Regra do dono: este repositório NUNCA se mistura com o Pokémon Clash Arena (repositório `projeto-andre`).**
+> - Não trazer código, personagens, imagens, modelos 3D, sons, textos nem aprendizados (`.trail/`) do jogo para cá.
+> - Não ler, editar, commitar nem abrir PR no `projeto-andre` a partir de uma sessão deste repositório.
+> - Vídeo sobre o jogo? Só se o dono pedir com todas as letras, e mesmo assim os assets entram por ele em `public/`.
+> - As skills de motion e de eficiência vieram de lá uma única vez (origem em `.claude/skills/FONTES.md`); daqui em
+>   diante evoluem só aqui.
 
 ## Quem é o dono e como ele trabalha
 - O dono é o **Grozk** (brasileiro); trabalha com o primo **Mirage**. Chamar os dois pelos apelidos.
