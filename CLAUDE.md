@@ -25,6 +25,11 @@ Ambiente de trabalho para o Claude **criar motion graphics, editar vídeos e ent
    **ffmpeg**: skill `edicao-de-video`.
 3. Validar olhando a folha de quadros; entregar; registrar o que o dono achou.
 
+Pesquisa antes de criar (vídeos de outras pessoas):
+- Skill **`tendencias-virais`**: o que está bombando num nicho (YouTube/TikTok/Instagram) → `ferramentas/tendencias.py`.
+- Skill **`assistir-video`**: baixar, transcrever e destrinchar um vídeo quadro a quadro (gancho, narrativa, ritmo)
+  → `ferramentas/assistir.py`; estudo em `docs/estudos/`, depois roteiro com o `diretor-de-motion`.
+
 ```
 src/index.ts             registra a Raiz
 src/Raiz.tsx             uma <Composition> por vídeo (id, duração, fps, tamanho)
@@ -36,7 +41,9 @@ saidas/                  renders e rascunhos (fora do git)
 entregas/                MP4 aprovados (no git; até ~50 MB cada)
 docs/estilo.md           gosto do dono (regras sempre/nunca, aprovados, rejeitados)
 docs/roteiros/           um roteiro por vídeo
-ferramentas/             render.mjs, folha.sh (folha de quadros), info.sh (ffprobe resumido)
+docs/estudos/            análises de vídeos e nichos de referência (skill assistir-video)
+ferramentas/             render.mjs, folha.sh (folha de quadros), info.sh (ffprobe resumido),
+                         assistir.py (yt-dlp + legenda/Whisper + pranchas), tendencias.py (ranking de virais)
 ```
 
 Comandos:
@@ -45,8 +52,12 @@ Comandos:
 - `npm run tipos` (TypeScript) · `npm run verificar` (tipos + render pequeno do Exemplo: prova que o ambiente funciona).
 - `npm run estudio` abre o Remotion Studio (só útil com navegador; no celular use a folha de quadros).
 - `ferramentas/folha.sh <mp4> [n]` · `ferramentas/info.sh <mp4>`.
+- `uv run -q ferramentas/assistir.py "<link|arquivo>"` → `saidas/assistir/<nome>/relatorio.md` + pranchas.
+- `uv run -q ferramentas/tendencias.py "<termo>" --curtos` → `saidas/tendencias/<termo>-<data>.md`.
+  Chaves opcionais no ambiente (nunca no chat nem no git): `GEMINI_API_KEY` (YouTube bloqueado na nuvem),
+  `APIFY_TOKEN` (TikTok/Instagram), `YOUTUBE_API_KEY` (dados completos do YouTube).
 
-Ambiente: Node 22, ffmpeg 6 e o Chromium da nuvem (`/opt/pw-browsers`, configurado em `remotion.config.ts`).
+Ambiente: Node 22, ffmpeg 6, uv (instala yt-dlp e faster-whisper sozinho no 1º `uv run`) e o Chromium da nuvem (`/opt/pw-browsers`, configurado em `remotion.config.ts`).
 O hook `SessionStart` roda `npm ci` quando falta `node_modules`. Remotion é grátis para pessoa física e times de
 até 3 pessoas (licença da Remotion); vídeo para empresa maior exige licença paga.
 
@@ -72,6 +83,7 @@ Economia de tokens:
 
 ## Skills instaladas (origem em `.claude/skills/FONTES.md`)
 - Direção e edição: `diretor-de-motion`, `edicao-de-video` (próprias deste repositório).
+- Pesquisa: `tendencias-virais`, `assistir-video` (próprias deste repositório).
 - Motion e vídeo: `remotion-motion-graphics`, `motion-design`, `game-development` (12 princípios), `game-feel`,
   `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`,
   `animation-performance`, `emil-design-eng`, `apple-design`, `text-to-lottie`, `rive`, `gsap-*`, `threejs-*`.

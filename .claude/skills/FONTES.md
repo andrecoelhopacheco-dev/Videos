@@ -7,6 +7,7 @@ Para atualizar uma delas, copie de novo a pasta da fonte (commit novo) e registr
 | - | - | - | - |
 | `diretor-de-motion` | própria (adaptada do `animacao-de-jogo` do projeto-andre) | — | roteiro com sentimento, validação por folha de quadros, aprendizado do estilo (`docs/estilo.md`) |
 | `edicao-de-video` | própria (receitas ffmpeg testadas neste ambiente) | — | cortar, juntar, reenquadrar, legendar, áudio, comprimir |
+| `assistir-video`, `tendencias-virais` | próprias (2026-10-22); ideia de "legenda primeiro, Whisper se faltar, quadros por troca de cena" inspirada em bradautomates/claude-video (MIT), sem copiar código | — | destrinchar vídeos virais e caçar tendências por nicho |
 | `remotion-motion-graphics` | haidrrrry/claude-remotion-skill (1dcbe5e) | MIT | **base técnica dos vídeos** (React → MP4) |
 | `motion-design` | LottieFiles/motion-design-skill (f9a8a04) | MIT | emoção → movimento, narrativa, coreografia |
 | `game-development` | dylantarre/animation-principles (8359713) | MIT | os 12 princípios da animação |

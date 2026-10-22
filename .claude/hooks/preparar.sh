@@ -7,4 +7,5 @@ if [ ! -d node_modules/remotion ]; then
     || echo "Aviso: npm ci falhou; rode 'npm ci' e veja o erro."
 fi
 command -v ffmpeg >/dev/null || echo "Aviso: ffmpeg não encontrado; renders do Remotion e receitas de edição vão falhar."
+command -v uv >/dev/null || echo "Aviso: uv não encontrado; ferramentas/assistir.py e tendencias.py precisam dele (pip install uv)."
 exit 0

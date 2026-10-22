@@ -8,7 +8,11 @@
       "Bash(ffmpeg:*)",
       "Bash(ffprobe:*)",
       "Bash(ferramentas/folha.sh:*)",
-      "Bash(ferramentas/info.sh:*)"
+      "Bash(ferramentas/info.sh:*)",
+      "Bash(uv run -q ferramentas/assistir.py:*)",
+      "Bash(uv run -q ferramentas/tendencias.py:*)",
+      "Bash(uv run ferramentas/assistir.py:*)",
+      "Bash(uv run ferramentas/tendencias.py:*)"
     ]
   },
   "hooks": {
