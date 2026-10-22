@@ -36,8 +36,11 @@ código e guarda o gosto do dono para que cada vídeo novo comece de onde o últ
    `saidas/<id>.mp4` + `saidas/<id>_folha.png`. **Abra a folha (Read) e olhe**; para trechos rápidos, rode a
    folha só do intervalo (`--frames=30-60`) ou com mais quadros (`ferramentas/folha.sh <mp4> 16`).
    Conserte e renderize de novo até passar no checklist.
-5. **Entrega**: mande o MP4 ao dono pelo app (SendUserFile, `display: "render"`), com 3–5 linhas dizendo o que ele
-   deve sentir e onde olhar. Dúvida real de gosto → **2 variantes** curtas e nomeadas ("A: seca e rápida ·
+   **Portões (`docs/processo.md`)**: confira o nível de autonomia do nicho. No nível 1, mande o resumo da análise +
+   roteiro + direção no chat e espere o portão A antes de implementar.
+5. **Entrega**: mande o rascunho (`--scale=0.5`) ao dono pelo app (SendUserFile, `display: "render"`) para o
+   portão B, com 3–5 linhas dizendo o que ele deve sentir e onde olhar. Aprovado: render final + legendas por rede
+   na pasta do Drive (`docs/processo.md`) e uma linha no registro de aprovações. Dúvida real de gosto → **2 variantes** curtas e nomeadas ("A: seca e rápida ·
    B: antecipação maior"). Versão aprovada vai para `entregas/<nome>.mp4` (commitada; até ~50 MB).
 6. **Aprendizado** (`references/aprendizado.md`): depois da resposta do dono, registre em `docs/estilo.md`.
    Preferência vista 2 vezes vira regra "sempre/nunca". Atualize o estado do roteiro.
