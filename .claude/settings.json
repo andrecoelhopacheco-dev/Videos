@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run render:*)",
+      "Bash(npm run tipos)",
+      "Bash(npm run verificar)",
+      "Bash(npx remotion:*)",
+      "Bash(ffmpeg:*)",
+      "Bash(ffprobe:*)",
+      "Bash(ferramentas/folha.sh:*)",
+      "Bash(ferramentas/info.sh:*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/preparar.sh\"",
+            "timeout": 300
+          },
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR:-.}/.trail/hook.cjs\" session-start",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

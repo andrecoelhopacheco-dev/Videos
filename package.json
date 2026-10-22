@@ -1,0 +1,22 @@
+{
+  "name": "videos",
+  "version": "0.1.0",
+  "description": "Ambiente do Claude para criar motion graphics e editar vídeos (saída MP4)",
+  "scripts": {
+    "estudio": "remotion studio",
+    "render": "node ferramentas/render.mjs",
+    "tipos": "tsc",
+    "verificar": "tsc && node ferramentas/render.mjs Exemplo --verificar"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.538",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.538"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^5.9.3"
+  },
+  "private": true
+}
