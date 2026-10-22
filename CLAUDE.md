@@ -17,7 +17,9 @@ Ambiente de trabalho para o Claude **criar motion graphics, editar vídeos e ent
 - Prefere que você decida e siga em frente; pergunte só quando a escolha for cara de desfazer (texto exato,
   marca, música com direito autoral).
 - Quando ele pedir várias tarefas, mostre o andamento com `#### EXECUTANDO TAREFA X ####` e a porcentagem.
-- **Sempre publicar no `main`**: ao terminar uma entrega, abrir o PR do ramo de trabalho e fazer o merge no `main`.
+- **Sempre publicar no `main`**: vídeo novo vai em commit direto no `main`; mudança na máquina (skills, ferramentas,
+  tema, componentes, hooks) vai por PR + merge no `main`.
+- **Processo, portões de aprovação, pasta final no Drive e autonomia por nicho: `docs/processo.md`.**
 
 ## Como se faz um vídeo aqui
 1. Skill **`diretor-de-motion`** primeiro, sempre: roteiro em `docs/roteiros/`, estilo do dono em `docs/estilo.md`.
