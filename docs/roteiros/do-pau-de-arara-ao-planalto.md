@@ -1,65 +1,74 @@
 # Do pau de arara ao Planalto
-Estado: rascunho (portão A)
-Formato: 1080×1920 · 30 fps · ~85 s (≈2550 quadros) · Reels / TikTok / Shorts / status do WhatsApp
+Estado: em produção (v2, direção do Grozk em 23/10)
+Formato: 1080×1920 · 30 fps · ~125 s · Reels / TikTok / Shorts (WhatsApp corta status em pedaços de 60 s)
 Irmãos: nenhum (1º do nicho). Referência: ar_portuga "Brilha uma estrela" (`docs/estudos/nicho-politica-lula-2026.md`)
 
 ## Sentimento
-Arrepio e orgulho: "olha de onde esse homem veio". Quem está decidido compartilha com orgulho; o indeciso termina
-pensando "ele sabe o que é passar fome".
+"Ele é um de nós." Arrepio com a origem, raiva com o dedo perdido, orgulho da luta, e no fim a pergunta: como eleger
+quem nunca foi um de nós?
 
-## Diferença para a referência
-A referência é anime de IA, épico, com herói contra vilão. A nossa versão é um **cordel de verdade**: xilogravura,
-versos rimados, narrador cordelista (avatar do Grozk), **só fatos conferíveis** e nenhum ataque ao adversário. Para o
-indeciso, quem bate afasta; a história é que convence.
+## Linha narrativa (pedida pelo Grozk)
+Nasceu do povo e sentiu a fome → trabalhou duro desde menino → o acidente de trabalho e a revolta → lutou pelo
+trabalhador **muito antes** de qualquer cargo → perdeu três eleições e não desistiu → quem sentiu a fome luta contra
+ela: o que fez em cada mandato → contraste com o adversário → "Envie pra quem precisa conhecer a verdadeira
+história. Agora é 13!"
 
-## Gancho (0–4 s)
-Já no primeiro quadro, o avatar de chapéu de palha bate um folheto de cordel na mesa. A capa em xilogravura vem
-carimbada: **DO PAU DE ARARA AO PLANALTO**. Narração: "Vou contar uma história que é verdade do começo ao fim."
-
-## Cenas (uma sextilha por cena, ~11 s cada)
-| Cena | Tempo (s) | Ilustração (ChatGPT) | Verso narrado | Texto/fato na tela |
+## Cenas
+| # | Tempo (s) | Imagem | Verso (cordel) | Fato carimbado |
 | - | - | - | - | - |
-| 0 | 0–4 | Avatar + capa do folheto | Vou contar uma história / que é verdade do começo ao fim | DO PAU DE ARARA AO PLANALTO |
-| 1 | 4–15 | Sertão rachado; mãe e filhos em cima do caminhão | Em Caetés, no Pernambuco, / o sertão secou o chão. / Dona Lindu juntou os filhos, / coragem no coração: / treze dias num pau de arara / atrás de um pedaço de pão. | 1952 · 13 dias de estrada |
-| 2 | 15–26 | Menino engraxate no cais de Santos | O menino chegou em Santos / sem sapato e sem tostão. / Engraxou sapato na praça, / foi ambulante no calçadão, / estudou de noite, cansado, / e aprendeu uma profissão. | Engraxate aos 7 anos |
-| 3 | 26–37 | Torneiro no torno, faíscas; a mão sem o dedo mínimo | Virou torneiro mecânico, / no chão de fábrica, peão. / Uma prensa levou seu dedo, / mas não levou a razão: / viu que operário sozinho / nunca vence o patrão. | Torneiro mecânico (SENAI) |
-| 4 | 37–48 | Assembleia no estádio, mar de braços; viatura ao fundo | Juntou a sua gente, / fez da greve a sua voz. / A ditadura o prendeu, / achou que era o fim de nós, / mas o povo seguia junto / e ninguém andava a sós. | Greves do ABC · preso em 1980 |
-| 5 | 48–59 | Urna, multidão em festa, faixa de posse | Perdeu uma, duas, três, / mas nunca se rendeu. / Em dois mil e dois, o povo / foi às urnas e escolheu: / o menino do pau de arara / presidente se elegeu. | 1989 · 1994 · 1998 · **2002** |
-| 6 | 59–72 | Prato vazio que vira prato cheio; mapa do Brasil | Quem já conheceu a fome / não esquece o prato vazio. / Tirou o Brasil do Mapa / da Fome, que era um desafio, / e, quando ela voltou, / tirou de novo o Brasil. | Fora do Mapa da Fome: 2014 e 2025 (FAO/ONU) |
-| 7 | 72–85 | Avatar fecha o folheto; estrela vermelha nasce do sol | Essa história é verdade, / cada verso tem razão. / Se você tá na dúvida, / olha de onde veio esse irmão: / domingo, vinte e cinco, / é 13 de coração. | DOMINGO 25 · É 13 + "manda pra quem tá na dúvida" |
+| 0 | 0–4 | avatar-narrando | Vou contar uma história / que é verdade do começo ao fim | DO PAU DE ARARA AO PLANALTO |
+| 1 | 4–15 | c1-pau-de-arara + foto infância | Em Caetés, no Pernambuco, / o sertão secou o chão. / Dona Lindu juntou os filhos, / coragem no coração: / treze dias num pau de arara / atrás de um pedaço de pão. | 1952 · 7 anos · 13 dias de estrada |
+| 2 | 15–26 | c2-engraxate + foto jovem | O menino chegou em Santos / sem sapato e sem tostão. / Engraxou sapato na rua, / foi ambulante no calçadão, / estudou de noite, cansado, / e aprendeu uma profissão. | Engraxate · ambulante · torneiro pelo SENAI |
+| 3 | 26–37 | c3-prensa (NOVA) | Aos dezoito, de madrugada, / a prensa desceu na mão: / lá se foi o dedo mínimo, / sem norma, sem proteção. / Peão era peça de troca, / e a dor virou decisão. | 1964 · norma de segurança de máquinas só em 1978 (NR-12) |
+| 4 | 37–50 | c4-greve + fotos 1979 e DOPS 1980 | Entrou para o sindicato, / virou a voz do peão. / Parou o ABC inteiro / por salário e por pão. / A ditadura o prendeu, / mas não prendeu a razão. | Presidente do sindicato em 1975 · greves 1978–80 · preso pelo DOPS em 1980 |
+| 5 | 50–62 | c5a-debate (NOVA) → c5-eleicao | Perdeu uma, duas, três, / mas nunca se rendeu: / tinha um propósito na vida / que o povo reconheceu. / Em dois mil e dois, o filho / do pau de arara venceu. | 1989 · 1994 · 1998 · **2002** |
+| 6 | 62–73 | c6-fome | Só briga com a fome assim / quem já sentiu sua dor: / quem dormiu de barriga vazia / sabe o que vale um valor (*) / um prato de arroz e feijão / na mesa do trabalhador. | — |
+| 6b | 73–98 | carimbos rápidos sobre papel | (trilha sobe, sem verso) | lista por mandato, abaixo |
+| 7 | 98–110 | cartaz de contraste (2 colunas) | Como é que a gente elege / quem nunca foi um de nós? / Fez carreira de mandato / desde os vinte e um, veloz, / e quando o peão precisou / votou contra a nossa voz. | Lula: torneiro aos 18 · Flávio: deputado aos 21 / Lula: lei de valorização do salário mínimo · Flávio: votou SIM na Reforma da Previdência (2019) |
+| 8 | 110–125 | avatar-orgulho | Essa história é verdade, / cada verso tem razão. / Manda pra quem precisa / conhecer o nosso irmão: / domingo, vinte e cinco, / é 13 de coração! | ENVIE PRA QUEM PRECISA CONHECER A VERDADEIRA HISTÓRIA · AGORA É 13! |
 
-## Movimento (Remotion)
-- **Folheto que vira a página**: cada cena entra como página de cordel virando (rotação 3D curta). A tinta "carimba"
-  de baixo para cima, com máscara de textura de madeira.
-- **Em cada ilustração**: câmera lenta de aproximação (escala 1→1,08), recortes em 2–3 planos de paralaxe quando a
-  imagem permitir, grão de papel e tremidinha de tinta (2 px, 12 fps) para parecer impresso.
-- **Verso**: aparece verso a verso, sincronizado com a narração, em caixa creme na faixa inferior segura (acima de
-  400 px). O fato da cena fica em selo vermelho carimbado no topo (abaixo de 250 px).
-- **Avatar**: recorte dos poses da folha, respirando (seno) e trocando de expressão nas batidas da narração. Sem
-  sincronia labial nesta versão, por causa do prazo.
-- **Impacto principal**: cena 5, em "presidente se elegeu", com flash creme, estrelas de xilogravura e tremor curto.
+(*) verso 4 da cena 6 ainda a polir.
 
-## Áudio
-- **Narração:** o Grozk lê os versos e grava no Gravador do iPhone (ritmo de repente, ~11 s por estrofe). Sem voz,
-  vira texto com música, e a duração cai para ~60 s.
-- **Trilha:** baião instrumental com licença livre (sanfona, zabumba, triângulo), sem música com direito autoral.
-  Os cortes caem na zabumba.
+### 6b. O que fez, mandato a mandato (carimbo de ~2 s cada)
+1º mandato (2003–2006): Fome Zero e Bolsa Família · Luz para Todos · crédito consignado para quem tem carteira ·
+ProUni · Farmácia Popular · lei das domésticas (férias de 30 dias, estabilidade da gestante, 2006).
+2º mandato (2007–2010): salário mínimo com ganho real (+53% acima da inflação, 2003–2010, DIEESE) · centrais
+sindicais reconhecidas em lei (2008) · licença-maternidade de 180 dias (Empresa Cidadã, 2008) · transposição do São
+Francisco · universidades e institutos federais · Minha Casa, Minha Vida.
+3º mandato (2023–): valorização do salário mínimo em lei (2023) · igualdade salarial entre homens e mulheres (2023) ·
+Pé-de-Meia · isenção do IR até R$ 5 mil (2026) · Brasil fora do Mapa da Fome de novo (FAO, 2025).
 
-## Paleta e tipografia
-Creme do papel `#F2E6CC`, tinta `#1A1410`, vermelho-herói `#C8102E` (só na estrela, no 13 e no selo) e ocre
-`#D9A23B`. Títulos em letra de cordel/clichê de tipografia popular; verso em serifada robusta legível.
+## Fontes dos fatos
+- Acidente de 1964, prensa, dedo mínimo, indenização: [Aos Fatos](https://www.aosfatos.org/noticias/fora-de-contexto-lula-dedo/), [Congresso em Foco](https://congressoemfoco.com.br/noticias/lula-rebate-boato-de-que-recebe-aposentadoria-por-invalidez).
+- Mapa da Fome 2025: relatório SOFI/FAO de 28/07/2025 ([O Povo](https://www.opovo.com.br/noticias/brasil/2025/07/28/brasil-sai-do-mapa-da-fome-anuncia-onu.html)).
+- Salário mínimo +53%: DIEESE ([JB, 2011](https://www.jb.com.br/economia/noticias/2011/02/16/salario-teve-ganhos-reais-de-53-nos-ultimos-oito-anos.html)).
+- IR até R$ 5 mil: Lei 15.270/2025 ([LegisWeb](https://www.legisweb.com.br/noticia/?id=31887)).
+- Flávio Bolsonaro: eleito deputado estadual aos 21 anos em 2002 ([Itatiaia](https://www.itatiaia.com.br/politica/eleicoes/conheca-a-carreira-politica-de-flavio-bolsonaro-pre-candidato-a-presidencia/)); votou "Sim" na Reforma da Previdência, 2º turno no Senado, 22/10/2019 ([Congresso em Foco](https://congressoemfoco.com.br/economia/leia-como-cada-senador-votou-no-2o-turno-da-previdencia)).
+- Leis do 1º e 2º mandatos (11.324/2006, 11.648/2008, 11.770/2008, 10.820/2003, 11.096/2005) e do 3º (14.611/2023,
+  14.663/2023, 14.818/2024): conferir no planalto.gov.br antes do render final.
+
+## Fotos históricas (Wikimedia Commons, domínio público no Brasil: fotografia documental anterior a 1998)
+- `Lula ao lado de uma de suas irmãs restored.jpg` (anos 1940)
+- `Lula da Silva Jovem.png` (anos 1950; fonte Instituto Lula)
+- `Lula discursando para metalúrgicos em 1979.jpg` (fonte Folha de S.Paulo; marcado PD-Brazil-URAA)
+- `1980-lula-fichado-no-dops.png` (acervo Lula/CSBH; PD-Brazil Government)
+- `Lula, 1982.jpg` (discurso em cima de carreta)
+- Debates de 1989, 1994 e 1998: **nenhuma foto livre**. As imagens são da TV e das agências, com direito autoral.
+  Recriar o debate em xilogravura.
 
 ## Regras eleitorais
-- Aviso fixo e legível "Conteúdo feito com auxílio de IA" (Res. TSE 23.732/2024), porque as ilustrações são geradas.
-- Só fato conferível (datas acima). Nada de pesquisa, nada de ataque, nada de impulsionamento pago.
-- Postar até sábado, 24/10. No domingo, nada novo.
+- Aviso "Ilustrações feitas com IA · fotos de acervo histórico". Só fato com fonte (acima).
+- O contraste usa só fatos verificados. Ficou de fora "nunca trabalhou" e "nunca fez nenhum projeto": absolutos que
+  não dá para provar, e fato inverídico em propaganda é crime (art. 323 do Código Eleitoral) e dá direito de resposta.
+- Postar até sábado, 24/10. Sem impulsionamento pago.
 
-## Riscos
-- O ChatGPT recusar retratar um candidato real. Por isso o adulto aparece de costas, em silhueta ou no meio do
-  povo, e a história sustenta a cena.
-- Estilo inconsistente entre as imagens: gerar todas na mesma conversa do ChatGPT, depois da folha do avatar.
-- Prazo: precisamos das imagens e da voz ainda hoje para ter o rascunho no sábado de manhã.
+## Movimento
+O mesmo da v1: página de cordel virando, tinta carimbando, câmera lenta de aproximação, grão de papel. Fotos
+históricas entram como recorte de jornal preso com fita, em preto e branco com retícula, girando levemente. Na 6b, os
+carimbos batem no ritmo da zabumba, com um contador de mandato (1º, 2º, 3º) no topo. Impacto principal no "venceu"
+(cena 5).
 
 ## Decisões do dono
-- 2026-10-23: "Vamo fazer uma saga emocional logo de cara. Do pau de arara ao planalto." Avatar sem aparecer o
-  rosto real, estética de xilogravura de cordel (proposta do Claude).
+- 2026-10-23: "Vamo fazer uma saga emocional logo de cara. Do pau de arara ao planalto."
+- 2026-10-23: aprovou a folha do avatar (xilogravura) e mandou 7 ilustrações; pediu a linha narrativa acima, fotos
+  históricas, todos os direitos por mandato e o contraste com o adversário.
