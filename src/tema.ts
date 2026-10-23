@@ -18,6 +18,16 @@ export const theme = {
     body: "system-ui, sans-serif",
     mono: "ui-monospace, monospace",
   },
+  // Nicho política em cordel (xilogravura): papel, tinta, um vermelho-herói, ocre de apoio.
+  cordel: {
+    papel: "#F2E6CC",
+    papelEscuro: "#E3D2AE",
+    tinta: "#1A1410",
+    vermelho: "#C8102E",
+    ocre: "#D9A23B",
+    fonteTitulo: "AlfaSlabOne", // public/fontes/AlfaSlabOne.ttf (OFL)
+    fonteVerso: "Bitter", // public/fontes/Bitter.ttf (OFL)
+  },
   // THE easing curves. Linear is forbidden.
   ease: {
     out: Easing.bezier(0.16, 1, 0.3, 1), // easeOutExpo — entrances
