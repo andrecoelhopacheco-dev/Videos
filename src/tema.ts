@@ -28,6 +28,17 @@ export const theme = {
     fonteTitulo: "AlfaSlabOne", // public/fontes/AlfaSlabOne.ttf (OFL)
     fonteVerso: "Bitter", // public/fontes/Bitter.ttf (OFL)
   },
+  // Documentário questionador (nicho política): fundo quase preto, off-white e UM vermelho-herói.
+  doc: {
+    fundo: "#0D0C0B",
+    painel: "#1A1816",
+    texto: "#F4EFE6",
+    apagado: "#9A938A",
+    vermelho: "#E11D2E",
+    fonteTitulo: "Anton", // public/fontes/Anton.ttf (OFL)
+    fonteTexto: "Inter", // public/fontes/Inter.ttf (OFL)
+    fonteDado: "PlexMono", // public/fontes/IBMPlexMono.ttf (OFL)
+  },
   // THE easing curves. Linear is forbidden.
   ease: {
     out: Easing.bezier(0.16, 1, 0.3, 1), // easeOutExpo — entrances
