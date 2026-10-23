@@ -1,5 +1,7 @@
 # Do pau de arara ao Planalto
-Estado: v3 em produção. A v1/v2 em cordel foi rejeitada no portão B em 23/10, por parecer slideshow.
+Estado: v4, rascunho 3. Narração completa (a fonte da verdade) em `src/videos/pau-de-arara/dados.ts`.
+Toda legenda = uma fala. A palavra entra a cada 0,3 s e a frase fica 0,7 s parada para leitura; itens de lista ficam
+na tela e andam mais rápido. Duração total: 2:54.
 Formato: 1080×1920 · 30 fps · ~118 s · Reels / TikTok / Shorts
 Irmãos: nenhum. Referência de estudo: `docs/estudos/nicho-politica-lula-2026.md`
 
@@ -32,7 +34,7 @@ dados em IBM Plex Mono. Todas as fontes são OFL.
 | 7 | 70–80 | Mapa do Brasil vermelho clareando a cada "FORA" | "Quem passou fome **não esquece**." MAPA DA FOME (ONU): 2014 FORA · VOLTOU · 2025 **FORA DE NOVO** |
 | 8 | 80–98 | 3 mandatos, cards cinéticos e contadores (+53%, 180 dias, R$ 5 mil) | lista de conquistas (abaixo) |
 | 9 | 98–110 | Tela dividida LULA × FLÁVIO, idades em contador, soco no "Votou SIM" | "Agora **compare**." Linhas do quadro de contraste |
-| 10 | 110–118 | Avatar do Grozk em moldura, chuva de estrelas | "Quem é **um de nós**?" "Envie pra quem precisa conhecer a verdadeira história." **AGORA É 13** |
+| 10 | final | "13" gigante vazado ao fundo, chuva de estrelas (avatar removido em 23/10) | "Quem é **um de nós**?" "Envie pra quem precisa conhecer a verdadeira história." **AGORA É 13** |
 
 ### Conquistas (cena 8)
 - 1º mandato (2003–06): Bolsa Família · Luz para Todos · ProUni · Farmácia Popular · lei das domésticas (2006).
@@ -73,6 +75,7 @@ Só fato com fonte; nada de "fantasma" nem de "nunca fez nada". Aviso de IA quan
 até sábado, 24/10, sem impulsionamento.
 
 ## Decisões do dono
+- 2026-10-23 (rascunho 2): textos = legenda da narração inteira, tempos de leitura críveis; tirar o apresentador do final.
 - 2026-10-23: saga emocional "do pau de arara ao Planalto"; aprovou o avatar.
 - 2026-10-23: linha narrativa com origem, acidente, luta antes da política, derrotas, fome, mandatos, contraste e
   "Agora é 13".

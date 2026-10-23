@@ -17,7 +17,7 @@ export const Raiz: React.FC = () => (
     <Composition
       id="PauDeArara"
       component={PauDeArara}
-      durationInFrames={duracaoTotal * 30}
+      durationInFrames={duracaoTotal(30)}
       fps={30}
       width={1080}
       height={1920}

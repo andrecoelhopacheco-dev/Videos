@@ -89,7 +89,7 @@ export const Frase: React.FC<{ texto: string; de: number; ate?: number; tam?: nu
       if (abre) emph = true;
       const limpa = w.replace(/\*/g, "");
       const e = emph;
-      if (w.endsWith("*") || w.endsWith("*?") || w.endsWith("*.") || w.endsWith("*,")) emph = false;
+      if (/.\*[.,?!:;]*$/.test(w) || w === "*") emph = false;
       return { w: limpa, e };
     });
     const saida = ate === undefined ? 1 : interpolate(frame, [ate - 7, ate], [1, 0], { ...travar, easing: theme.ease.in });
@@ -275,3 +275,48 @@ export const RotuloIA: React.FC<{ top?: number }> = ({ top = 1470 }) => (
   <div style={{ position: "absolute", top, left: 0, right: 0, textAlign: "center", fontFamily: d.fonteDado, fontSize: 24,
     color: d.apagado, letterSpacing: "0.06em" }}>IMAGEM FEITA COM IA</div>
 );
+
+// Número ou palavra gigante vazada ao fundo, derivando devagar.
+export const Fantasma: React.FC<{ texto: string; de: number; top: number; tam?: number }> = ({ texto, de, top, tam = 520 }) => {
+  const frame = useCurrentFrame();
+  const o = interpolate(frame, [de, de + 15], [0, 0.16], travar);
+  return (
+    <div style={{ position: "absolute", top, left: -200, right: -200, textAlign: "center", fontFamily: d.fonteTitulo,
+      fontSize: tam, lineHeight: 1, color: "transparent", WebkitTextStroke: `3px ${d.texto}`, opacity: o,
+      transform: `translateX(${Math.sin(frame / 60) * 30}px) scale(${1 + (frame - de) / 3000})` }}>{texto}</div>
+  );
+};
+
+// Silhueta do Congresso Nacional desenhada em traço (cúpula, torres e prato).
+export const Congresso: React.FC<{ de: number; top: number }> = ({ de, top }) => {
+  const frame = useCurrentFrame();
+  const t = interpolate(frame, [de, de + 40], [0, 1], { ...travar, easing: theme.ease.inOut });
+  const tracos = ["M40 600 H1040", "M495 600 V160 H555 V600", "M585 600 V160 H645 V600", "M495 300 H645",
+    "M190 600 A120 95 0 0 1 430 600", "M690 520 Q815 640 940 520 M690 520 H940", "M110 640 H970"];
+  return (
+    <svg width={1080} height={700} viewBox="0 0 1080 700" style={{ position: "absolute", top, left: 0, opacity: 0.5 }}>
+      {tracos.map((p, i) => (
+        <path key={i} d={p} fill="none" stroke={i === 1 || i === 2 ? d.vermelho : d.texto} strokeWidth={5} pathLength={1}
+          strokeDasharray={1} strokeDashoffset={1 - Math.min(1, Math.max(0, t * 1.4 - i * 0.06))} strokeLinecap="round" />
+      ))}
+    </svg>
+  );
+};
+
+// Prensa: bloco listrado que despenca do topo, bate e sobe de volta.
+export const Prensa: React.FC<{ de: number; ate: number }> = ({ de, ate }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  if (frame < de - 12 || frame > ate + 1) return null;
+  const desce = interpolate(frame, [de - 12, de], [-1, 0], { ...travar, easing: theme.ease.in });
+  const quica = frame > de ? Math.sin((frame - de) / 2) * 14 * Math.exp(-(frame - de) / 6) : 0;
+  const sobe = interpolate(frame, [ate - 10, ate], [0, -1], { ...travar, easing: theme.ease.in });
+  const y = (desce + sobe) * 700 + quica;
+  return (
+    <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 640, transform: `translateY(${y}px)`,
+      background: `repeating-linear-gradient(135deg, ${d.painel} 0 60px, #2A0C10 60px 120px)`,
+      borderBottom: `14px solid ${d.vermelho}`, boxShadow: "0 40px 80px rgba(0,0,0,0.8)" }}>
+      <div style={{ position: "absolute", top: -400, left: 480, width: 120, height: 400, background: d.painel }} />
+    </div>
+  );
+};
