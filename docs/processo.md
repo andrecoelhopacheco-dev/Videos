@@ -14,7 +14,7 @@ mesmo e foi testado.
 
 ## Saída final no Google Drive
 ```
-videos-prontos/                                  (id 1fmnQJIoWwt9CRRfqr941m53waEDei6F9)
+videos-prontos/                                  (criada pelo ferramentas/drive.py)
   nicho-<nome-do-nicho>/
     0001-<titulo-do-video>/                      número de série por nicho, 4 dígitos, sem acento, hífens
       0001-<titulo>.mp4                          final, h264 + yuv420p + faststart
@@ -25,9 +25,13 @@ videos-prontos/                                  (id 1fmnQJIoWwt9CRRfqr941m53waE
 - O próximo número é o maior `NNNN-` da pasta do nicho + 1.
 - No git ficam roteiro (`docs/roteiros/`), estudo (`docs/estudos/`) e código; o MP4 só vai para `entregas/` se for
   usado de novo.
-- **Limite conhecido:** o conector do Drive recebe o arquivo dentro da própria mensagem, o que serve para .docx mas
-  não para um MP4 de vários MB. Enquanto não houver credencial de upload no ambiente, o MP4 final vai para
-  `entregas/` no GitHub e para o chat.
+- Envio: `uv run -q ferramentas/drive.py enviar "<nicho>" "<titulo>" <arquivos…>` (cria as pastas, numera e sobe;
+  o conector do Drive não serve para MP4 porque recebe o arquivo dentro da mensagem). Precisa de
+  `GDRIVE_CLIENT_ID`, `GDRIVE_CLIENT_SECRET` e `GDRIVE_REFRESH_TOKEN` no ambiente; a última sai de
+  `ferramentas/drive.py autorizar` (o dono digita o código em google.com/device; o token vai para
+  `saidas/drive_token.txt` e o dono o entrega pelo app, nunca pelo chat).
+- Escopo `drive.file`: o script só vê o que ele criou, então a árvore `videos-prontos` é dele. A pasta homônima
+  criada pelo conector em 22/10 (id 1fmnQJIoWwt9CRRfqr941m53waEDei6F9) fica vazia e pode ir para a lixeira.
 
 ## Publicação no git
 - Vídeo novo (roteiro, cenas, estudo, legendas): commit direto no `main`.

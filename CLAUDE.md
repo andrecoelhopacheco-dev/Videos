@@ -56,6 +56,8 @@ Comandos:
 - `ferramentas/folha.sh <mp4> [n]` · `ferramentas/info.sh <mp4>`.
 - `uv run -q ferramentas/assistir.py "<link|arquivo>"` → `saidas/assistir/<nome>/relatorio.md` + pranchas.
 - `uv run -q ferramentas/tendencias.py "<termo>" --curtos` → `saidas/tendencias/<termo>-<data>.md`.
+- `uv run -q ferramentas/drive.py enviar "<nicho>" "<titulo>" <arquivos…>` → entrega final no Drive
+  (`docs/processo.md`); `… drive.py autorizar` gera o `GDRIVE_REFRESH_TOKEN` uma única vez.
   Chaves opcionais no ambiente (nunca no chat nem no git): `GEMINI_API_KEY` (YouTube bloqueado na nuvem),
   `APIFY_TOKEN` (TikTok/Instagram), `YOUTUBE_API_KEY` (dados completos do YouTube).
 
