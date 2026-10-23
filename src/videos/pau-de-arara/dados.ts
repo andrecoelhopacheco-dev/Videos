@@ -60,10 +60,10 @@ export const mandatos = [
 
 export const contraste = {
   linhas: [
-    { lula: "Aos 18: torneiro na fábrica", outro: "Aos 21: deputado estadual" },
+    { lula: "Aos 18: torneiro na fábrica", outro: "Aos 19: cargo de 40 h na Câmara em Brasília, enquanto estudava e estagiava no Rio" },
     { lula: "Criou a valorização do salário mínimo", outro: "Votou SIM na Reforma da Previdência (2019)" },
   ],
-  fonte: "Fontes: votação nominal do Senado, 22/10/2019 · TSE, eleição de 2002",
+  fonte: "Fontes: BBC Brasil (cargo na Câmara, 2000–2002) · votação nominal do Senado, 22/10/2019",
 };
 
 export const duracaoTotal = cenas.reduce((s, c) => s + c.dur, 0);

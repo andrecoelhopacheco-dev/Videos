@@ -24,7 +24,7 @@ história. Agora é 13!"
 | 5 | 50–62 | c5a-debate (NOVA) → c5-eleicao | Perdeu uma, duas, três, / mas nunca se rendeu: / tinha um propósito na vida / que o povo reconheceu. / Em dois mil e dois, o filho / do pau de arara venceu. | 1989 · 1994 · 1998 · **2002** |
 | 6 | 62–73 | c6-fome | Só briga com a fome assim / quem já sentiu sua dor: / quem dormiu de barriga vazia / sabe o que vale um valor (*) / um prato de arroz e feijão / na mesa do trabalhador. | — |
 | 6b | 73–98 | carimbos rápidos sobre papel | (trilha sobe, sem verso) | lista por mandato, abaixo |
-| 7 | 98–110 | cartaz de contraste (2 colunas) | Como é que a gente elege / quem nunca foi um de nós? / Fez carreira de mandato / desde os vinte e um, veloz, / e quando o peão precisou / votou contra a nossa voz. | Lula: torneiro aos 18 · Flávio: deputado aos 21 / Lula: lei de valorização do salário mínimo · Flávio: votou SIM na Reforma da Previdência (2019) |
+| 7 | 98–110 | cartaz de contraste (2 colunas) | Como é que a gente elege / quem nunca foi um de nós? / Fez carreira de mandato / desde os vinte e um, veloz, / e quando o peão precisou / votou contra a nossa voz. | Lula: torneiro aos 18 · Flávio: aos 19, cargo de 40 h na Câmara em Brasília enquanto estudava e estagiava no Rio / Lula: lei de valorização do salário mínimo · Flávio: votou SIM na Reforma da Previdência (2019) |
 | 8 | 110–125 | avatar-orgulho | Essa história é verdade, / cada verso tem razão. / Manda pra quem precisa / conhecer o nosso irmão: / domingo, vinte e cinco, / é 13 de coração! | ENVIE PRA QUEM PRECISA CONHECER A VERDADEIRA HISTÓRIA · AGORA É 13! |
 
 (*) verso 4 da cena 6 ainda a polir.
@@ -43,7 +43,7 @@ Pé-de-Meia · isenção do IR até R$ 5 mil (2026) · Brasil fora do Mapa da Fo
 - Mapa da Fome 2025: relatório SOFI/FAO de 28/07/2025 ([O Povo](https://www.opovo.com.br/noticias/brasil/2025/07/28/brasil-sai-do-mapa-da-fome-anuncia-onu.html)).
 - Salário mínimo +53%: DIEESE ([JB, 2011](https://www.jb.com.br/economia/noticias/2011/02/16/salario-teve-ganhos-reais-de-53-nos-ultimos-oito-anos.html)).
 - IR até R$ 5 mil: Lei 15.270/2025 ([LegisWeb](https://www.legisweb.com.br/noticia/?id=31887)).
-- Flávio Bolsonaro: eleito deputado estadual aos 21 anos em 2002 ([Itatiaia](https://www.itatiaia.com.br/politica/eleicoes/conheca-a-carreira-politica-de-flavio-bolsonaro-pre-candidato-a-presidencia/)); votou "Sim" na Reforma da Previdência, 2º turno no Senado, 22/10/2019 ([Congresso em Foco](https://congressoemfoco.com.br/economia/leia-como-cada-senador-votou-no-2o-turno-da-previdencia)).
+- Flávio Bolsonaro, 2000–2002: aos 19, assistente técnico de gabinete na liderança do PPB na Câmara (40 h semanais em Brasília), ao mesmo tempo que cursava Direito na Cândido Mendes e estagiava na Defensoria no Rio. Reportagem da BBC Brasil ([Terra](https://www.terra.com.br/noticias/brasil/politica/como-flavio-bolsonaro-ocupou-um-cargo-na-camara-dos-deputados-enquanto-fazia-faculdade-e-estagio-no-rio,26fdf1c5ab79cd9d9b72bfbbc609e3eec57qbb7b.html), [Brasil de Fato](https://www.brasildefato.com.br/2019/01/24/a-mamata-de-flavio-bolsonaro-tres-ocupacoes-em-df-e-rj-com-rdollar-13-mil-de-salario)). Na tela: o fato, sem a palavra "fantasma", que é qualificação e não está provada. Eleito deputado estadual aos 21 anos em 2002 ([Itatiaia](https://www.itatiaia.com.br/politica/eleicoes/conheca-a-carreira-politica-de-flavio-bolsonaro-pre-candidato-a-presidencia/)); votou "Sim" na Reforma da Previdência, 2º turno no Senado, 22/10/2019 ([Congresso em Foco](https://congressoemfoco.com.br/economia/leia-como-cada-senador-votou-no-2o-turno-da-previdencia)).
 - Leis do 1º e 2º mandatos (11.324/2006, 11.648/2008, 11.770/2008, 10.820/2003, 11.096/2005) e do 3º (14.611/2023,
   14.663/2023, 14.818/2024): conferir no planalto.gov.br antes do render final.
 
@@ -69,6 +69,7 @@ carimbos batem no ritmo da zabumba, com um contador de mandato (1º, 2º, 3º) n
 (cena 5).
 
 ## Decisões do dono
+- 2026-10-23: pediu o caso do cargo na Câmara aos 19 anos; entrou como fato com fonte, no lugar de "deputado aos 21".
 - 2026-10-23: "Vamo fazer uma saga emocional logo de cara. Do pau de arara ao planalto."
 - 2026-10-23: aprovou a folha do avatar (xilogravura) e mandou 7 ilustrações; pediu a linha narrativa acima, fotos
   históricas, todos os direitos por mandato e o contraste com o adversário.

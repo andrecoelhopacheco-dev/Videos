@@ -97,31 +97,36 @@ const Conquistas: React.FC<{ dur: number }> = ({ dur }) => {
 const Contraste: React.FC<{ dur: number; versos: string[] }> = ({ dur, versos }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const col = (cor: string, nome: string, textos: string[], atraso: number) => (
-    <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 26 }}>
-      <div style={{ fontFamily: c.fonteTitulo, fontSize: 64, color: c.papel, background: cor, textAlign: "center",
-        padding: "10px 0", border: `4px solid ${c.tinta}` }}>{nome}</div>
-      {textos.map((t, i) => {
-        const p = spring({ frame: frame - atraso - i * 0.9 * fps, fps, config: theme.spring.snappy });
-        return (
-          <div key={t} style={{ fontFamily: c.fonteVerso, fontWeight: 800, fontSize: 44, lineHeight: 1.15, color: c.tinta,
-            background: `${c.papel}F0`, border: `4px solid ${c.tinta}`, padding: "18px 18px", minHeight: 190,
-            display: "flex", alignItems: "center", opacity: p,
-            transform: `translateY(${interpolate(p, [0, 1], [40, 0])}px) rotate(${Math.sin((frame + i * 30) / 30) * 0.6}deg)` }}>{t}</div>
-        );
-      })}
-    </div>
+  // Células da mesma linha ficam com a mesma altura; Lula entra primeiro, o outro lado logo depois.
+  const celula = (t: string, atraso: number, i: number) => {
+    const p = spring({ frame: frame - atraso, fps, config: theme.spring.snappy });
+    return (
+      <div style={{ flex: 1, fontFamily: c.fonteVerso, fontWeight: 800, fontSize: 40, lineHeight: 1.15, color: c.tinta,
+        background: `${c.papel}F0`, border: `4px solid ${c.tinta}`, padding: "16px 18px", display: "flex",
+        alignItems: "center", opacity: p,
+        transform: `translateY(${interpolate(p, [0, 1], [40, 0])}px) rotate(${Math.sin((frame + i * 30) / 30) * 0.6}deg)` }}>{t}</div>
+    );
+  };
+  const nome = (cor: string, t: string) => (
+    <div style={{ flex: 1, fontFamily: c.fonteTitulo, fontSize: 60, color: c.papel, background: cor, textAlign: "center",
+      padding: "8px 0", border: `4px solid ${c.tinta}` }}>{t}</div>
   );
   return (
     <AbsoluteFill>
       <Papel />
       <Carimbo texto="QUEM É UM DE NÓS?" atraso={0.2 * fps} tamanho={60} />
-      <div style={{ position: "absolute", top: 440, left: 60, right: 60, display: "flex", gap: 30 }}>
-        {col(c.vermelho, "LULA", contraste.linhas.map((l) => l.lula), 0.6 * fps)}
-        {col(c.tinta, "FLÁVIO", contraste.linhas.map((l) => l.outro), 1.0 * fps)}
+      <div style={{ position: "absolute", top: 420, left: 60, right: 60, display: "flex", flexDirection: "column", gap: 22 }}>
+        <div style={{ display: "flex", gap: 26 }}>{nome(c.vermelho, "LULA")}{nome(c.tinta, "FLÁVIO")}</div>
+        {contraste.linhas.map((l, i) => (
+          <div key={i} style={{ display: "flex", gap: 26, alignItems: "stretch" }}>
+            {celula(l.lula, (0.6 + i * 1.2) * fps, i)}
+            {celula(l.outro, (1.0 + i * 1.2) * fps, i + 1)}
+          </div>
+        ))}
+        <div style={{ textAlign: "center", fontFamily: c.fonteVerso, fontSize: 24, color: c.tinta, opacity: 0.8 }}>
+          {contraste.fonte}
+        </div>
       </div>
-      <div style={{ position: "absolute", top: 1085, left: 60, right: 60, textAlign: "center", fontFamily: c.fonteVerso,
-        fontSize: 26, color: c.tinta, opacity: 0.8 }}>{contraste.fonte}</div>
       <Versos versos={versos} dur={dur} inicio={2.4} />
       <AvisoIA />
     </AbsoluteFill>
