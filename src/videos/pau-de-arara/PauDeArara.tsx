@@ -114,7 +114,9 @@ const Acidente: React.FC<{ c: Ctx }> = ({ c }) => {
       <Clarao em={quatro} cor={d.vermelho} />
       <Leg id="norma" c={c} top={760} tam={76} fonte="texto" modo="sobe" />
       <Leg id="so" c={c} top={740} tam={120} />
-      <Leg id="revolta" c={c} top={800} tam={130} ate={c.dur + ENTRA + 30} />
+      <Leg id="ninguem" c={c} top={760} tam={110} />
+      <Leg id="revolta" c={c} top={720} tam={104} />
+      <Leg id="decidiu" c={c} top={680} tam={92} ate={c.dur + ENTRA + 30} />
     </AbsoluteFill>
   );
 };

@@ -35,7 +35,9 @@ export const roteiro: CenaRoteiro[] = [
     { id: "dedos", texto: "*5 dedos* viraram *4.*", extra: 0.5 },
     { id: "norma", texto: "Norma de segurança para máquinas?" },
     { id: "so", texto: "Só viria em *1978,* com a NR-12." },
-    { id: "revolta", texto: "A dor virou *revolta.*", extra: 0.4 }] },
+    { id: "ninguem", texto: "Ninguém se importava com o *trabalhador.*" },
+    { id: "revolta", texto: "E a dor pela falta de amparo virou *revolta.*" },
+    { id: "decidiu", texto: "Lula decidiu viver para ser aquele que *sempre se importaria* com os trabalhadores.", extra: 0.4 }] },
   { nome: "luta", falas: [
     { id: "antes", texto: "E ele lutou antes de *qualquer cargo* político." },
     { id: "t75", texto: "*1975:* aos 29 anos, virou presidente do sindicato dos metalúrgicos." },
@@ -49,7 +51,7 @@ export const roteiro: CenaRoteiro[] = [
     { id: "a98", texto: "1998. *Perdeu.*", lista: true },
     { id: "pq", texto: "Por que não *desistiu?*", extra: 0.3 },
     { id: "eleito", texto: "*2002:* eleito presidente,", extra: 0.3 },
-    { id: "votos", texto: "com 52.793.364 votos.", extra: 0.8 }] },
+    { id: "votos", texto: "com mais de 52 milhões de votos.", extra: 0.8 }] },
   { nome: "fome", falas: [
     { id: "esquece", texto: "Quem passou fome *não esquece.*" },
     { id: "s14", texto: "Em 2014, o Brasil saiu do *Mapa da Fome* da ONU." },

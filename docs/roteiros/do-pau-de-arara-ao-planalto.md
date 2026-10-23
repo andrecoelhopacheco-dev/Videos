@@ -75,6 +75,7 @@ Só fato com fonte; nada de "fantasma" nem de "nunca fez nada". Aviso de IA quan
 até sábado, 24/10, sem impulsionamento.
 
 ## Decisões do dono
+- 2026-10-23 (rascunho 3): "A dor virou revolta" vira 3 falas (ninguém se importava → a dor pela falta de amparo virou revolta → Lula decidiu viver para ser aquele que sempre se importaria). Contraste impecável em todo quadro. Narração no ElevenLabs com a voz clonada (`docs/roteiros/do-pau-de-arara-narracao.md`); a v5 sai depois do áudio.
 - 2026-10-23 (rascunho 2): textos = legenda da narração inteira, tempos de leitura críveis; tirar o apresentador do final.
 - 2026-10-23: saga emocional "do pau de arara ao Planalto"; aprovou o avatar.
 - 2026-10-23: linha narrativa com origem, acidente, luta antes da política, derrotas, fome, mandatos, contraste e
