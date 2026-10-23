@@ -13,10 +13,10 @@ _(nada ainda)_
 _(nada ainda)_
 
 ## Rejeitado / pedidos
-_(nada ainda)_
+- 2026-10-23 (Do pau de arara, rascunho 1): "parece slideshow", "textos sem vida, entrando sem animação", "foco muito grande nas imagens do GPT". Rejeitou rima/cordel e a estética de xilogravura para esse nicho. Pediu: tom **documentário questionador**, roteiro **inteiro animado** em motion graphics, **zoom nas coisas importantes**, texto sempre com animação.
 
 ## Referências
-_(vídeos, perfis e estilos que o dono mostrar)_
+- Avatar do Grozk (folha em xilogravura, `public/pau-de-arara/avatar-folha.png`): aprovado como personagem; a estética do vídeo é outra conversa.
 
 ## Regras revogadas
 _(nada ainda)_

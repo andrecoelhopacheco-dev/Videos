@@ -54,3 +54,4 @@ Cada nicho sobe de nível sozinho, com base nas respostas do dono registradas na
 ## Registro de aprovações
 | Data | Nicho | Vídeo | Portão | Resultado | Ajuste pedido |
 | - | - | - | - | - | - |
+| 2026-10-23 | politica-lula | Do pau de arara ao Planalto | B | ajuste grande | refazer em documentário questionador, tudo animado, menos imagem GPT, sem rima |
