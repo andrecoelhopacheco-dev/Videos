@@ -101,8 +101,8 @@ const Contraste: React.FC<{ dur: number; versos: string[] }> = ({ dur, versos })
   const celula = (t: string, atraso: number, i: number) => {
     const p = spring({ frame: frame - atraso, fps, config: theme.spring.snappy });
     return (
-      <div style={{ flex: 1, fontFamily: c.fonteVerso, fontWeight: 800, fontSize: 40, lineHeight: 1.15, color: c.tinta,
-        background: `${c.papel}F0`, border: `4px solid ${c.tinta}`, padding: "16px 18px", display: "flex",
+      <div style={{ flex: 1, fontFamily: c.fonteVerso, fontWeight: 800, fontSize: 36, lineHeight: 1.13, color: c.tinta,
+        background: `${c.papel}F0`, border: `4px solid ${c.tinta}`, padding: "12px 16px", display: "flex",
         alignItems: "center", opacity: p,
         transform: `translateY(${interpolate(p, [0, 1], [40, 0])}px) rotate(${Math.sin((frame + i * 30) / 30) * 0.6}deg)` }}>{t}</div>
     );
@@ -115,7 +115,7 @@ const Contraste: React.FC<{ dur: number; versos: string[] }> = ({ dur, versos })
     <AbsoluteFill>
       <Papel />
       <Carimbo texto="QUEM É UM DE NÓS?" atraso={0.2 * fps} tamanho={60} />
-      <div style={{ position: "absolute", top: 420, left: 60, right: 60, display: "flex", flexDirection: "column", gap: 22 }}>
+      <div style={{ position: "absolute", top: 400, left: 60, right: 60, display: "flex", flexDirection: "column", gap: 16 }}>
         <div style={{ display: "flex", gap: 26 }}>{nome(c.vermelho, "LULA")}{nome(c.tinta, "FLÁVIO")}</div>
         {contraste.linhas.map((l, i) => (
           <div key={i} style={{ display: "flex", gap: 26, alignItems: "stretch" }}>

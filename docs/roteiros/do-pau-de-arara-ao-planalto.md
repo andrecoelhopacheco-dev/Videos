@@ -24,7 +24,7 @@ história. Agora é 13!"
 | 5 | 50–62 | c5a-debate (NOVA) → c5-eleicao | Perdeu uma, duas, três, / mas nunca se rendeu: / tinha um propósito na vida / que o povo reconheceu. / Em dois mil e dois, o filho / do pau de arara venceu. | 1989 · 1994 · 1998 · **2002** |
 | 6 | 62–73 | c6-fome | Só briga com a fome assim / quem já sentiu sua dor: / quem dormiu de barriga vazia / sabe o que vale um valor (*) / um prato de arroz e feijão / na mesa do trabalhador. | — |
 | 6b | 73–98 | carimbos rápidos sobre papel | (trilha sobe, sem verso) | lista por mandato, abaixo |
-| 7 | 98–110 | cartaz de contraste (2 colunas) | Como é que a gente elege / quem nunca foi um de nós? / Fez carreira de mandato / desde os vinte e um, veloz, / e quando o peão precisou / votou contra a nossa voz. | Lula: torneiro aos 18 · Flávio: aos 19, cargo de 40 h na Câmara em Brasília enquanto estudava e estagiava no Rio / Lula: lei de valorização do salário mínimo · Flávio: votou SIM na Reforma da Previdência (2019) |
+| 7 | 98–110 | cartaz de contraste (2 colunas) | Como é que a gente elege / quem nunca foi um de nós? / Fez carreira de mandato / desde os vinte e um, veloz, / e quando o peão precisou / votou contra a nossa voz. | Lula: torneiro aos 18 · Flávio: aos 19, cargo de 40 h no gabinete do partido do pai enquanto estudava Direito e estagiava na Defensoria do RJ / Lula: aos 29, presidente do sindicato · Flávio: aos 21, primeiro mandato, herdeiro político do pai / Lula: lei de valorização do salário mínimo · Flávio: votou SIM na Reforma da Previdência (2019) |
 | 8 | 110–125 | avatar-orgulho | Essa história é verdade, / cada verso tem razão. / Manda pra quem precisa / conhecer o nosso irmão: / domingo, vinte e cinco, / é 13 de coração! | ENVIE PRA QUEM PRECISA CONHECER A VERDADEIRA HISTÓRIA · AGORA É 13! |
 
 (*) verso 4 da cena 6 ainda a polir.
@@ -69,6 +69,7 @@ carimbos batem no ritmo da zabumba, com um contador de mandato (1º, 2º, 3º) n
 (cena 5).
 
 ## Decisões do dono
+- 2026-10-23: pediu "gabinete do partido do pai" e "aos 21, herdeiro político"; entraram. Ficou de fora "sem nunca ter feito nada pelo povo" (absoluto sem fonte). Lula presidente do sindicato aos 29 (posse em 19/04/1975).
 - 2026-10-23: pediu o caso do cargo na Câmara aos 19 anos; entrou como fato com fonte, no lugar de "deputado aos 21".
 - 2026-10-23: "Vamo fazer uma saga emocional logo de cara. Do pau de arara ao planalto."
 - 2026-10-23: aprovou a folha do avatar (xilogravura) e mandou 7 ilustrações; pediu a linha narrativa acima, fotos
