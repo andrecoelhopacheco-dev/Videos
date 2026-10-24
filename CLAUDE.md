@@ -15,7 +15,8 @@ Ambiente de trabalho para o Claude **criar motion graphics, editar vídeos e ent
 - **Trabalha pelo iPhone/iPad, sem computador.** Ele vê o resultado pelo app do Claude: mande o MP4 com
   SendUserFile (`display: "render"`). O vídeo tem que tocar no iPhone (h264 + yuv420p + faststart).
 - Prefere que você decida e siga em frente; pergunte só quando a escolha for cara de desfazer (texto exato,
-  marca, música com direito autoral).
+  marca, música com direito autoral). **Exceção: referências criativas** (vídeo ou canal de referência, fatos
+  com fonte, direção visual) faltando → pergunte antes (skill `pedir-referencias`).
 - Quando ele pedir várias tarefas, mostre o andamento com `#### EXECUTANDO TAREFA X ####` e a porcentagem.
 - **Sempre publicar no `main`**: vídeo novo vai em commit direto no `main`; mudança na máquina (skills, ferramentas,
   tema, componentes, hooks) vai por PR + merge no `main`.
@@ -26,6 +27,13 @@ Ambiente de trabalho para o Claude **criar motion graphics, editar vídeos e ent
 2. Motion do zero → **Remotion** (React → vídeo): skill `remotion-motion-graphics`. Edição de material gravado →
    **ffmpeg**: skill `edicao-de-video`.
 3. Validar olhando a folha de quadros; entregar; registrar o que o dono achou.
+
+Nada com cara de IA (vale para roteiro, narração, texto na tela, legenda, título e direção visual):
+- Skill **`pedir-referencias`** no começo da etapa 1, junto com o `diretor-de-motion`: lê `docs/estilo.md`,
+  `docs/estudos/`, `docs/referencias/` e `docs/voz/` e só pergunta o que falta (no máximo 4 perguntas, com a
+  opção "busque 3 opções pra mim"). Grava a resposta em `docs/referencias/` para não perguntar de novo.
+- Skill **`fluxo-anti-slop`**: qual skill usar em cada etapa, a revisão (`humanizador` em roteiro, narração e
+  legendas; `review-animations` nas cenas) e a checagem final. Não cria portão novo no `docs/processo.md`.
 
 Pesquisa antes de criar (vídeos de outras pessoas):
 - Skill **`tendencias-virais`**: o que está bombando num nicho (YouTube/TikTok/Instagram) → `ferramentas/tendencias.py`.
@@ -93,6 +101,11 @@ Economia de tokens:
   `animation-performance`, `emil-design-eng`, `apple-design`, `text-to-lottie`, `rive`, `gsap-*`, `threejs-*`.
 - Eficiência: `ponytail`, `strategic-compact`, `context-budget`, `iterative-retrieval`; agente `ajudante-haiku`;
   comando `/model-route`.
+- Anti-slop (desde 2026-10-24): `pedir-referencias` e `fluxo-anti-slop` (próprias); revisão de texto
+  `humanizador` (PT-BR), `no-ai-slop`, `humanizer`, `anti-ai-slop`; roteiro e narrativa `ew`, `fiction-*`
+  e as 24 do story-skills (`story-init`, `series-continuity`…, só para ficção); direção visual `impeccable`,
+  `design-taste-frontend`, `ui-ux-pro-max`. Hooks do Impeccable desligados; `grade.py` e `detect.py` do
+  `anti-ai-slop` só com o dono pedindo.
 
 ## Convenções
 - Commits pequenos, em português, formato convencional (`feat:`, `fix:`, `docs:`…).
