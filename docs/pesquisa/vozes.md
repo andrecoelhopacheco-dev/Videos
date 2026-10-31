@@ -36,6 +36,31 @@ w = m.generate(text="(terrified, broken trembling whisper, very slow)Estava tent
                reference_wav_path="vx1.wav", cfg_value=2.0, inference_timesteps=10)  # não tem `seed`
 ```
 
+**Veredito do Grozk: Edge e VoxCPM2 ficaram ruins.**
+
+## Chatterbox pt-BR — `resemble-ai/chatterbox` (27 mil estrelas, MIT) ✅ testado
+- Modelo próprio de português do Brasil: `ResembleAI/Chatterbox-Multilingual-pt-br` (~2 GB). O pacote do pip não
+  carrega esse modelo; o código que carrega fica na Space da demo:
+  `GIT_LFS_SKIP_SMUDGE=1 git clone --depth 1 https://huggingface.co/spaces/ResembleAI/Chatterbox-Multilingual-TTS-pt-br space`
+- Dependências da `space/requirements.txt` com `--torch-backend=cpu`, mais `setuptools<70` (o librosa 0.10 precisa
+  do `pkg_resources`).
+- Clona o timbre de uma referência (~10s). Só existe uma voz pública de demo (feminina:
+  `storage.googleapis.com/chatterbox-demo-samples/mtl-v3-single-language-prompts/pt-br/pt_br_f2.wav`). Para a
+  masculina usei o Antonio do Edge como referência.
+- Emoção: `exaggeration` (0,4 calmo → 1,25 pânico) com `cfg_weight` mais baixo para segurar o ritmo. A partir de
+  ~1,5 ele embola as palavras ("tintonso aí"): gerar 3 seeds e escolher pelo Whisper.
+- Ritmo: a referência manda. A referência lenta deixou os blocos com ~10s; uma referência mais rápida + `cfg_weight`
+  0,45–0,6 voltou para ~7s.
+- CPU (4 núcleos): carrega em ~40s, ~13 tokens/s (a história toda leva ~5 min por voz). Tem marca d'água inaudível (Perth).
+```python
+import sys, torch; sys.path.insert(0, "space")
+from chatterbox.src.chatterbox.tts import ChatterboxTTS
+m = ChatterboxTTS.from_pretrained("cpu"); torch.manual_seed(7)
+w = m.generate("Ela estava tentando sair.", language_id="pt", audio_prompt_path="ref.wav",
+               exaggeration=1.25, cfg_weight=0.25, temperature=0.75)
+```
+MP4: `saidas/teste_voz_suspense_chatterbox_{m,f}.mp4` (com trilha) e `saidas/teste_voz_chatterbox_seca.mp4` (só a voz).
+
 ## Outras opções encontradas
 | Repo | Estrelas | Licença | pt-BR | Emoção | Nota |
 | - | - | - | - | - | - |
