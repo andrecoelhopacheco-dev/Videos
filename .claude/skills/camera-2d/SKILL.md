@@ -35,6 +35,15 @@ const cam = camNoQuadro(frame, [{ f: 0, x: 330, y: 1000, z: 60 }, { f: 120, x: 7
 - **Primeiro plano** (dist 450–600, desfocado) passando na frente é o que mais vende profundidade. Some com ele
   (opacidade por `z`) antes de a câmera "atravessar".
 
+## Mundos em escala real (episódio 1, `ep01/Mundos.tsx`)
+- Um lugar é um MUNDO com 3–4 planos (céu 4000 · fundo 1300–1500 · meio 1100 · frente 800–900). Cada plano é
+  desenhado no tamanho que tem àquela distância: fator k = 1000/dist. Pessoa = 420 px × k; ônibus 1,8× pessoa de
+  altura e 7× de comprimento; carro 0,85× e 2,6×; andar de prédio ≈ 1,7× pessoa.
+- `mirar(x, y, dist, z)` dá a câmera que centraliza um ponto de qualquer plano. Uma cena = lista de planos (geral,
+  médio, detalhe…) como chaves de câmera no MESMO mundo, com cortes secos ou chicote (blur 14 px em 6 quadros).
+- Todo lugar novo segue: plano geral de situação → médio da ação → detalhe do que importa → reação (close) →
+  relação entre dois pontos (chicote / por cima do ombro).
+
 ## Receitas (plano → movimento → motivo → números)
 | Situação | Plano e movimento | Motivo | Números de partida |
 | - | - | - | - |

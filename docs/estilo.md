@@ -14,6 +14,10 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 - **Legenda na tela = o que o Grozk falou** (09/11): ele improvisa para dar emoção e descontração; a legenda segue o
   áudio (Whisper com tempo por palavra), nunca o roteiro escrito. Só se corrige erro de reconhecimento e formato de
   número; nada de "consertar" a fala dele.
+- **Lugar novo = mostrar o lugar** (Grozk, 09/11: "cena apertada, sem mostrar nada… montou preguiçosamente"):
+  todo lugar novo abre com plano geral de situação (grua/afastamento) mostrando o contexto inteiro, em ESCALA REAL
+  (pessoa, carro, ônibus e prédio proporcionais), e depois varia: médio, detalhe, chicote, close, por cima do ombro,
+  contra-plongée. Nunca uma cena inteira num enquadramento só.
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca
