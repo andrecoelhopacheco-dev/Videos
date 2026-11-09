@@ -15,7 +15,7 @@ const z = theme.zero;
 export type Variante = "A" | "B" | "C";
 
 export type Visual = {
-  pele: string; peleSombra: string; cabelo: string; penteado: "cachos" | "raspado" | "coque";
+  pele: string; peleSombra: string; cabelo: string; penteado: "cachos" | "raspado" | "coque" | "capacete";
   camiseta: string; camisetaSombra: string; calca: string; calcaSombra: string; tenis: string; tenisSombra: string;
   oculos?: boolean; avental?: string; regata?: boolean;
 };
@@ -35,6 +35,14 @@ const cachos = (rx: number, ry: number, r: number) =>
 const Cabelo: React.FC<{ vis: Visual }> = ({ vis }) => {
   if (vis.penteado === "raspado")
     return <path d="M76 160 Q72 84 150 78 Q228 84 224 160 Q214 120 150 112 Q86 120 76 160 Z" fill={vis.cabelo} opacity={0.85} />;
+  if (vis.penteado === "capacete")
+    return (
+      <g>
+        <path d="M74 150 Q70 66 150 60 Q230 66 226 150 Z" fill={z.capacete} />
+        <rect x={60} y={140} width={180} height={18} rx={9} fill={z.capacete} />
+        <path d="M150 62 L150 140" stroke="#D9A82A" strokeWidth={10} />
+      </g>
+    );
   if (vis.penteado === "coque")
     return (
       <g fill={vis.cabelo}>
@@ -119,7 +127,7 @@ export const Rafa: React.FC<{ variante: Variante; emocao: Emocao; largura?: numb
   );
 };
 
-export type Pose = "pe" | "celular" | "isopor" | "cruzados" | "estende";
+export type Pose = "pe" | "celular" | "isopor" | "cruzados" | "estende" | "pano";
 
 // Corpo inteiro (viewBox 300×800).
 export const RafaCorpo: React.FC<{ emocao: Emocao; altura?: number; pose?: Pose; ator?: Atuacao; visual?: Visual }> = ({
@@ -127,6 +135,9 @@ export const RafaCorpo: React.FC<{ emocao: Emocao; altura?: number; pose?: Pose;
   const braco = { strokeLinecap: "round" as const, strokeWidth: 30, fill: "none" };
   const om = pDo(emocao, ator).ombro * 0.6;
   const vs = visual;
+  const frame = useCurrentFrame();
+  const panoX = 300 + Math.cos(frame / 4) * 22;
+  const panoY = 322 + Math.sin(frame / 4) * 16;
   const regata = vs.regata;
   return (
     <svg viewBox="0 0 300 800" width={(altura * 300) / 800} height={altura} style={{ overflow: "visible" }}>
@@ -166,6 +177,13 @@ export const RafaCorpo: React.FC<{ emocao: Emocao; altura?: number; pose?: Pose;
           <path d={`M226 ${236 + om} Q262 300 300 318`} stroke={vs.peleSombra} {...braco} />
           <rect x={296} y={296} width={58} height={30} rx={3} fill={z.nota20} stroke="#8A6A2A" strokeWidth={2} transform="rotate(-8 325 311)" />
           <circle cx={302} cy={320} r={17} fill={vs.peleSombra} />
+        </>
+      )}
+      {pose === "pano" && (
+        <>
+          <path d={`M226 ${236 + om} Q262 300 ${panoX} ${panoY}`} stroke={vs.peleSombra} {...braco} />
+          <rect x={panoX - 30} y={panoY - 26} width={60} height={46} rx={10} fill={z.pano} transform={`rotate(${Math.sin(frame / 4) * 12} ${panoX} ${panoY})`} />
+          <circle cx={panoX} cy={panoY} r={17} fill={vs.peleSombra} />
         </>
       )}
       {pose === "cruzados" && (

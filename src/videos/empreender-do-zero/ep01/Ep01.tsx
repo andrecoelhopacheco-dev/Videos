@@ -1,14 +1,15 @@
 // Empreender do Zero — Episódio 1 ("R$ 700 e 21 dias"). Tudo sincronizado com a narração do Grozk
 // (public/ep01/narracao.m4a; tempos por palavra em palavras.json). Tempos abaixo em SEGUNDOS da narração.
 import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
-import { Camada, Cena, camNoQuadro, ChaveCam, focalDollyZoom } from "../../../componentes/camera";
+import { Cena, camNoQuadro, ChaveCam, focalDollyZoom } from "../../../componentes/camera";
 import { Ambiente, Efeito, Falas } from "../../../componentes/som";
 import { BarraRastro, carimbo, flash, Flutuante, Odometro, soco, surgir, trauma, tremor, valorNoQuadro } from "../../../componentes/suculento";
 import { Caixa, z } from "../kit";
 import { PlanoCidade, PlanoComodo, PlanoFrente, PlanoParede } from "../KitnetCena";
 import { Rafa, RafaCorpo } from "../Rafa";
-import { Atuacao, atuar, Reacao } from "../Rosto";
-import { AvenidaFundo, AvenidaObra, AvenidaRua, Calendario, CelularPOV, CIDA, Espelho, Estacionamento, JUNINHO, Porta, Prato, SEGURANCA } from "./Cenarios";
+import { atuar, Reacao } from "../Rosto";
+import { Calendario, CelularPOV, CIDA, Espelho, JUNINHO, Porta, SEGURANCA } from "./Cenarios";
+import { Avenida, CHAO_FR, CHAO_OBRA, CHAO_PERTO, Chuva, KitLavagem, Lote, Marmitas, Mercado, mirar, OmbroCida, PratoReal, X_CIDA, X_RAFA_FR, X_RAFA_OBRA, X_SEG } from "./Mundos";
 import PALAVRAS from "./palavras.json";
 
 export const FPS = 30;
@@ -23,7 +24,8 @@ const W = PALAVRAS as [string, number, number][];
 
 // ——— Cenas (início em segundos)
 const CENAS = { s1: 0, s2: 5.3, s3: 16.8, s3b: 23.2, s4: 26.9, s4b: 34.7, s5: 42.3, s5b: 48.3, s6: 53.6, s7: 72.1, s7b: 74.7,
-  s8: 79.3, s9: 91.3, s10: 113.3, s11: 130.2, s12: 150.4, fim: 163.2 };
+  s8: 79.3, s9: 91.3, s9b: 94.2, s9c: 96.9, s9d: 100.15, s9e: 102.85, s9f: 107.55, s9g: 109.0,
+  s10: 113.3, s10b: 117.65, s10c: 120.95, s10d: 123.55, s10e: 125.95, s10f: 128.15, s11: 130.2, s12: 150.4, fim: 163.2 };
 type NomeCena = keyof typeof CENAS;
 const ORDEM = Object.keys(CENAS) as NomeCena[];
 const cenaEm = (s: number): NomeCena => ORDEM.filter((k) => s >= CENAS[k]).pop() ?? "s1";
@@ -34,7 +36,7 @@ const REACOES_RAFA: Reacao[] = [
   R(8.0, "triste", 0.25, 1.6), R(23.6, "feliz", 0.3, 1.5), R(25.4, "preocupado", 0.45, 1.6), R(38.4, "preocupado", 0.4, 3.5),
   R(48.6, "triste", 0.55, 4.5), R(54.6, "surpreso", 0.25, 1.5), R(62.6, "feliz", 0.2, 2.5), R(67.2, "preocupado", 0.3, 3.5),
   R(75.0, "triste", 0.75, 4.5), R(82.1, "determinado", 0.4, 4.6), R(87.6, "preocupado", 0.2, 2), R(94.5, "determinado", 0.5, 6),
-  R(109.2, "surpreso", 0.3, 2.2), R(124.0, "preocupado", 0.2, 3.5), R(147.6, "preocupado", 0.6, 2.4), R(153.7, "determinado", 0.5, 6),
+  R(109.2, "surpreso", 0.3, 2.2), R(124.0, "preocupado", 0.2, 3.5), R(128.3, "determinado", 0.3, 1.8), R(147.6, "preocupado", 0.6, 2.4), R(153.7, "determinado", 0.5, 6),
 ];
 
 // ——— Legenda: grupos de até 3 palavras, quebra na pontuação; palavra-chave em amarelo.
@@ -77,11 +79,13 @@ const Legenda: React.FC<{ s: number }> = ({ s }) => {
 
 // ——— Painel (estado ao longo do episódio)
 const rotulo: React.CSSProperties = { fontFamily: z.fonteTexto, fontWeight: 800, fontSize: 24, letterSpacing: 2, color: z.painelRotulo };
-const painelVisivel = (s: number) => s >= 17.4 && s < 150.4 && !(s >= 72.1 && s < 79.3) && !(s >= 91.3 && s < 100.8) && !(s >= 113.3 && s < 123.6);
+const JANELAS_PAINEL: [number, number][] = [[17.4, 26.9], [34.7, 72.1], [79.3, 91.3], [130.2, 150.4]];
+const janelaPainel = (s: number) => JANELAS_PAINEL.find(([a, b]) => s >= a && s < b);
+const painelVisivel = (s: number) => !!janelaPainel(s);
 
 const Painel: React.FC<{ s: number; frame: number }> = ({ s, frame }) => {
   if (!painelVisivel(s)) return null;
-  const entra = s < 30 ? F(17.4) : s < 91 ? F(79.3) : s < 113 ? F(100.8) : F(123.6);
+  const entra = F(janelaPainel(s)![0]);
   const saldo = s < 18.6 ? 0 : s < 21.7 ? valorNoQuadro(frame, 0, 1621, F(18.6), F(19.5))
     : s < 66.6 ? valorNoQuadro(frame, 1621, 700, F(21.7), F(22.6)) : valorNoQuadro(frame, 700, 680, F(66.6), F(67.3));
   const corSaldo = frame >= F(18.6) && frame < F(19.9) ? z.bom : (frame >= F(21.7) && frame < F(23.2)) || (frame >= F(66.6) && frame < F(67.9)) ? z.perigo : z.texto;
@@ -246,9 +250,10 @@ export const Ep01: React.FC = () => {
       fundo = (
         <>
           <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 60%, ${z.fundoFrioClaro}, ${z.cidadeCeu})` }} />
-          <Prato t={lf("s4")} />
-          {s >= 31.3 && <Etiqueta frame={frame} f={F(31.3)} texto="CESTA BÁSICA: ~R$ 800/MÊS" top={700} left={150} />}
-          {s >= 34.0 && <Etiqueta frame={frame} f={F(34.0)} texto="FONTE: DIEESE · SET/2026" top={820} left={220} />}
+          <PratoReal t={lf("s4")} fps={fps} quedas={[F(28.0), F(28.6), F(29.1), F(29.5)].map((q) => q - F(CENAS.s4))} mes={F(32.4) - F(CENAS.s4)} />
+          <Etiqueta frame={frame} f={F(31.3)} texto="CESTA BÁSICA: ~R$ 800/MÊS" top={300} left={60} />
+          {s >= 32.6 && <Etiqueta frame={frame} f={F(32.6)} texto="30 DIAS DE COMIDA" top={410} left={60} />}
+          {s >= 34.0 && <Etiqueta frame={frame} f={F(34.0)} texto="FONTE: DIEESE · SET/2026" top={520} left={60} />}
         </>
       );
       break;
@@ -345,45 +350,148 @@ export const Ep01: React.FC = () => {
         </>
       );
       break;
-    case "s9": {
-      const cam = camNoQuadro(frame, [{ f: F(91.3), x: 300, y: 700, z: 420 }, { f: F(97.0), x: 420, y: 960, z: -150 }, { f: F(103.0), x: 560, y: 980, z: -200 },
-        { f: F(107.4), x: 600, y: 980, z: -200 }, { f: F(109.4), x: 860, y: 1030, z: 420 }, { f: F(113.3), x: 860, y: 1030, z: 440 }]);
-      const cida = atuar(frame, [{ f: F(108.6), emocao: "determinado", intensidade: 0.45, dur: F(4) }]);
+    case "s9":
       fundo = (
         <>
-          <Cena cam={cam} mao={4}>
-            <AvenidaFundo />
-            <AvenidaObra t={lf("s9")} />
-            <AvenidaRua t={lf("s9")} />
-            <div style={{ position: "absolute", inset: 0 }} />
-          </Cena>
-          {/* a Cida e o Rafa ficam nos planos certos: Cida na banca (plano da obra), Rafa na calçada (plano da rua) */}
-          <Cena cam={cam} mao={4}>
-            <CamadaCida ator={cida} />
-            <CamadaRafaRua frame={frame} />
-          </Cena>
-          {s < 100.6 && <Cartao frame={frame} f={F(91.8)} letra="A" nome="MARMITA" dias={15} risco="DONA CIDA VENDE NA ESQUINA HÁ 12 ANOS"
-            linhas={["GASTA  R$ 180", "CUSTA  R$ 7", "VENDE  R$ 18"]} style={{ top: 270, left: 60, width: 870, height: 400 }} />}
+          <div style={{ position: "absolute", inset: 0, filter: "blur(8px)" }}><KitnetRafa frame={frame} chaves={[{ f: 0, x: 900, y: 1100, z: 300 }]} mao={0} frente={false} /></div>
+          <AbsoluteFill style={{ background: "rgba(5,8,15,0.5)" }} />
+          <Marmitas t={lf("s9")} fps={fps} />
+          <Cartao frame={frame} f={F(91.8)} letra="A" nome="MARMITA" dias={15} risco="DONA CIDA VENDE NA ESQUINA HÁ 12 ANOS"
+            linhas={["GASTA  R$ 180", "CUSTA  R$ 7", "VENDE  R$ 18"]} style={{ top: 270, left: 60, width: 870, height: 400 }} />
+        </>
+      );
+      break;
+    case "s9b":
+      fundo = (
+        <>
+          <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 55%, ${z.fundoFrioClaro}, ${z.cidadeCeu})` }} />
+          <Lote t={lf("s9b")} fps={fps} />
+          <Etiqueta frame={frame} f={F(94.6)} texto="1º LOTE: 20 MARMITAS" top={300} left={60} />
+          <Etiqueta frame={frame} f={F(95.1)} texto="CUSTO: R$ 180" top={410} left={60} />
+        </>
+      );
+      break;
+    case "s9c":
+    case "s9d":
+    case "s9e":
+    case "s9g": {
+      const ch: ChaveCam[] = [
+        { f: F(96.9), ...mirar(-500, -700, 1300, -600) },
+        { f: F(99.6), ...mirar(600, 650, 1300, -1750) },
+        { f: F(100.15), ...mirar(600, 650, 1300, -1750) },
+        { f: F(100.16), ...mirar(X_RAFA_OBRA + 110, CHAO_OBRA - 190, 1300, 380) },
+        { f: F(102.85), ...mirar(X_RAFA_OBRA + 110, CHAO_OBRA - 200, 1300, 470) },
+        { f: F(103.1), ...mirar(X_CIDA - 250, CHAO_PERTO - 620, 800, 120) },
+        { f: F(107.55), ...mirar(X_CIDA - 200, CHAO_PERTO - 640, 800, 230) },
+        { f: F(109.0), ...mirar(X_RAFA_OBRA + 40, CHAO_OBRA - 220, 1300, 330) },
+        { f: F(113.3), ...mirar(X_RAFA_OBRA + 40, CHAO_OBRA - 230, 1300, 420) },
+      ];
+      const cam = camNoQuadro(frame, ch);
+      const chicote = interpolate(s, [102.85, 102.95, 103.05, 103.15], [0, 14, 14, 0], travar);
+      const cida = atuar(frame, [{ f: F(108.0), emocao: "determinado", intensidade: 0.45, dur: F(5) }]);
+      fundo = (
+        <>
+          <div style={{ position: "absolute", inset: 0, filter: chicote > 0 ? `blur(${chicote}px)` : undefined }}>
+            <Cena cam={cam} mao={cena === "s9c" ? 2 : 4}>
+              <Avenida t={lf("s9c")} rafa={atuar(frame, REACOES_RAFA)} cida={cida} semPerto={cena === "s9g"}
+                onibus={interpolate(s, [97.4, 100.4], [3600, -4800], travar)} carro={interpolate(s, [100.0, 104.5], [-3600, 4200], travar)}
+                moto={interpolate(s, [103.2, 106.8], [4200, -3400], travar)} />
+            </Cena>
+          </div>
+          {cena === "s9g" && <OmbroCida />}
+          {cena === "s9d" && <>
+            <Etiqueta frame={frame} f={F(101.2)} texto="CUSTA R$ 7" top={300} left={60} />
+            <Etiqueta frame={frame} f={F(102.1)} texto="VENDE R$ 18" top={410} left={60} />
+            <Flutuante f={F(102.3)} texto="+R$ 11" x={700} y={560} cor={z.bom} fonte={z.fonteDado} tamanho={72} />
+          </>}
+          {cena === "s9e" && s >= 106.6 && <Selo frame={frame} f={F(106.6)} texto="12 ANOS NA ESQUINA" top={330} cor={z.luzQuente} rot={-3} tam={60} />}
         </>
       );
       break;
     }
-    case "s10": {
-      const nuvem = interpolate(s, [123.6, 126.4], [0, 1], travar);
-      const cam = camNoQuadro(frame, [{ f: F(113.3), x: 540, y: 1000, z: -80 }, { f: F(125.6), x: 620, y: 1000, z: 60 }, { f: F(127.0), x: 760, y: 1020, z: 320 }, { f: F(130.2), x: 760, y: 1020, z: 340 }]);
+    case "s9f": {
+      const cida = atuar(frame, [{ f: F(108.0), emocao: "determinado", intensidade: 0.45, dur: F(5) }]);
       fundo = (
         <>
-          <Cena cam={cam} mao={3}>
-            <Estacionamento t={lf("s10")} nuvem={nuvem} />
-            <CamadaEstacionamento frame={frame} />
+          <div style={{ position: "absolute", inset: 0, filter: "blur(10px)" }}>
+            <Cena cam={camNoQuadro(frame, [{ f: 0, ...mirar(X_CIDA - 600, CHAO_PERTO - 900, 800, -200) }])} mao={0}>
+              <Avenida t={lf("s9c")} onibus={-9000} carro={-9000} moto={-9000} />
+            </Cena>
+          </div>
+          <div style={{ position: "absolute", left: 100, top: 560, transform: `scale(${interpolate(s, [107.55, 109.0], [1, 1.06], travar)})` }}>
+            <Rafa variante="B" emocao="neutro" largura={880} ator={cida} visual={CIDA} />
+          </div>
+          <Vinheta forca={0.2} />
+        </>
+      );
+      break;
+    }
+    case "s10":
+    case "s10c":
+    case "s10d": {
+      const nuvem = interpolate(s, [124.4, 125.4], [0, 1], travar);
+      const ch: ChaveCam[] = [
+        { f: F(113.3), ...mirar(700, 300, 1500, -500) },
+        { f: F(116.8), ...mirar(620, 1250, 1500, -1350) },
+        { f: F(117.65), ...mirar(620, 1250, 1500, -1350) },
+        { f: F(120.95), ...mirar(X_RAFA_FR + 160, CHAO_FR - 260, 900, 220) },
+        { f: F(123.55), ...mirar(X_RAFA_FR + 200, CHAO_FR - 280, 900, 290) },
+        { f: F(124.6), ...mirar(1100, -480, 4000, -200) },
+        { f: F(125.95), ...mirar(1100, -470, 4000, -150) },
+      ];
+      fundo = (
+        <>
+          <Cena cam={camNoQuadro(frame, ch)} mao={cena === "s10d" ? 5 : 3}>
+            <Mercado t={lf("s10")} rafa={atuar(frame, REACOES_RAFA)} nuvem={nuvem} brilho={interpolate(s, [121.6, 122.4, 123.2], [0, 1, 0.7], travar)} />
           </Cena>
-          <AbsoluteFill style={{ background: "rgba(20,30,50,1)", opacity: nuvem * 0.25 }} />
-          {s < 123.4 && <Cartao frame={frame} f={F(113.8)} letra="B" nome="LAVAGEM A SECO" dias={16} risco="CHUVA E O SEGURANÇA DO MERCADO"
+          <Chuva forca={interpolate(s, [125.1, 125.9], [0, 1], travar)} />
+          {cena === "s10" && <Cartao frame={frame} f={F(113.8)} letra="B" nome="LAVAGEM A SECO" dias={16} risco="CHUVA E O SEGURANÇA DO MERCADO"
             linhas={["GASTA  R$ 150", "COBRA  R$ 40/CARRO"]} style={{ top: 270, left: 60, width: 870, height: 380 }} />}
+          {cena === "s10c" && <Etiqueta frame={frame} f={F(121.8)} texto="R$ 40 POR CARRO" top={300} left={60} />}
+          {cena === "s10d" && s >= 124.6 && <Selo frame={frame} f={F(124.6)} texto="DEPENDE DO TEMPO" top={330} cor={z.painelBorda} rot={-3} tam={56} />}
         </>
       );
       break;
     }
+    case "s10b":
+      fundo = (
+        <>
+          <AbsoluteFill style={{ background: `radial-gradient(circle at 50% 55%, ${z.fundoFrioClaro}, ${z.cidadeCeu})` }} />
+          <KitLavagem t={lf("s10b")} fps={fps} />
+          <Etiqueta frame={frame} f={F(118.3)} texto="PRODUTO + PANOS: R$ 150" top={300} left={60} />
+        </>
+      );
+      break;
+    case "s10e": {
+      const seg = atuar(frame, [{ f: F(126.0), emocao: "determinado", intensidade: 0.6, dur: F(3) }]);
+      const nega = s >= 126.3 && s < 127.6 ? Math.sin((frame - F(126.3)) / 3) * 4 : 0;
+      fundo = (
+        <>
+          <AbsoluteFill style={{ background: "linear-gradient(#3D4A5E, #6F7F96)" }} />
+          <div style={{ position: "absolute", inset: 0, filter: "blur(6px)", opacity: 0.6 }}>
+            <Cena cam={camNoQuadro(frame, [{ f: 0, ...mirar(X_SEG, 700, 1500, 300) }])} mao={0}><Mercado t={0} nuvem={1} brilho={0} /></Cena>
+          </div>
+          <div style={{ position: "absolute", left: 540, bottom: -260, transform: `translateX(-50%) perspective(1400px) rotateX(9deg) rotate(${nega}deg)`, transformOrigin: "50% 100%" }}>
+            <RafaCorpo emocao="neutro" pose="cruzados" altura={2000} ator={seg} visual={SEGURANCA} />
+          </div>
+          <Chuva forca={1} />
+          <Selo frame={frame} f={F(127.0)} texto="AINDA NÃO DEIXOU" top={330} cor={z.perigo} rot={3} tam={64} />
+        </>
+      );
+      break;
+    }
+    case "s10f":
+      fundo = (
+        <>
+          <div style={{ position: "absolute", inset: 0, filter: "blur(10px)" }}>
+            <Cena cam={camNoQuadro(frame, [{ f: 0, ...mirar(X_RAFA_FR, CHAO_FR - 400, 900, 100) }])} mao={0}><Mercado t={0} nuvem={1} brilho={0} /></Cena>
+          </div>
+          <div style={{ position: "absolute", left: 140, top: 560 }}><Rafa variante="B" emocao="neutro" largura={800} ator={atuar(frame, REACOES_RAFA)} /></div>
+          <Chuva forca={0.8} />
+          <Vinheta forca={0.3} />
+        </>
+      );
+      break;
     case "s11":
       fundo = (
         <>
@@ -435,34 +543,13 @@ export const Ep01: React.FC = () => {
   );
 };
 
-// ——— Personagens nos planos da avenida e do estacionamento
-const CamadaCida: React.FC<{ ator: Atuacao }> = ({ ator }) => (
-  <Camada dist={1700}>
-    <div style={{ position: "absolute", left: 800, top: 990 }}><Rafa variante="B" emocao="neutro" largura={150} ator={ator} visual={CIDA} /></div>
-  </Camada>
-);
-const CamadaRafaRua: React.FC<{ frame: number }> = ({ frame }) => (
-  <Camada dist={1000}>
-    <div style={{ position: "absolute", left: 120, top: 640 }}><RafaCorpo emocao="neutro" pose="isopor" altura={780} ator={atuar(frame, REACOES_RAFA)} /></div>
-  </Camada>
-);
-const CamadaEstacionamento: React.FC<{ frame: number }> = ({ frame }) => {
-  const seg = atuar(frame, [{ f: F(125.9), emocao: "determinado", intensidade: 0.55, dur: F(4) }]);
-  return (
-    <Camada dist={1000}>
-      <div style={{ position: "absolute", left: 80, top: 760 }}><RafaCorpo emocao="neutro" pose="pe" altura={760} ator={atuar(frame, REACOES_RAFA)} /></div>
-      <div style={{ position: "absolute", left: 640, top: 720 }}><RafaCorpo emocao="neutro" pose="cruzados" altura={800} ator={seg} visual={SEGURANCA} /></div>
-    </Camada>
-  );
-};
-
 // ——— Som: narração, ambientes por lugar (abaixam sob a voz), efeitos nos eventos
 const Trilha: React.FC = () => (
   <>
     <Audio src={staticFile("ep01/narracao.m4a")} />
     <Ambiente arquivo="ambiente-casa/bsb-0080-kitnet-janela-fechada.ogg" de={0} ate={F(72.4)} db={-6} falas={FALAS} />
     <Ambiente arquivo="ambiente-casa/bsb-0080-kitnet-janela-fechada.ogg" de={F(79.0)} ate={F(91.5)} db={-6} falas={FALAS} />
-    <Ambiente arquivo="ambiente-obra/bsb-3526-obra-urbana.ogg" de={F(91.0)} ate={F(113.6)} db={-4} falas={FALAS} />
+    <Ambiente arquivo="ambiente-obra/bsb-3526-obra-urbana.ogg" de={F(96.6)} ate={F(113.6)} db={-4} falas={FALAS} />
     <Ambiente arquivo="ambiente-cidade/bsb-0608-rua-e-avenidas.ogg" de={F(113.0)} ate={F(130.5)} db={-5} falas={FALAS} />
     <Ambiente arquivo="ambiente-casa/bsb-0080-kitnet-janela-fechada.ogg" de={F(130.0)} ate={DURACAO} db={-8} falas={FALAS} />
     <Efeito arquivo="interface/whoosh/fs830856.ogg" no={12} antes={2} db={-10} dur={20} />
@@ -486,7 +573,10 @@ const Trilha: React.FC = () => (
     {[82.1, 83.4, 86.1].map((a) => <Efeito key={a} arquivo="interface/tick/fs528561.ogg" no={F(a)} db={-12} dur={10} />)}
     <Efeito arquivo="interface/glitch/kenney-interface-glitch-002.ogg" no={F(87.6)} db={-14} dur={20} />
     <Efeito arquivo="interface/whoosh/fs830856.ogg" no={F(91.8)} antes={2} db={-10} dur={20} />
-    <Efeito arquivo="onibus/bsb-3594-buzina-onibus.ogg" no={F(97.5)} db={-18} dur={F(1.7)} />
+    <Efeito arquivo="onibus/bsb-3594-buzina-onibus.ogg" no={F(98.3)} db={-14} dur={F(1.7)} />
+    <Efeito arquivo="interface/whoosh/fs810485.ogg" no={F(102.85)} antes={2} db={-8} dur={20} />
+    <Ambiente arquivo="ambiente-chuva/bsb-1289-chuva-no-concreto.ogg" de={F(125.0)} ate={F(130.4)} db={-4} fade={10} falas={FALAS} />
+    {[28.0, 28.6, 29.1, 29.5].map((a) => <Efeito key={a} arquivo="interface/pop/kit-pop.ogg" no={F(a) + 6} db={-12} dur={12} />)}
     <Efeito arquivo="interface/whoosh/fs830856.ogg" no={F(113.8)} antes={2} db={-10} dur={20} />
     <Efeito arquivo="interface/impact/kit-impact.ogg" no={F(132.2)} db={-8} dur={20} />
     <Efeito arquivo="interface/impact/kenney-impact-impactpunch-heavy-001.ogg" no={F(139.5)} db={-6} dur={30} />

@@ -89,6 +89,9 @@ export const theme = {
     tela: "#3F7F6A",
     capacete: "#F2C230",
     guardaSol: "#D9473A",
+    pano: "#4FA3E0",
+    balde: "#3C6FB0",
+    chuva: "rgba(200, 220, 255, 0.55)",
     // detalhes da kitnet (realismo)
     cidadeCeu: "#0B1322",
     cidadePredio: "#141F33",
