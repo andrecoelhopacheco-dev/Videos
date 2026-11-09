@@ -5,6 +5,7 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 
 ## Sempre
 - **Contraste de leitura em todo quadro** (pedido do Grozk em 23/10): nenhuma região de texto com contraste ruim em momento algum. Texto sobre imagem leva faixa ou véu escuro por baixo; texto secundário (fontes, rótulos) nunca em cinza fraco sobre fundo claro; o vermelho só sobre fundo escuro e em tamanho grande.
+- **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca
 _(nada ainda)_

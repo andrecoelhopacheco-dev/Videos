@@ -10,15 +10,16 @@ negócio corre a novela: amor, família, funcionário, fornecedor, concorrente.
 ## O que levamos do Ether 2050 e o que muda
 | Ether 2050 | Do Zero |
 | - | - |
-| Jogo de realidade virtual | Vida real com uma **interface de jogo por cima** (saldo, dias até o aluguel, reputação, energia) |
-| Item = dinheiro | Venda = "drop"; cliente fiel = "level up" |
+| Jogo de realidade virtual | Vida real com um **painel por cima, com cara de interface de jogo mas palavras do dia a dia** (ver "Painel") |
+| Item = dinheiro | Cada venda, cada gasto e cada dia aparecem no saldo na hora |
 | Ciência de neurociência | **Dado real com fonte** (Sebrae, IBGE, preço de mercado, taxa da maquininha) |
 | Dilema no fim, sem voto explícito | **Botões A/B na tela + "comenta A ou B"**; o próximo episódio abre com o resultado |
 | Público assiste | **Público manda.** O personagem é de todo mundo |
 
 ## Protagonista (provisório, barato de trocar)
-- **Rafa**, 23 anos, periferia de uma capital (cidade a definir). Demitido, recebeu o último salário, aluguel
-  vencendo. Bom de conversa, ruim de conta. Mora sozinho num quarto e cozinha.
+- **Rafa**, 23 anos. Mora numa **capital de estado "típica", sem nome**: custo de vida altíssimo, R$ 900 numa
+  kitnet minúscula de um cômodo só, na periferia. Demitido, recebeu o último salário (o mínimo, R$ 1.621), pagou o
+  aluguel e ficou com R$ 700. Bom de conversa, ruim de conta.
 - Ponto fraco que gera trama: orgulho (não quer voltar para a casa da mãe), gasta quando está feliz.
 
 ## Elenco da novela (entra aos poucos, no máximo 1 por episódio)
@@ -35,13 +36,41 @@ negócio corre a novela: amor, família, funcionário, fornecedor, concorrente.
 4. **A simulação manda.** Se o público escolheu mal e o dado deu ruim, dá ruim. Sem salvar o herói.
 5. Uma camada por bloco: história → dado real → dinheiro na interface. Trocar a cada ~15–20 s.
 
+## Custo de viver (a simulação desconta todo dia, com ou sem venda)
+Pedido do Grozk: a simulação conta tudo. **Fracassar pode significar não ter o que comer.**
+
+| Item | Valor usado | Por dia | Fonte |
+| - | - | - | - |
+| Comida (cesta básica de 1 adulto) | R$ 800/mês | R$ 26,67 | DIEESE, set/2026: BH R$ 802,99, Fortaleza R$ 779,96, SP R$ 922,51, Recife R$ 663,48, Aracaju R$ 587,76. "Capital típica" ≈ R$ 800 |
+| Luz da kitnet | R$ 80/mês | R$ 2,67 | estimativa (validar com tarifa média ANEEL) |
+| Gás de cozinha (botijão 13 kg, ~2 meses p/ 1 pessoa) | R$ 110 | R$ 1,83 | estimativa (validar com ANP) |
+| Celular pré-pago | R$ 40/mês | R$ 1,33 | estimativa |
+| **Total só para viver** | | **≈ R$ 32,50** | |
+| Ônibus (só quando a história pede) | R$ 5,30–6,25 a viagem | — | tarifas jan/2026: SP R$ 5,30, Salvador R$ 5,90, Curitiba R$ 6, BH R$ 6,25 |
+
+- Com R$ 700 e nenhuma venda, **o dinheiro acaba no dia 21**; o aluguel vence no dia 30.
+- **Cada real investido no negócio é comida a menos**: R$ 180 no negócio → o dinheiro acaba no dia 16.
+- O negócio tem os próprios insumos (gás a mais para cozinhar em quantidade, embalagem, produto, passagem até o
+  ponto), contados separados.
+- Saldo zerado = fome. A simulação então oferece só saídas ruins (pedir à mãe, vender o celular, fiado, agiota),
+  e isso vira voto.
+
+## Painel (interface de jogo, sem jargão de jogo)
+Visual de HUD (cantos, barras, números que rolam, cartões de escolha), **mas só palavras da vida real**.
+- Sempre na tela: **SALDO**, **GASTO POR DIA**, **O DINHEIRO ACABA EM: X DIAS**, **ALUGUEL VENCE EM: X DIAS**.
+- Quando importa: **CANSAÇO** (barra), **CLIENTES QUE VOLTAM**, **ESTOQUE**, **DÍVIDA**.
+- Escolha: dois cartões **A** e **B** com custo, preço e risco escritos.
+- Resultado: "**chance de dar certo: 62%**" com um medidor que corre e para.
+- **Nunca:** XP, level, drop, HP, vida, missão, loot, boss, atributo, skill, upgrade, game over.
+
 ## Motor de simulação (a construir depois da aprovação, por PR)
-- `estado.json` do Rafa: caixa, dívidas, estoque, preço, clientes, reputação (0–100), energia (0–100),
-  relações (Cida, mãe, Bia, Juninho), dia do calendário.
+- `estado.json` do Rafa: dia do calendário, saldo, gastos fixos por dia (tabela acima), dívidas, estoque, preço,
+  clientes, cansaço (0–100), confiança dos clientes (0–100), relações (Cida, mãe, Bia, Juninho).
+- Todo dia simulado desconta o custo de viver; o saldo nunca é ajustado "na mão" para salvar a história.
 - Cada opção de voto vira um **evento com probabilidades** tiradas de dados reais (margem do setor, taxa de
   devolução, sazonalidade, chuva, taxa da maquininha) + um modificador pelo estado (reputação, energia).
-- **O dado aparece no vídeo**: "a chance era 62%… deu 41." Transparência dá confiança e gera comentário
-  ("roubado!").
+- **A conta aparece no vídeo**: "a chance de dar certo era 62%… e não deu." Transparência dá confiança e gera
+  comentário ("roubado!").
 - Tudo registrado em `docs/roteiros/do-zero/diario.md` (decisão, votos, chance, resultado, fonte).
 - Votos: contagem dos comentários A/B no TikTok e Instagram (Apify) e no YouTube (API), janela de 24 h, somados.
   Empate = dado.
