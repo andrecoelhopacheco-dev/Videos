@@ -38,7 +38,8 @@ const REACOES_RAFA: Reacao[] = [
 ];
 
 // ——— Legenda: grupos de até 3 palavras, quebra na pontuação; palavra-chave em amarelo.
-const CORRIGE: Record<string, string> = { "1621": "1.621", Tag: "Segue", "sua.": "suas.", escuria: "escolha" };
+// Legenda = o que o Grozk FALOU (improvisos incluídos). Só se corrige erro de reconhecimento do Whisper e formato de número.
+const CORRIGE: Record<string, string> = { "1621": "1.621", Tag: "Segue", escuria: "escolha" };
 const DESTAQUE = /^(rafa|juninho|cida|kitnet|marmita|lavagem|você|vivo|comida|comer|dieese|r\$|\d)/i;
 type Grupo = { ini: number; fim: number; palavras: string[] };
 const GRUPOS: Grupo[] = (() => {

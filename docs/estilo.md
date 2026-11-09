@@ -11,6 +11,9 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 - **Expressão é slider, não interruptor** (Grozk em 09/11): base neutra; o motor escolhe UMA emoção por reação
   e a intensidade (0–100%) vem do tamanho do acontecimento. 10% = legível e contido; 100% = choro de verdade,
   fúria, pavor. Emote só a partir de 30%, crescendo com a intensidade (`atuar()` em `Rosto.tsx`).
+- **Legenda na tela = o que o Grozk falou** (09/11): ele improvisa para dar emoção e descontração; a legenda segue o
+  áudio (Whisper com tempo por palavra), nunca o roteiro escrito. Só se corrige erro de reconhecimento e formato de
+  número; nada de "consertar" a fala dele.
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca
