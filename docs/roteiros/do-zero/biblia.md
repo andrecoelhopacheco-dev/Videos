@@ -184,10 +184,19 @@ Ilustração 2D com **traço próprio**, consistente entre episódios e capaz de
 - Votos: contagem dos comentários A/B no TikTok e Instagram (Apify) e no YouTube (API), janela de 24 h, somados.
   Empate = dado.
 
-## Ritmo de produção
-Episódio no ar → 24 h de votação → simulação + roteiro (Claude) → Grozk grava a narração no iPhone (~10 min) →
-produção e rascunho → post. Ciclo de ~48 h. Para não parar, ter 1–2 episódios "de respiro" (novela pura, sem
-voto de negócio) prontos.
+## Método de produção (Grozk, 09/11)
+1. **Roteiro de gravação** (Claude): blocos numerados; em cada um, *o que aparece na tela* (para o Grozk saber o que
+   o público vê e dar o tom) + **o texto que ele fala** + o tom. Modelo: `ep01.md`.
+2. **Só o narrador fala** nesta fase (sem ElevenLabs): falas de personagem viram narração ("o Juninho pede vinte
+   reais…"). Mais tarde, com ElevenLabs, os personagens ganham voz própria.
+3. O Grozk grava no iPhone (um bloco por vez, 2 s de silêncio entre blocos) e põe na pasta do Drive
+   **extracao-unity** como `epNN-narracao`.
+4. **Só então o vídeo é feito, com o áudio na mão:** limpeza da voz, Whisper com tempo por palavra, cortes e
+   animações caindo nas palavras, ambientes abaixando sob a fala (skill `sonoplastia`).
+5. Rascunho em meia resolução para o portão B; aprovado, render final e entrega no Drive.
+
+Ciclo por episódio: post → 24 h de votação → simulação + roteiro de gravação → gravação (~10 min) → produção →
+post (~48 h). Ter 1–2 episódios "de respiro" (novela pura, sem voto de negócio) gravados de reserva.
 
 ## Formatos
 - Episódio: 1080×1920, **média de 2 min** (100–140 s), TikTok + YouTube Shorts (+ Reels). Mais de 1 min (paga no TikTok) e menos de 3 min (conta como Short).
@@ -195,5 +204,5 @@ voto de negócio) prontos.
   eles, e um dilema novo no final que leva para o próximo Short.
 
 ## Voz
-Grozk narra (gravação no iPhone). Pós: redução de ruído, compressão e loudnorm em ffmpeg; Whisper com tempo por
+Grozk narra (gravação no iPhone, enviada pelo Drive `extracao-unity`). Pós: redução de ruído, compressão e loudnorm em ffmpeg; Whisper com tempo por
 palavra para sincronizar legenda e cortes com a fala dele. Guia de gravação em `docs/voz/README.md` (a atualizar).
