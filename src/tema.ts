@@ -39,6 +39,25 @@ export const theme = {
     fonteTexto: "Inter", // public/fontes/Inter.ttf (OFL)
     fonteDado: "PlexMono", // public/fontes/IBMPlexMono.ttf (OFL)
   },
+  // Série "Empreender do Zero": ilustração 2D própria. Pele, cabelo e roupa do Rafa; frio = kitnet/noite.
+  zero: {
+    pele: "#B9764F",
+    peleSombra: "#94583A",
+    cabelo: "#1C1411",
+    camiseta: "#E0A43A",
+    camisetaSombra: "#B47F25",
+    contorno: "#2A1C15",
+    boca: "#5A2219",
+    branco: "#FFF7EC",
+    fundoFrio: "#1E2A3D",
+    fundoFrioClaro: "#2C3C55",
+    luzQuente: "#F6C778",
+    vermelho: "#E5382A",
+    texto: "#F7F1E8",
+    apagado: "#C9D2E0",
+    fonteTitulo: "Anton",
+    fonteTexto: "Inter",
+  },
   // THE easing curves. Linear is forbidden.
   ease: {
     out: Easing.bezier(0.16, 1, 0.3, 1), // easeOutExpo — entrances

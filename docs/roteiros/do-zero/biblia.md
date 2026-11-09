@@ -1,6 +1,14 @@
-# Bíblia da série "Do Zero" (nome provisório)
+# Bíblia da série "Empreender do Zero"
 
 Estado: proposta para o portão A (09/11/2026). Origem: `docs/estudos/escolha-de-caminho-ether-2050.md`.
+
+## Título (Grozk, 09/11)
+Abertura: aparece **EMPREENDER DO ZERO**; um risco vermelho corta **EMPREENDER** e por cima se escreve, à mão,
+**SOBREVIVENDO** → "SOBREVIVENDO DO ZERO". Episódio 1: versão completa (~2,5 s). Demais episódios: o mesmo
+título em ≤ 1 s, no estado atual.
+**O título acompanha a vida do Rafa** (arco da série): enquanto ele só sobrevive, fica "SOBREVIVENDO". No
+episódio em que o negócio pagar o mês inteiro pela primeira vez, o risco sai e volta "EMPREENDER". Se ele
+quebrar de novo, o risco volta. O público nota, comenta, e o título vira placar.
 
 ## A ideia em uma frase
 Um cara pobre começa um negócio do zero no Brasil de 2026. **Quem decide cada passo são os comentários**; o
@@ -62,13 +70,64 @@ Pedido do Grozk: a simulação conta tudo. **Fracassar pode significar não ter 
 Visual de HUD (cantos, barras, números que rolam, cartões de escolha), **mas só palavras da vida real**.
 - Sempre na tela: **SALDO**, **GASTO POR DIA**, **O DINHEIRO ACABA EM: X DIAS**, **ALUGUEL VENCE EM: X DIAS**.
 - Quando importa: **CANSAÇO** (barra), **CLIENTES QUE VOLTAM**, **ESTOQUE**, **DÍVIDA**.
+- Barras de **PRÁTICA** (COZINHA, CONVERSA, CONTAS, CORPO…) e cartões de **LIÇÃO APRENDIDA** (ver "Prática").
 - Escolha: dois cartões **A** e **B** com custo, preço e risco escritos.
 - Resultado: "**chance de dar certo: 62%**" com um medidor que corre e para.
 - **Nunca:** XP, level, drop, HP, vida, missão, loot, boss, atributo, skill, upgrade, game over.
 
+## Prática: o Rafa fica melhor fazendo (a "sabedoria" virando número)
+Na vida real é curva de aprendizado: quem repete uma tarefa fica mais rápido e melhor, muito no começo e cada vez
+menos depois. A série mostra isso com barras, sem palavra de jogo.
+
+**Barras de prática** (0–100, começam no ep. 1):
+| Barra | Começa | Sobe com | Muda o quê na simulação |
+| - | - | - | - |
+| COZINHA | 30 | cada marmita feita | sabor (→ clientes que voltam e indicação), tempo de preparo, desperdício |
+| CONVERSA | 60 | cada venda e cada negociação | chance de vender a quem passa, desconto com fornecedor |
+| CONTAS | 10 | cada vez que ele faz as contas do dia | **o que o público vê nos cartões** (ver abaixo), erros de troco e de preço |
+| CORPO | 50 | dias de trabalho com descanso | quanto ele aguenta antes do CANSAÇO derrubar a qualidade |
+| LAVAR CARRO | 40 | cada carro | tempo por carro, reclamação |
+
+- Sobe rápido no começo e devagar depois (curva de aprendizado; cada barra tem um teto realista).
+- **Cansaço e falta de prática descem a barra** um pouco: não é só subir.
+- **CONTAS liga mais informação na tela:** com CONTAS baixo, os cartões A/B mostram só "gasta" e "vende por". Com
+  CONTAS alto, passam a mostrar margem, ponto de equilíbrio e risco. **O público enxerga melhor à medida que o
+  Rafa aprende.**
+- **LIÇÃO APRENDIDA:** traço permanente que vem de um acontecimento, não de repetição. Ex.: "Fiado só com nome e
+  telefone" depois de um calote; "Chuva = metade das vendas" depois do primeiro temporal. Aparece como um cartão
+  que carimba na tela e muda as regras dali para frente.
+
+**O efeito escondido (ideia do Grozk):** a barra sobe na tela na hora, mas **o efeito no dinheiro não é anunciado**.
+A simulação já aplica (ex.: sabor melhor → +1 cliente por indicação → resultado do dia +9%), e o público e o Rafa
+só descobrem quando ele faz as contas: "21 marmitas, não 19… aquela moça que elogiou ontem trouxe o colega."
+A cena das contas é a revelação. Regras:
+- O efeito tem que ter **pista antes** (o elogio, a fila maior), para a revelação ser justa.
+- Tamanho do efeito modesto e explicável (um cliente a mais, não o dobro). Onde não há dado, a simulação usa
+  suposição marcada como tal no diário.
+- Também vale para o ruim: cansaço baixa o sabor e ele só percebe quando a cliente fiel não volta.
+
+## Tempo simulado por episódio
+- A simulação roda **dia a dia, sempre** (custo de viver, vendas, prática). O episódio mostra os momentos que
+  importam.
+- **Padrão: cada decisão cobre de 2 a 4 dias** (o tempo de o resultado aparecer de verdade: um lote vendido, um fim
+  de semana, o segurança do mercado decidir).
+- Na crise anda devagar (1 dia, às vezes uma noite); com o negócio estável dá saltos (1 semana) com uma montagem
+  rápida dos números.
+- **Temporada 1 = o primeiro mês**, terminando no **dia 30, o aluguel**. A ~3 dias por decisão, são ~10 episódios
+  (≈ 3 semanas postando a cada 2 dias) e dão 2 compilados de 8 min. O episódio 10 é o "paga ou não paga".
+
+## Direção visual (Grozk, 09/11)
+Ilustração 2D com **traço próprio**, consistente entre episódios e capaz de passar emoção.
+- Personagens montados como componentes (SVG/React no Remotion), com peças fixas: o traço é o mesmo em todo
+  quadro porque é o mesmo código. Emoção por **sobrancelha, boca, olhos, postura e cor da luz**, não por detalhe.
+- Cor conta a história: kitnet e noite em azul frio; rua e venda em luz quente; crise com o quadro dessaturado; o
+  painel sempre em cor própria, por cima de tudo.
+- Próximo passo: folha de modelo do Rafa (3 variantes de traço × 4 emoções) para o Grozk escolher.
+
 ## Motor de simulação (a construir depois da aprovação, por PR)
 - `estado.json` do Rafa: dia do calendário, saldo, gastos fixos por dia (tabela acima), dívidas, estoque, preço,
-  clientes, cansaço (0–100), confiança dos clientes (0–100), relações (Cida, Bia, Juninho).
+  clientes, cansaço (0–100), confiança dos clientes (0–100), barras de prática, lições aprendidas,
+  relações (Cida, Bia, Juninho).
 - Todo dia simulado desconta o custo de viver; o saldo nunca é ajustado "na mão" para salvar a história.
 - Cada opção de voto vira um **evento com probabilidades** tiradas de dados reais (margem do setor, taxa de
   devolução, sazonalidade, chuva, taxa da maquininha) + um modificador pelo estado (reputação, energia).
