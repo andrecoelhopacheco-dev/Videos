@@ -2,7 +2,7 @@
 // Expressões, emotes e atuação ficam em Rosto.tsx. Use `atuar(frame, chaves)` e passe o resultado em `ator`.
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import { theme } from "../../tema";
-import { Atuacao, Boca, Choro, CorDoRosto, Emocao, Emote, Olhos, params, Sobrancelhas } from "./Rosto";
+import { Atuacao, Boca, Choro, CorDoRosto, Emocao, Emote, Olhos, params, peleTingida, Sobrancelhas } from "./Rosto";
 
 /** Intensidade quando só a emoção é passada (sem motor de atuação): 70%. */
 const I_PADRAO = 0.7;
@@ -41,8 +41,8 @@ export const Cabeca: React.FC<PropsCabeca> = ({ variante: v, emocao, ator }) => 
           {v === "C" ? <rect x={74} y={82} width={152} height={178} rx={58} /> : <ellipse cx={150} cy={172} rx={76} ry={90} />}
         </clipPath>
       </defs>
-      <circle cx={76} cy={182} r={16} fill={z.pele} {...linha} />
-      <circle cx={224} cy={182} r={16} fill={v === "B" ? z.peleSombra : z.pele} {...linha} />
+      <circle cx={76} cy={182} r={16} fill={peleTingida(z.pele, p)} {...linha} />
+      <circle cx={224} cy={182} r={16} fill={peleTingida(v === "B" ? z.peleSombra : z.pele, p)} {...linha} />
       {v === "C" ? <rect x={74} y={82} width={152} height={178} rx={58} fill={z.pele} />
         : <ellipse cx={150} cy={172} rx={76} ry={90} fill={z.pele} {...linha} />}
       {v === "B" && (
@@ -50,6 +50,7 @@ export const Cabeca: React.FC<PropsCabeca> = ({ variante: v, emocao, ator }) => 
           <ellipse cx={205} cy={180} rx={60} ry={110} fill={z.peleSombra} />
         </g>
       )}
+      <CorDoRosto p={p} clip={clip} parte="cor" />
       {v === "C" ? (
         <path d="M70 140 L70 112 Q70 72 150 70 Q230 72 230 112 L230 140 L206 120 L94 120 Z" fill={z.cabelo} />
       ) : (
@@ -58,7 +59,7 @@ export const Cabeca: React.FC<PropsCabeca> = ({ variante: v, emocao, ator }) => 
           {cachos(70, 84, 15).map((c, i) => <circle key={i} cx={c.x} cy={c.y} r={c.r} />)}
         </g>
       )}
-      <CorDoRosto p={p} clip={clip} />
+      <CorDoRosto p={p} clip={clip} parte="linhas" />
       <path d="M100 222 Q150 286 200 222 Q196 262 150 266 Q104 262 100 222 Z" fill={z.cabelo} opacity={0.18} />
       <Sobrancelhas p={p} espessura={v === "B" ? 9 : 10} />
       <Olhos p={p} aperto={ator?.aperto ?? 0} t={t} />

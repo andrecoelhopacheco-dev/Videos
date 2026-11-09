@@ -52,6 +52,17 @@ export const params = (e: Emocao, i: number): Params => {
   return out;
 };
 
+/** Mistura duas cores hex (t de 0 a 1). */
+const misturar = (a: string, b: string, t: number) => {
+  const pa = [1, 3, 5].map((k) => parseInt(a.slice(k, k + 2), 16));
+  const pb = [1, 3, 5].map((k) => parseInt(b.slice(k, k + 2), 16));
+  return `rgb(${pa.map((v, k) => Math.round(v + (pb[k] - v) * t)).join(",")})`;
+};
+/** A pele com a mesma cor que a camada de rosto aplica (para a pálpebra não ficar "sem tinta"). */
+export const peleTingida = (base: string, p: { vermelho: number; palidez: number }) =>
+  misturar(misturar(base, z.palido, p.palidez * 0.45).replace(/rgb\((\d+),(\d+),(\d+)\)/, (_, r, g, b) =>
+    "#" + [r, g, b].map((v: string) => Number(v).toString(16).padStart(2, "0")).join("")), z.raiva, p.vermelho * 0.4);
+
 const tr = { stroke: z.contorno, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
 const XS = [122, 178];
 
@@ -91,7 +102,7 @@ export const Olhos: React.FC<{ p: Params; aperto: number; t: number }> = ({ p, a
             {!branco && ry > 5 && <circle cx={x + 3} cy={175 - ry * 0.4} r={2.8} fill={z.branco} />}
             {p.palpebra > 0.08 && !branco && (
               <g>
-                <path d={`M${xIn} ${topo - 14} L${xOut} ${topo - 14} L${xOut} ${yOut} L${xIn} ${yIn} Z`} fill={i === 0 ? z.pele : z.peleSombra} />
+                <path d={`M${xIn} ${topo - 14} L${xOut} ${topo - 14} L${xOut} ${yOut} L${xIn} ${yIn} Z`} fill={peleTingida(i === 0 ? z.pele : z.peleSombra, p)} />
                 <path d={`M${xIn} ${yIn} L${xOut} ${yOut}`} {...tr} strokeWidth={5} />
               </g>
             )}
@@ -149,24 +160,35 @@ export const Sobrancelhas: React.FC<{ p: Params; espessura?: number }> = ({ p, e
   </g>
 );
 
-// Cor do rosto (por cima da pele, recortada pela cabeça): rubor, vermelho de raiva, palidez, linhas de tristeza.
-export const CorDoRosto: React.FC<{ p: Params; clip: string }> = ({ p, clip }) => (
-  <g clipPath={`url(#${clip})`}>
-    {p.palidez > 0 && <rect x={60} y={80} width={180} height={200} fill={z.palido} opacity={p.palidez * 0.45} />}
-    {p.vermelho > 0 && <rect x={60} y={80} width={180} height={200} fill={z.raiva} opacity={p.vermelho * 0.4} />}
-    {p.rubor > 0 && (
-      <g fill={z.rubor} opacity={p.rubor * 0.7}>
-        <ellipse cx={104} cy={204} rx={18} ry={9} />
-        <ellipse cx={196} cy={204} rx={18} ry={9} />
+// Cor do rosto, em duas partes para nunca vazar no cabelo:
+// "cor" (palidez, vermelho de raiva, rubor) vai ANTES do cabelo, recortada pela cabeça;
+// "linhas" (as listras de tristeza) vai depois do cabelo, recortada pela cabeça E pela região abaixo da linha do cabelo.
+const ABAIXO_DO_CABELO = "M60 152 L78 150 Q100 116 150 114 Q200 116 222 150 L240 152 L240 300 L60 300 Z";
+
+export const CorDoRosto: React.FC<{ p: Params; clip: string; parte: "cor" | "linhas" }> = ({ p, clip, parte }) => {
+  if (parte === "cor")
+    return (
+      <g clipPath={`url(#${clip})`}>
+        {p.palidez > 0 && <rect x={60} y={80} width={180} height={200} fill={z.palido} opacity={p.palidez * 0.45} />}
+        {p.vermelho > 0 && <rect x={60} y={80} width={180} height={200} fill={z.raiva} opacity={p.vermelho * 0.4} />}
+        {p.rubor > 0 && (
+          <g fill={z.rubor} opacity={p.rubor * 0.7}>
+            <ellipse cx={104} cy={204} rx={18} ry={9} />
+            <ellipse cx={196} cy={204} rx={18} ry={9} />
+          </g>
+        )}
       </g>
-    )}
-    {p.sombra > 0.25 && (
-      <g stroke={z.tristeza} strokeWidth={5} opacity={(p.sombra - 0.25) * 1.2}>
-        {[116, 132, 148, 164, 180].map((x, i) => <line key={x} x1={x} y1={108} x2={x} y2={i % 2 ? 126 : 136} />)}
+    );
+  if (p.sombra <= 0.25) return null;
+  return (
+    <g clipPath={`url(#${clip})`}>
+      <defs><clipPath id={`${clip}-testa`}><path d={ABAIXO_DO_CABELO} /></clipPath></defs>
+      <g clipPath={`url(#${clip}-testa)`} stroke={z.tristeza} strokeWidth={5} opacity={(p.sombra - 0.25) * 1.2}>
+        {[120, 135, 150, 165, 180].map((x, i) => <line key={x} x1={x} y1={112} x2={x} y2={i % 2 ? 132 : 140} />)}
       </g>
-    )}
-  </g>
-);
+    </g>
+  );
+};
 
 /** Lágrimas e choro: marejado (no olho) → uma lágrima escorrendo (≥0,45) → choro com dois rios e gotas (≥0,8). */
 export const Choro: React.FC<{ p: Params; t: number }> = ({ p, t }) => {
