@@ -40,6 +40,32 @@ negócio corre a novela: amor, família, funcionário, fornecedor, concorrente.
 - **Juninho**: vizinho da kitnet ao lado, o primeiro funcionário. Leal e atrapalhado.
 - **Fornecedor** (atacadista): dá prazo e cobra caro pelo prazo.
 
+## Quem decide o quê (Grozk, 09/11)
+- **Você decide (voto):** só **a decisão mais importante** do episódio, sempre ligada ao negócio (ou a uma
+  subtrama quando ela ameaça o negócio).
+- **O Rafa decide (sozinho):** todo o resto, **pela personalidade, pela prática e pelas lições que já tem (ou pela
+  falta delas)**. Com CONTAS 10 ele erra o preço e esquece o gás; com CONVERSA 60 ele convence quem passa; por
+  orgulho ele recusa ajuda; feliz, ele gasta.
+- Na tela: selo **"VOCÊ DECIDE"** só no voto; selo **"O RAFA DECIDIU"** nas decisões dele. O público grita nos
+  comentários quando ele erra, e vê ele acertar mais conforme as barras sobem: o crescimento aparece nas escolhas.
+- As decisões do Rafa seguem regras escritas no motor (traço + barra → escolha), registradas no diário com o
+  motivo. Nunca uma decisão "porque a história precisava".
+
+## Estrutura de um episódio (~2 min)
+| Tempo | Bloco |
+| - | - |
+| 0–5 s | Título no estado atual + **resultado do voto anterior** ("62% de vocês escolheram B") |
+| 5–20 s | A simulação roda: chance de dar certo → deu ou não deu |
+| 20–60 s | **Trama principal**: os dias passando, vendas, barras subindo, decisões do Rafa |
+| 60–85 s | **Subtrama (novela)**, com consequência que bate no negócio (dinheiro, tempo, cansaço, reputação) |
+| 85–100 s | Contas do dia: revelação do efeito escondido; painel atualizado |
+| 100–120 s | Complicação → **a decisão mais importante**: cartões A/B, "comenta A ou B" |
+
+- Sempre **2 tramas correndo**: a principal e 1 subtrama ativa (no máximo 2). Uma subtrama dura 2–4 episódios e
+  fecha com consequência no painel; quando uma fecha, outra já foi plantada.
+- Toda consequência de novela aparece como número: o empréstimo do Juninho tira R$ 20; a briga com a Bia custa um
+  dia de venda; a doença do fornecedor atrasa o estoque.
+
 ## Regras da série
 1. **Toda subtrama mexe no negócio** (dinheiro, tempo ou energia). Novela que não custa nada não entra.
 2. **Toda decisão é A ou B**, as duas com custo. Nunca uma certa e uma burra.
@@ -114,7 +140,7 @@ A cena das contas é a revelação. Regras:
 - Na crise anda devagar (1 dia, às vezes uma noite); com o negócio estável dá saltos (1 semana) com uma montagem
   rápida dos números.
 - **Temporada 1 = o primeiro mês**, terminando no **dia 30, o aluguel**. A ~3 dias por decisão, são ~10 episódios
-  (≈ 3 semanas postando a cada 2 dias) e dão 2 compilados de 8 min. O episódio 10 é o "paga ou não paga".
+  (≈ 3 semanas postando a cada 2 dias) e, a ~2 min cada, dão 2 compilados de ~8–10 min. O episódio 10 é o "paga ou não paga".
 
 ## Direção visual (Grozk, 09/11)
 Ilustração 2D com **traço próprio**, consistente entre episódios e capaz de passar emoção.
@@ -143,7 +169,7 @@ produção e rascunho → post. Ciclo de ~48 h. Para não parar, ter 1–2 epis�
 voto de negócio) prontos.
 
 ## Formatos
-- Episódio: 1080×1920, 70–110 s, TikTok + YouTube Shorts (+ Reels).
+- Episódio: 1080×1920, **média de 2 min** (100–140 s), TikTok + YouTube Shorts (+ Reels). Mais de 1 min (paga no TikTok) e menos de 3 min (conta como Short).
 - Compilado no YouTube: ~8 min, vertical, 5 episódios sem os CTAs do meio, cartão "o público escolheu: B" entre
   eles, e um dilema novo no final que leva para o próximo Short.
 
