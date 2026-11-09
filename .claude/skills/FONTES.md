@@ -44,3 +44,18 @@ instruções) e instaladas a pedido do dono para roteiro, narração, legenda e 
 
 O `ew` guarda o perfil de voz em `~/.everyday-writer/`, que some quando a sessão na nuvem acaba; as amostras que
 duram ficam em `docs/voz/`.
+
+## Direção de câmera e interface suculenta (2026-11-09)
+
+Pesquisa pedida pelo Grozk para a série "Empreender do Zero". Repositórios clonados num diretório temporário,
+lidos e revisados (o único script, `cdcheck.py`, só usa a biblioteca padrão do Python e não acessa a rede).
+
+| Skill(s) | Fonte (commit) | Licença | Para quê aqui |
+| - | - | - | - |
+| `cinematography-director` | jayaprakash-pixel/cinematography-director (0005e0a), sem `docs/`, `examples/` e `tests/` | Apache-2.0 | teoria de direção de fotografia: motivo de cada movimento, zoom × dolly, planos, ritmo, modos Shorts e animação |
+| `camera-2d` | própria; seção de atuação adaptada de JohnHeibel/ClaudeAnimationBase (MIT) e balanço de câmera inspirado em vincentwei1021/video-shotcraft (Apache-2.0), sem copiar código | — | adaptador para a câmera multiplano `src/componentes/camera.tsx` |
+| `interface-suculenta` | própria; base em "Juice it or lose it" (GDC 2012), "The Art of Screenshake" (2013), MoreMountains Feel e na skill `game-feel` | — | painel/HUD com feedback: odômetro, soco, flash, rastro, trauma (`src/componentes/suculento.tsx`) |
+
+Também avaliadas e não instaladas: joost/ai-camera-shots e Rylaispirit/cinematic-video-prompt-skill (vocabulário
+para prompt de vídeo por IA, não para câmera em código), RajaskaJanuardani/motion-craft (MIT; útil como consulta
+de estilos), zhuyansen/awesome-claude-video-skills (lista curada, usada para achar as outras).
