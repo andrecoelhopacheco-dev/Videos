@@ -8,6 +8,9 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 - **Expressão de personagem tem que gritar** (Grozk em 09/11: "nem percebi ele mudando"): cada emoção muda
   olhos, boca, sobrancelha, cor do rosto e postura, e a troca é atuada (aperta os olhos, susto com mola) com um
   emote de anime saltando (estrelas, corações, veia de raiva, gota de suor, "!", nuvem de chuva).
+- **Expressão é slider, não interruptor** (Grozk em 09/11): base neutra; o motor escolhe UMA emoção por reação
+  e a intensidade (0–100%) vem do tamanho do acontecimento. 10% = legível e contido; 100% = choro de verdade,
+  fúria, pavor. Emote só a partir de 30%, crescendo com a intensidade (`atuar()` em `Rosto.tsx`).
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca

@@ -68,6 +68,7 @@ export const theme = {
     lingua: "#D9665A",
     rubor: "#FF7F86",
     raiva: "#E5382A",
+    palido: "#9AA7B8",
     raivaEmote: "#F0302A",
     tristeza: "#5C79B8",
     coracao: "#FF4F79",

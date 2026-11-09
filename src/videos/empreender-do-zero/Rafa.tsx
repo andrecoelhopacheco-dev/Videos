@@ -1,8 +1,12 @@
 // Rafa em SVG: um único componente para o traço ser idêntico em todo quadro (traço escolhido: B, luz e sombra).
 // Expressões, emotes e atuação ficam em Rosto.tsx. Use `atuar(frame, chaves)` e passe o resultado em `ator`.
-import { useVideoConfig } from "remotion";
+import { useCurrentFrame, useVideoConfig } from "remotion";
 import { theme } from "../../tema";
-import { Atuacao, Boca, CorDoRosto, Emocao, Emote, Olhos, POSE, Sobrancelhas } from "./Rosto";
+import { Atuacao, Boca, Choro, CorDoRosto, Emocao, Emote, Olhos, params, Sobrancelhas } from "./Rosto";
+
+/** Intensidade quando só a emoção é passada (sem motor de atuação): 70%. */
+const I_PADRAO = 0.7;
+const pDo = (emocao: Emocao, ator?: Atuacao) => params(ator?.emocao ?? emocao, ator ? ator.intensidade : I_PADRAO);
 
 export type { Emocao } from "./Rosto";
 const z = theme.zero;
@@ -21,13 +25,17 @@ type PropsCabeca = { variante: Variante; emocao: Emocao; ator?: Atuacao };
 // Só a cabeça, no sistema de coordenadas do busto (viewBox 300×400).
 export const Cabeca: React.FC<PropsCabeca> = ({ variante: v, emocao, ator }) => {
   const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
   const e = ator?.emocao ?? emocao;
-  const p = POSE[e];
+  const i = ator ? ator.intensidade : I_PADRAO;
+  const p = pDo(emocao, ator);
+  const t = ator?.desde ?? 14;
+  const treme = p.treme * Math.sin(frame * 1.9);
   const linha = v === "A" ? { stroke: z.contorno, strokeWidth: 6, strokeLinejoin: "round" as const } : {};
   const clip = `cab-${v}`;
   const take = ator?.take ?? 1;
   return (
-    <g transform={`translate(0 ${p.desce}) rotate(${p.inclina} 150 250) translate(150 180) scale(${take}) translate(-150 -180)`}>
+    <g transform={`translate(${treme} ${p.desce}) rotate(${p.inclina} 150 250) translate(150 180) scale(${take}) translate(-150 -180)`}>
       <defs>
         <clipPath id={clip}>
           {v === "C" ? <rect x={74} y={82} width={152} height={178} rx={58} /> : <ellipse cx={150} cy={172} rx={76} ry={90} />}
@@ -50,20 +58,21 @@ export const Cabeca: React.FC<PropsCabeca> = ({ variante: v, emocao, ator }) => 
           {cachos(70, 84, 15).map((c, i) => <circle key={i} cx={c.x} cy={c.y} r={c.r} />)}
         </g>
       )}
-      <CorDoRosto e={e} clip={clip} />
+      <CorDoRosto p={p} clip={clip} />
       <path d="M100 222 Q150 286 200 222 Q196 262 150 266 Q104 262 100 222 Z" fill={z.cabelo} opacity={0.18} />
       <Sobrancelhas p={p} espessura={v === "B" ? 9 : 10} />
-      <Olhos e={e} aperto={ator?.aperto ?? 0} />
+      <Olhos p={p} aperto={ator?.aperto ?? 0} t={t} />
       <ellipse cx={154} cy={204} rx={10} ry={6} fill={z.peleSombra} />
-      <Boca e={e} />
-      <Emote e={e} t={ator?.desde ?? 999} fps={fps} />
+      <Boca p={p} t={t} />
+      <Choro p={p} t={t} />
+      <Emote e={e} i={i} t={t} fps={fps} />
     </g>
   );
 };
 
 export const Rafa: React.FC<{ variante: Variante; emocao: Emocao; largura?: number; ator?: Atuacao }> = ({
   variante: v, emocao, largura = 300, ator }) => {
-  const p = POSE[ator?.emocao ?? emocao];
+  const p = pDo(emocao, ator);
   const linha = v === "A" ? { stroke: z.contorno, strokeWidth: 6, strokeLinejoin: "round" as const } : {};
   const ombroY = 300 + p.ombro;
   return (
@@ -80,7 +89,7 @@ export const Rafa: React.FC<{ variante: Variante; emocao: Emocao; largura?: numb
 export const RafaCorpo: React.FC<{ emocao: Emocao; altura?: number; pose?: "pe" | "celular"; ator?: Atuacao }> = ({
   emocao, altura = 800, pose = "pe", ator }) => {
   const braco = { strokeLinecap: "round" as const, strokeWidth: 30, fill: "none" };
-  const om = POSE[ator?.emocao ?? emocao].ombro * 0.6;
+  const om = pDo(emocao, ator).ombro * 0.6;
   return (
     <svg viewBox="0 0 300 800" width={(altura * 300) / 800} height={altura} style={{ overflow: "visible" }}>
       <ellipse cx={150} cy={758} rx={120} ry={16} fill="#000" opacity={0.28} />

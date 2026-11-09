@@ -96,7 +96,7 @@ export const TesteCamera: React.FC = () => {
         <PlanoComodo>
           <div style={{ position: "absolute", left: 375, top: 690 }}>
             <RafaCorpo emocao="neutro" pose="celular" altura={880}
-              ator={atuar(frame, [[0, "neutro"], [153, "preocupado"], [250, "triste"]])} />
+              ator={atuar(frame, [{ f: 153, emocao: "preocupado", intensidade: 0.45, dur: 90 }, { f: 250, emocao: "triste", intensidade: 0.6, dur: 200 }])} />
           </div>
         </PlanoComodo>
         <PlanoFrente opacidade={frente} />
