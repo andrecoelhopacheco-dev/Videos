@@ -34,7 +34,10 @@ código e guarda o gosto do dono para que cada vídeo novo comece de onde o últ
      (12 princípios), `game-feel` (impacto), `animation-vocabulary` (nome certo do efeito), `text-to-lottie`,
      `rive`, `threejs-*` (3D dentro do Remotion via `@remotion/three`), `gsap-*` (só se der para controlar
      pelo quadro).
-4. **Validação** (obrigatória, `references/validacao.md`): `npm run render -- <id>` gera
+4. **Validação** (obrigatória, `references/validacao.md`). **Economia de render (Grozk, 09/11):** primeiro quadros
+   soltos (`node ferramentas/quadros.mjs`), depois o rascunho por blocos (`node ferramentas/blocos.mjs <id> --scale=0.5`);
+   em toda correção, `--refazer=<de>-<até>` só do trecho mexido, nunca o vídeo inteiro. Para vídeo curto de teste,
+   `npm run render -- <id>` gera
    `saidas/<id>.mp4` + `saidas/<id>_folha.png`. **Abra a folha (Read) e olhe**; para trechos rápidos, rode a
    folha só do intervalo (`--frames=30-60`) ou com mais quadros (`ferramentas/folha.sh <mp4> 16`).
    Conserte e renderize de novo até passar no checklist.

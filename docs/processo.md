@@ -12,6 +12,11 @@ Combinado com o Grozk em 22/10/2026. Vale para todo vídeo; a skill `diretor-de-
 Rascunho: o pedido foi 480p, mas 1080 → 480 não dá número inteiro no Remotion; `--scale=0.5` (540×960) custa o
 mesmo e foi testado.
 
+## Render por blocos (Grozk, 09/11/2026)
+Render completo custa caro. Todo vídeo é renderizado em blocos de 5 s guardados em `saidas/blocos/` (`ferramentas/blocos.mjs`);
+uma correção refaz só os blocos do trecho corrigido e remonta o MP4 por cópia em segundos. Mudança que desloca o tempo
+(cortar ou alongar cena, áudio novo) refaz do ponto da mudança até o fim.
+
 ## Duração nas redes de vídeo curto (Grozk, 09/11/2026)
 Todo episódio publicado em Instagram, YouTube Shorts, TikTok e Kwai fica **entre 61 e 178 s** (nunca acima). O
 limite mais curto entre as quatro é o do YouTube Shorts (3 min); Instagram recomenda até 3 min (aceita até 20),

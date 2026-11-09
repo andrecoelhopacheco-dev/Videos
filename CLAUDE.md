@@ -59,6 +59,10 @@ ferramentas/             render.mjs, folha.sh (folha de quadros), info.sh (ffpro
 Comandos:
 - `npm run render -- <id>` → `saidas/<id>.mp4` + `saidas/<id>_folha.png` + resumo. Aceita opções do Remotion
   (`--scale=0.5`, `--frames=0-59`, `--props='{"titulo":"…"}'`).
+- **Render custa caro: nunca refaça o vídeo inteiro para corrigir.** `node ferramentas/blocos.mjs <id> --scale=0.5`
+  renderiza em blocos de 5 s com cache; correção = `--refazer=<de>-<até>` (segundos) refaz só os blocos do trecho e
+  remonta por cópia; `--audio` refaz só o som; `--semear=saidas/X.mp4` corta um render inteiro antigo em blocos.
+  Antes de renderizar, confira com quadros soltos: `node ferramentas/quadros.mjs <id> saidas/<pasta> 12.5 40 93…`.
 - `npm run tipos` (TypeScript) · `npm run verificar` (tipos + render pequeno do Exemplo: prova que o ambiente funciona).
 - `npm run estudio` abre o Remotion Studio (só útil com navegador; no celular use a folha de quadros).
 - `ferramentas/folha.sh <mp4> [n]` · `ferramentas/info.sh <mp4>`.
