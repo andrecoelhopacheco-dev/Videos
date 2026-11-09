@@ -55,8 +55,25 @@ export const theme = {
     vermelho: "#E5382A",
     texto: "#F7F1E8",
     apagado: "#C9D2E0",
+    calca: "#34466B",
+    calcaSombra: "#26344F",
+    tenis: "#E9E3D8",
+    tenisSombra: "#BDB6AA",
+    // kitnet (noite fria)
+    parede: "#2A3954",
+    paredeSombra: "#1F2B41",
+    chao: "#161E2D",
+    janelaLuz: "rgba(170, 205, 255, 0.16)",
+    // painel (interface de jogo, palavras da vida real)
+    painelFundo: "rgba(9, 14, 24, 0.82)",
+    painelBorda: "#8FD3FF",
+    painelRotulo: "#B9C7DA",
+    bom: "#6EE7A8",
+    perigo: "#FF5A4A",
     fonteTitulo: "Anton",
     fonteTexto: "Inter",
+    fonteDado: "PlexMono",
+    fonteMao: "PermanentMarker",
   },
   // THE easing curves. Linear is forbidden.
   ease: {
