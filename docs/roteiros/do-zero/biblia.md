@@ -68,7 +68,7 @@ Visual de HUD (cantos, barras, números que rolam, cartões de escolha), **mas s
 
 ## Motor de simulação (a construir depois da aprovação, por PR)
 - `estado.json` do Rafa: dia do calendário, saldo, gastos fixos por dia (tabela acima), dívidas, estoque, preço,
-  clientes, cansaço (0–100), confiança dos clientes (0–100), relações (Cida, mãe, Bia, Juninho).
+  clientes, cansaço (0–100), confiança dos clientes (0–100), relações (Cida, Bia, Juninho).
 - Todo dia simulado desconta o custo de viver; o saldo nunca é ajustado "na mão" para salvar a história.
 - Cada opção de voto vira um **evento com probabilidades** tiradas de dados reais (margem do setor, taxa de
   devolução, sazonalidade, chuva, taxa da maquininha) + um modificador pelo estado (reputação, energia).
