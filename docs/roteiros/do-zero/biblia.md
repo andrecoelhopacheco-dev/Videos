@@ -52,14 +52,35 @@ negócio corre a novela: amor, família, funcionário, fornecedor, concorrente.
   motivo. Nunca uma decisão "porque a história precisava".
 
 ## Estrutura de um episódio (~2 min)
+Fixos: começa com o título + **resultado do voto anterior** e termina na **decisão mais importante** (o voto).
+O miolo **não tem ordem fixa**: trama principal, subtrama e contas entram onde a história pedir. A cena das contas
+nem sempre existe, e **nunca é obrigatoriamente o que leva ao voto** (Grozk, 09/11).
+
 | Tempo | Bloco |
 | - | - |
-| 0–5 s | Título no estado atual + **resultado do voto anterior** ("62% de vocês escolheram B") |
-| 5–20 s | A simulação roda: chance de dar certo → deu ou não deu |
-| 20–60 s | **Trama principal**: os dias passando, vendas, barras subindo, decisões do Rafa |
-| 60–85 s | **Subtrama (novela)**, com consequência que bate no negócio (dinheiro, tempo, cansaço, reputação) |
-| 85–100 s | Contas do dia: revelação do efeito escondido; painel atualizado |
-| 100–120 s | Complicação → **a decisão mais importante**: cartões A/B, "comenta A ou B" |
+| 0–5 s | Título no estado atual + resultado do voto ("62% de vocês escolheram B") |
+| 5–20 s | A simulação roda: chance de dar certo → deu ou não deu (ou: retoma a cena congelada do episódio anterior) |
+| 20–100 s | Miolo, em qualquer ordem: **trama principal** (vendas, barras, decisões do Rafa), **subtrama** com consequência no negócio, **contas** quando fizer sentido |
+| 100–120 s | **A decisão mais importante**, num dos três tipos abaixo |
+
+### Os três tipos de decisão do público
+| Tipo | Como chega | Na tela | O que o público sabe |
+| - | - | - | - |
+| **No calor do momento** | Algo explode no meio da ação: o fiscal pede propina, um cliente passa mal depois de comer, a polícia manda sair da calçada, aparece um pedido de 50 marmitas para amanhã cedo, a Cida joga o preço lá embaixo | **Quadro congela** no meio do movimento; painel em vermelho; selo "VOCÊ DECIDE" com um **relógio correndo**; som cortado | **Pouco**: os cartões mostram só o que o Rafa enxerga naquele segundo, sem conta, sem margem |
+| **Com calma** | Depois das contas ou num momento parado: aumentar o preço, comprar no atacado, contratar o Juninho | Painel completo; cartões com números (quantos mostrar depende da barra de CONTAS) | O que o Rafa sabe calcular |
+| **Do coração** | Uma subtrama ameaça o negócio: a Bia chama para sair no dia de mais venda; o Juninho some com o dinheiro do troco | Close no rosto do Rafa; painel pequeno no canto | Os dois lados, e nenhum é só racional |
+
+- Mistura: **pelo menos 1 em cada 3 episódios termina no calor do momento**; nunca 2 "com calma" seguidos.
+- No calor do momento, o episódio seguinte **retoma do quadro congelado**, sem pular tempo: a pessoa volta para
+  ver o que aconteceu um segundo depois.
+- Pressa tem preço: decisão no calor do momento é tomada com informação incompleta, e a simulação aplica o que o
+  Rafa não sabia (o fiscal era falso, o pedido grande era golpe, ou era verdade e virou o melhor dia do mês).
+
+### Acaso (o caos da vida real)
+O motor sorteia todo dia **eventos que ninguém escolheu**, com chance baseada em dado real quando existir: chuva
+(previsão do mês na capital), fiscalização, calote, gás acabando no meio do preparo, celular quebrado, doença,
+cliente grande, feriado, greve de ônibus. A maioria é pequena e entra no miolo; quando um evento é grande, ele
+vira a decisão no calor do momento do episódio.
 
 - Sempre **2 tramas correndo**: a principal e 1 subtrama ativa (no máximo 2). Uma subtrama dura 2–4 episódios e
   fecha com consequência no painel; quando uma fecha, outra já foi plantada.
