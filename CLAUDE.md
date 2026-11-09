@@ -97,6 +97,8 @@ Economia de tokens:
 - Direção e edição: `diretor-de-motion`, `edicao-de-video` (próprias deste repositório).
 - Câmera e interface (desde 2026-11-09): `camera-2d` e `interface-suculenta` (próprias, com
   `src/componentes/camera.tsx` e `suculento.tsx`) + `cinematography-director` (teoria de direção de fotografia).
+- Som: `sonoplastia` (própria) com `ferramentas/sons.py` (busca e baixa CC0 do BigSoundBank), biblioteca
+  `public/sons/` (catálogo e licenças em `catalogo.json`) e `src/componentes/som.tsx`.
 - Pesquisa: `tendencias-virais`, `assistir-video` (próprias deste repositório).
 - Motion e vídeo: `remotion-motion-graphics`, `motion-design`, `game-development` (12 princípios), `game-feel`,
   `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`,

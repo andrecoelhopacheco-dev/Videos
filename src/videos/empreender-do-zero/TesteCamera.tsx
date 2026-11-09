@@ -9,6 +9,7 @@ import { Caixa, z } from "./kit";
 import { PlanoCidade, PlanoComodo, PlanoFrente, PlanoParede } from "./KitnetCena";
 import { RafaCorpo } from "./Rafa";
 import { atuar } from "./Rosto";
+import { Ambiente, Efeito } from "../../componentes/som";
 
 const travar = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const IMPACTOS = [{ f: 150, forca: 0.45 }, { f: 244, forca: 0.6 }];
@@ -81,6 +82,14 @@ export const TesteCamera: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: z.cidadeCeu }}>
+      <Ambiente arquivo="ambiente-casa/bsb-0080-kitnet-janela-fechada.ogg" de={0} ate={300} db={-2} fade={20} />
+      <Efeito arquivo="interface/pop/kit-pop.ogg" no={122} db={-14} />
+      <Efeito arquivo="interface/whoosh/fs830856.ogg" no={150} antes={2} db={-10} />
+      <Efeito arquivo="interface/impact/kenney-impact-impactsoft-heavy-000.ogg" no={150} db={-6} />
+      <Efeito arquivo="dinheiro/bsb-1417-caixa-bipe.ogg" no={178} db={-14} />
+      <Efeito arquivo="interface/ui-blip/kenney-digital-pepsound1.ogg" no={153} db={-16} />
+      <Efeito arquivo="interface/riser/fs867126.ogg" no={244} antes={60} db={-14} />
+      <Efeito arquivo="interface/impact/kenney-impact-impactpunch-heavy-000.ogg" no={244} db={-4} />
       <Cena cam={cam} mao={mao} tremor={sacode}>
         <PlanoCidade />
         <PlanoParede />

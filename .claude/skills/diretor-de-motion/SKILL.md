@@ -29,7 +29,7 @@ código e guarda o gosto do dono para que cada vídeo novo comece de onde o últ
      `edicao-de-video` (ffmpeg). Misturou os dois? Edite com ffmpeg e traga o resultado para o Remotion
      com `<OffthreadVideo>`.
    - Câmera e planos → skill `camera-2d` (executa) + `cinematography-director` (decide o motivo). Painel/HUD
-     → skill `interface-suculenta`.
+     → skill `interface-suculenta`. Som (ambiente, foley, interface) → skill `sonoplastia`.
    - Base teórica quando precisar: `motion-design` (emoção → movimento, coreografia), `game-development`
      (12 princípios), `game-feel` (impacto), `animation-vocabulary` (nome certo do efeito), `text-to-lottie`,
      `rive`, `threejs-*` (3D dentro do Remotion via `@remotion/three`), `gsap-*` (só se der para controlar

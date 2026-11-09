@@ -59,3 +59,14 @@ lidos e revisados (o único script, `cdcheck.py`, só usa a biblioteca padrão d
 Também avaliadas e não instaladas: joost/ai-camera-shots e Rylaispirit/cinematic-video-prompt-skill (vocabulário
 para prompt de vídeo por IA, não para câmera em código), RajaskaJanuardani/motion-craft (MIT; útil como consulta
 de estilos), zhuyansen/awesome-claude-video-skills (lista curada, usada para achar as outras).
+
+## Sonoplastia (2026-11-09)
+
+| Skill / material | Fonte (commit) | Licença | Para quê aqui |
+| - | - | - | - |
+| `sonoplastia` | própria; regras de alinhamento (pico no quadro, whoosh 2 quadros antes, riser termina no impacto) e de licença inspiradas em Barty-Bart/motion-graphics `sound-effects` (MIT) e vincentwei1021/video-shotcraft `sound-design`/`sfx-sourcing` (Apache-2.0), sem copiar código | — | camadas, níveis, onde buscar, como posicionar e medir |
+| `public/sons/interface/`, `public/sons/ambiente-casa/fs-*` | pacote CC0 de Barty-Bart/motion-graphics (3d83d98), sons de Kenney e Freesound | CC0 1.0 (`public/sons/LICENCAS-pacote-cc0.md`) | sons de interface e room tone |
+| `public/sons/*/bsb-*` | BigSoundBank (Joseph Sardin), baixados por `ferramentas/sons.py` | CC0 1.0, conferida na página de cada som | ambientes, foley, dinheiro |
+
+Avaliadas e não instaladas: sxhzju/sound (sem arquivo de licença), bianbianzhu/procedural-sfx e whaleyxbt/claude-motion
+(sintetizam som em código; para o painel preferimos gravação real).
