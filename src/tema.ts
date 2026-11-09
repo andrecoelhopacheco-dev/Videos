@@ -64,6 +64,16 @@ export const theme = {
     paredeSombra: "#1F2B41",
     chao: "#161E2D",
     janelaLuz: "rgba(170, 205, 255, 0.16)",
+    // expressões e emotes
+    lingua: "#D9665A",
+    rubor: "#FF7F86",
+    raiva: "#E5382A",
+    raivaEmote: "#F0302A",
+    tristeza: "#5C79B8",
+    coracao: "#FF4F79",
+    estrela: "#FFD84D",
+    suor: "#8FD3FF",
+    nuvem: "#7D8AA3",
     // detalhes da kitnet (realismo)
     cidadeCeu: "#0B1322",
     cidadePredio: "#141F33",

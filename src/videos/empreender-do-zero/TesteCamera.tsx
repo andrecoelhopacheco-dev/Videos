@@ -8,6 +8,7 @@ import { BarraRastro, flash, Flutuante, Odometro, soco, surgir, trauma, tremor, 
 import { Caixa, z } from "./kit";
 import { PlanoCidade, PlanoComodo, PlanoFrente, PlanoParede } from "./KitnetCena";
 import { RafaCorpo } from "./Rafa";
+import { atuar } from "./Rosto";
 
 const travar = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
 const IMPACTOS = [{ f: 150, forca: 0.45 }, { f: 244, forca: 0.6 }];
@@ -85,7 +86,8 @@ export const TesteCamera: React.FC = () => {
         <PlanoParede />
         <PlanoComodo>
           <div style={{ position: "absolute", left: 375, top: 690 }}>
-            <RafaCorpo emocao={frame < 152 ? "neutro" : "preocupado"} pose="celular" altura={880} />
+            <RafaCorpo emocao="neutro" pose="celular" altura={880}
+              ator={atuar(frame, [[0, "neutro"], [153, "preocupado"], [250, "triste"]])} />
           </div>
         </PlanoComodo>
         <PlanoFrente opacidade={frente} />
