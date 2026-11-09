@@ -20,13 +20,16 @@ negócio corre a novela: amor, família, funcionário, fornecedor, concorrente.
 - **Rafa**, 23 anos. Mora numa **capital de estado "típica", sem nome**: custo de vida altíssimo, R$ 900 numa
   kitnet minúscula de um cômodo só, na periferia. Demitido, recebeu o último salário (o mínimo, R$ 1.621), pagou o
   aluguel e ficou com R$ 700. Bom de conversa, ruim de conta.
-- Ponto fraco que gera trama: orgulho (não quer voltar para a casa da mãe), gasta quando está feliz.
+- **Não tem ninguém com quem contar** (Grozk, 09/11): a mãe morreu de covid na pandemia e ele nunca conheceu o
+  pai. Não existe rede de segurança: se o dinheiro acabar, ninguém cobre. A foto da mãe no espelho da kitnet é o
+  único objeto pessoal que aparece; usar com respeito, nunca como piada ou gancho barato.
+- Ponto fraco que gera trama: orgulho (não pede ajuda nem quando oferecem), gasta quando está feliz.
 
 ## Elenco da novela (entra aos poucos, no máximo 1 por episódio)
-- **Dona Cida**: vende marmita na esquina há 12 anos. Concorrente, depois talvez sócia ou mentora.
-- **Mãe do Rafa**: a rede de segurança que ele se recusa a usar.
+- **Dona Cida**: vende marmita na esquina há 12 anos. Concorrente, depois talvez sócia ou mentora (o mais perto
+  de uma família que ele pode ganhar).
 - **Bia**: cliente que vira interesse amoroso. Tem um emprego estável: o contraste com o Rafa.
-- **Juninho**: primo, o primeiro funcionário. Leal e atrapalhado.
+- **Juninho**: vizinho da kitnet ao lado, o primeiro funcionário. Leal e atrapalhado.
 - **Fornecedor** (atacadista): dá prazo e cobra caro pelo prazo.
 
 ## Regras da série
@@ -52,7 +55,7 @@ Pedido do Grozk: a simulação conta tudo. **Fracassar pode significar não ter 
 - **Cada real investido no negócio é comida a menos**: R$ 180 no negócio → o dinheiro acaba no dia 16.
 - O negócio tem os próprios insumos (gás a mais para cozinhar em quantidade, embalagem, produto, passagem até o
   ponto), contados separados.
-- Saldo zerado = fome. A simulação então oferece só saídas ruins (pedir à mãe, vender o celular, fiado, agiota),
+- Saldo zerado = fome. A simulação então oferece só saídas ruins (vender o celular, comprar fiado, pedir ajuda a quem mal conhece, agiota),
   e isso vira voto.
 
 ## Painel (interface de jogo, sem jargão de jogo)
