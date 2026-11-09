@@ -346,7 +346,7 @@ export const Ep01: React.FC = () => {
       );
       break;
     case "s9": {
-      const cam = camNoQuadro(frame, [{ f: F(91.3), x: 300, y: 800, z: 420 }, { f: F(97.0), x: 420, y: 960, z: -150 }, { f: F(103.0), x: 560, y: 980, z: -200 },
+      const cam = camNoQuadro(frame, [{ f: F(91.3), x: 300, y: 700, z: 420 }, { f: F(97.0), x: 420, y: 960, z: -150 }, { f: F(103.0), x: 560, y: 980, z: -200 },
         { f: F(107.4), x: 600, y: 980, z: -200 }, { f: F(109.4), x: 860, y: 1030, z: 420 }, { f: F(113.3), x: 860, y: 1030, z: 440 }]);
       const cida = atuar(frame, [{ f: F(108.6), emocao: "determinado", intensidade: 0.45, dur: F(4) }]);
       fundo = (
