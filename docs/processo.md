@@ -12,6 +12,13 @@ Combinado com o Grozk em 22/10/2026. Vale para todo vídeo; a skill `diretor-de-
 Rascunho: o pedido foi 480p, mas 1080 → 480 não dá número inteiro no Remotion; `--scale=0.5` (540×960) custa o
 mesmo e foi testado.
 
+## Duração nas redes de vídeo curto (Grozk, 09/11/2026)
+Todo episódio publicado em Instagram, YouTube Shorts, TikTok e Kwai fica **entre 61 e 178 s** (nunca acima). O
+limite mais curto entre as quatro é o do YouTube Shorts (3 min); Instagram recomenda até 3 min (aceita até 20),
+TikTok aceita 10 min no app e Kwai 5 min. Nenhuma rede exige menos que isso, então as quatro ficam. A composição
+do episódio trava a renderização se a duração sair dessa faixa (`DURACAO_S` em `ep01/Ep01.tsx`).
+Rede que passar a exigir bem menos que as outras: abandonar essa rede, não encurtar o episódio.
+
 ## Saída final no Google Drive
 ```
 videos-prontos/                                  (criada pelo ferramentas/drive.py)

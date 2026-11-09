@@ -11,7 +11,8 @@ export type Falas = [number, number][];
 /** Ganho de "abaixar sob a voz": cai `quanto` dB em 6 quadros quando a fala começa e volta em 12 depois. */
 export const ducking = (f: number, falas: Falas, quantoDb = -8) => {
   let g = 0;
-  for (const [a, b] of falas) {
+  for (const [a, b0] of falas) {
+    const b = Math.max(b0, a + 1);
     const v = interpolate(f, [a - 6, a, b, b + 12], [0, 1, 1, 0], travar);
     g = Math.max(g, v);
   }

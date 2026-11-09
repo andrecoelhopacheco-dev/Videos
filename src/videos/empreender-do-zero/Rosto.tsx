@@ -190,10 +190,10 @@ export const CorDoRosto: React.FC<{ p: Params; clip: string; parte: "cor" | "lin
   );
 };
 
-/** Lágrimas e choro: marejado (no olho) → uma lágrima escorrendo (≥0,45) → choro com dois rios e gotas (≥0,8). */
+/** Lágrimas e choro: marejado (no olho) → uma lágrima escorrendo (≥0,55) → choro com dois rios e gotas (≥0,9). */
 export const Choro: React.FC<{ p: Params; t: number }> = ({ p, t }) => {
-  if (p.lagrima < 0.45) return null;
-  if (p.lagrima < 0.8) {
+  if (p.lagrima < 0.55) return null;
+  if (p.lagrima < 0.9) {
     const y = 192 + ((t * 1.2) % 60);
     return <path transform={`translate(116 ${y})`} d="M0 -10 Q8 2 5 7 Q0 12 -5 7 Q-8 2 0 -10 Z" fill={z.suor} />;
   }
