@@ -67,3 +67,4 @@ Cada nicho sobe de nível sozinho, com base nas respostas do dono registradas na
 | Data | Nicho | Vídeo | Portão | Resultado | Ajuste pedido |
 | - | - | - | - | - | - |
 | 2026-10-23 | politica-lula | Do pau de arara ao Planalto | B | ajuste grande | refazer em documentário questionador, tudo animado, menos imagem GPT, sem rima |
+| 2026-11-10 | empreender-do-zero | Ep. 1 — R$ 700 e 21 dias | B | aprovado após ajustes | prato com PNGs do dono; rua e mercado em escala real com planos variados; calendário coerente com a fala; marmitas com comida |

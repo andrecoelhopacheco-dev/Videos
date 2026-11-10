@@ -24,7 +24,8 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 _(nada ainda)_
 
 ## Aprovado
-_(nada ainda)_
+- 2026-11-10 · Empreender do Zero, Ep. 1: traço B, painel com cara de jogo e palavras do dia a dia, expressões em slider
+  com emote, câmera 2.5D, mundos em escala real, legenda da fala improvisada, sons por lugar.
 
 ## Rejeitado / pedidos
 - 2026-10-31 (teste de voz, terror 35s): "ambos ficaram ruins" — Edge TTS (só velocidade/tom/volume) e VoxCPM2 (emoção por descrição). Chatterbox pt-BR em avaliação. Detalhes em `docs/pesquisa/vozes.md`.
