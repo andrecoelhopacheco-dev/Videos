@@ -194,27 +194,49 @@ export const Prato: React.FC<{ t: number }> = ({ t }) => {
 };
 
 // ——— Calendário de 30 dias; dias depois de `acaba` ficam vermelhos (acendendo um a um a partir de f).
-export const Calendario: React.FC<{ t: number; acaba: number; vermelhoDe: number }> = ({ t, acaba, vermelhoDe }) => (
-  <div style={{ position: "absolute", left: 120, top: 640, width: 840, background: "#F2EDE3", borderRadius: 18,
-    boxShadow: "0 20px 60px rgba(0,0,0,0.45)", overflow: "hidden" }}>
-    <div style={{ background: z.vermelho, color: "#FFF7EC", fontFamily: z.fonteTitulo, fontSize: 64, padding: "14px 30px" }}>ESTE MÊS</div>
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 10, padding: 24 }}>
-      {Array.from({ length: 30 }, (_, i) => {
-        const dia = i + 1;
-        const vermelho = dia > acaba && t >= vermelhoDe + (dia - acaba) * 2;
-        const ultimo = dia === 30;
-        return (
-          <div key={dia} style={{ height: 84, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center",
-            fontFamily: z.fonteDado, fontWeight: 700, fontSize: 38, color: vermelho ? "#FFF7EC" : "#2A2A2A",
-            background: vermelho ? z.perigo : ultimo ? "#FFE7A8" : "#E4DDD0",
-            transform: `scale(${vermelho ? interpolate(t - (vermelhoDe + (dia - acaba) * 2), [0, 3, 6], [1.3, 0.95, 1], travar) : 1})` }}>
-            {ultimo ? <span style={{ textAlign: "center", lineHeight: 1 }}>30<br /><span style={{ fontSize: 16 }}>ALUGUEL</span></span> : dia}
+// ——— Calendário do mês (pedido do Grozk: a conta tem que bater com a fala). Dia 1 = HOJE (acabou de pagar o
+// aluguel). Os dias 1 a 21 acendem em verde: é até onde o dinheiro dá comida. O dia 30 é o próximo aluguel. Os dias
+// 22 a 29 ficam vermelhos: o buraco sem dinheiro antes do aluguel.
+export const Calendario: React.FC<{ t: number; acaba: number; verdeDe: number; aluguelEm: number; vermelhoDe: number }> = ({ t, acaba, verdeDe, aluguelEm, vermelhoDe }) => {
+  const pop = (f: number) => interpolate(t - f, [0, 3, 6], [1.3, 0.95, 1], travar);
+  return (
+    <div style={{ position: "absolute", left: 120, top: 610, width: 840 }}>
+      <div style={{ background: "#F2EDE3", borderRadius: 18, boxShadow: "0 20px 60px rgba(0,0,0,0.45)", overflow: "hidden" }}>
+        <div style={{ background: z.vermelho, color: "#FFF7EC", fontFamily: z.fonteTitulo, fontSize: 64, padding: "14px 30px" }}>ESTE MÊS</div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: 10, padding: 24 }}>
+          {Array.from({ length: 30 }, (_, i) => {
+            const dia = i + 1;
+            const fVerde = verdeDe + (dia - 1) * 1.2;
+            const fVermelho = vermelhoDe + (dia - acaba) * 2;
+            const verde = dia <= acaba && t >= fVerde;
+            const vermelho = dia > acaba && dia < 30 && t >= fVermelho;
+            const aluguel = dia === 30 && t >= aluguelEm;
+            const pulso = aluguel ? 1 + 0.06 * Math.max(0, Math.sin((t - aluguelEm) / 4)) : 1;
+            return (
+              <div key={dia} style={{ height: 70, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: z.fonteDado, fontWeight: 700, fontSize: 34, color: verde || vermelho || aluguel ? "#FFF7EC" : "#2A2A2A",
+                background: verde ? z.bomEscuro : vermelho ? z.perigo : aluguel ? z.painelBordaEscura : "#E4DDD0",
+                outline: dia === 1 ? `5px solid ${z.luzQuente}` : undefined,
+                transform: `scale(${verde ? pop(fVerde) : vermelho ? pop(fVermelho) : aluguel ? pop(aluguelEm) * pulso : 1})` }}>
+                {dia === 1 ? <span style={{ textAlign: "center", lineHeight: 1 }}>1<br /><span style={{ fontSize: 16 }}>HOJE</span></span>
+                  : dia === 30 ? <span style={{ textAlign: "center", lineHeight: 1 }}>30<br /><span style={{ fontSize: 16 }}>ALUGUEL</span></span> : dia}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 8, fontFamily: z.fonteDado, fontWeight: 700, fontSize: 27, color: z.texto }}>
+        {[[verdeDe + 6, z.bomEscuro, `DIAS 1 A ${acaba}: TEM COMIDA`], [aluguelEm, z.painelBordaEscura, "DIA 30: ALUGUEL DE NOVO"],
+          [vermelhoDe, z.perigo, `DIAS ${acaba + 1} A 29: SEM DINHEIRO`]].map(([f, c, txt]) => (
+          <div key={txt as string} style={{ display: "flex", alignItems: "center", gap: 14, opacity: t >= (f as number) ? 1 : 0,
+            transform: `translateX(${interpolate(t - (f as number), [0, 8], [-30, 0], travar)}px)` }}>
+            <div style={{ width: 34, height: 34, borderRadius: 8, background: c as string }} />{txt as string}
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // ——— Celular em primeira pessoa (POV): mão do Rafa segurando, tela com o Pix e depois o boleto.
 export const CelularPOV: React.FC<{ t: number; boleto: boolean }> = ({ t, boleto }) => {

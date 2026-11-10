@@ -118,6 +118,8 @@ export const theme = {
     painelBorda: "#8FD3FF",
     painelRotulo: "#B9C7DA",
     bom: "#6EE7A8",
+    bomEscuro: "#2E9E6A",
+    painelBordaEscura: "#2E6FB0",
     perigo: "#FF5A4A",
     fonteTitulo: "Anton",
     fonteTexto: "Inter",

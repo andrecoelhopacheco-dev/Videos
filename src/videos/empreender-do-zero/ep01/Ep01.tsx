@@ -273,7 +273,7 @@ export const Ep01: React.FC = () => {
         <>
           <div style={{ position: "absolute", inset: 0, filter: "blur(8px)" }}><KitnetRafa frame={frame} chaves={[{ f: 0, x: 540, y: 900, z: 200 }]} mao={0} frente={false} /></div>
           <AbsoluteFill style={{ background: "rgba(5,8,15,0.5)" }} />
-          <div style={{ position: "absolute", inset: 0, ...surgir(frame, F(42.3)) }}><Calendario t={frame} acaba={21} vermelhoDe={F(44.5)} /></div>
+          <div style={{ position: "absolute", inset: 0, ...surgir(frame, F(42.3)) }}><Calendario t={frame} acaba={21} verdeDe={F(43.4)} aluguelEm={F(47.3)} vermelhoDe={F(47.7)} /></div>
         </>
       );
       break;

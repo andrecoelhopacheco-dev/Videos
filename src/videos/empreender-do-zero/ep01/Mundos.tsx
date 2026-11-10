@@ -360,9 +360,9 @@ export const Marmitas: React.FC<{ t: number; fps: number }> = ({ t, fps }) => (
   </div>
 );
 
-/** Detalhe: o primeiro lote — 20 marmitas aparecendo em grade, com contador. */
+/** Detalhe: o primeiro lote — 20 marmitas abertas, cada uma já com arroz, feijão e frango, aparecendo em grade. */
 export const Lote: React.FC<{ t: number; fps: number }> = ({ t, fps }) => {
-  const n = Math.min(20, Math.max(0, Math.floor((t - 6) / 2.6)));
+  const n = Math.min(20, Math.max(0, Math.floor((t - 6) / 2.6) + 1));
   return (
     <>
       <div style={{ position: "absolute", left: 90, top: 560, width: 900, display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 22 }}>
@@ -370,12 +370,17 @@ export const Lote: React.FC<{ t: number; fps: number }> = ({ t, fps }) => {
           const m = i < n ? spring({ frame: t - 6 - i * 2.6, fps, config: { damping: 11, stiffness: 200 } }) : 0;
           return (
             <div key={i} style={{ position: "relative", height: 120, transform: `scale(${m})` }}>
-              <div style={{ position: "absolute", inset: 0, borderRadius: 12, background: "linear-gradient(160deg, #F2F4F7, #B6BCC5)", boxShadow: "0 10px 18px rgba(0,0,0,0.3)" }} />
+              <div style={{ position: "absolute", inset: 0, borderRadius: 12, background: "linear-gradient(145deg, #E6E9EE, #A7AEB8)", boxShadow: "0 10px 18px rgba(0,0,0,0.3)" }} />
+              <div style={{ position: "absolute", left: 6, right: 6, top: 6, bottom: 6, borderRadius: 9, background: "linear-gradient(145deg, #C9CED6, #8E959F)" }} />
+              <Img src={staticFile("ep01/comida/arroz.png")} style={{ position: "absolute", width: 92, left: 4, top: 6 }} />
+              <Img src={staticFile("ep01/comida/feijao.png")} style={{ position: "absolute", width: 92, left: 98, top: 4 }} />
+              <Img src={staticFile("ep01/comida/frango.png")} style={{ position: "absolute", width: 96, left: 50, top: 40 }} />
             </div>
           );
         })}
       </div>
-      <div style={{ position: "absolute", left: 0, right: 0, top: 1200, textAlign: "center", fontFamily: z.fonteDado, fontWeight: 700, fontSize: 90, color: z.texto }}>{n}/20</div>
+      <div style={{ position: "absolute", right: 90, top: 330, textAlign: "right", fontFamily: z.fonteDado, fontWeight: 700, fontSize: 96, color: z.luzQuente,
+        textShadow: "0 4px 0 rgba(0,0,0,0.5)" }}>{n}/20</div>
     </>
   );
 };
