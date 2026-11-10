@@ -17,7 +17,7 @@
 import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import os from "node:os";
 import path from "node:path";
 
@@ -51,10 +51,18 @@ const serveUrl = await bundle({ entryPoint: path.resolve("src/index.ts") });
 const comp = await selectComposition({ serveUrl, id, ...comum });
 // Todo bloco passa pela MESMA codificação (ffmpeg/libx264): só assim a remontagem por cópia funciona
 // misturando blocos do Remotion com blocos cortados de um render antigo.
+// Grava num arquivo ".parcial" e só renomeia no fim: um render cancelado nunca deixa bloco truncado no cache.
 function normalizar(entrada, saida, fps, antes = [], depois = []) {
+  const parcial = saida.replace(/\.mp4$/, ".parcial.mp4");
   execFileSync("ffmpeg", ["-v", "error", "-y", ...antes, "-i", entrada, ...depois, "-an", "-c:v", "libx264", "-crf", "18",
     "-preset", "fast", "-profile:v", "high", "-level", "4.0", "-pix_fmt", "yuv420p", "-colorspace", "bt709",
-    "-color_primaries", "bt709", "-color_trc", "bt709", "-r", String(fps), saida]);
+    "-color_primaries", "bt709", "-color_trc", "bt709", "-r", String(fps), parcial]);
+  renameSync(parcial, saida);
+}
+// Quadros de um bloco no cache (para não reaproveitar bloco incompleto).
+function quadros(arquivo) {
+  return Number(execFileSync("ffprobe", ["-v", "error", "-count_packets", "-select_streams", "v:0", "-show_entries",
+    "stream=nb_read_packets", "-of", "csv=p=0", arquivo]).toString().trim());
 }
 function arq0(i) {
   return path.join(dir, `b${String(i).padStart(3, "0")}.mp4`);
@@ -94,9 +102,9 @@ for (const t of (opt("refazer") ?? "").split(",").filter(Boolean)) {
 const arq = arq0;
 let feitos = 0;
 for (let i = 0; i < nBlocos; i++) {
-  if (existsSync(arq(i)) && !refazer.has(i)) continue;
   const de = i * BLOCO;
   const ate = Math.min(total, de + BLOCO) - 1;
+  if (existsSync(arq(i)) && !refazer.has(i) && quadros(arq(i)) === ate - de + 1) continue;
   process.stdout.write(`bloco ${i + 1}/${nBlocos} (${(de / comp.fps).toFixed(1)}–${((ate + 1) / comp.fps).toFixed(1)} s)… `);
   const tmp = path.join(dir, "tmp.mp4");
   await renderMedia({ ...comum, serveUrl, composition: comp, codec: "h264", muted: true, frameRange: [de, ate], outputLocation: tmp });
