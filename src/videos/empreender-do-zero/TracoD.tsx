@@ -65,8 +65,8 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
             Q284 120 252 112 Q230 96 200 100 Q170 96 148 112 Q116 120 104 160 Z" fill={visual.cabelo} />
         )}
         {visual.penteado === "raspado" && <path d="M110 150 Q110 50 200 48 Q290 50 290 150 Q280 100 200 92 Q120 100 110 150 Z" fill={visual.cabelo} opacity={0.9} />}
-        {/* barba rala */}
-        <path d="M118 210 Q130 296 200 300 Q270 296 282 210 Q270 262 234 270 Q200 258 166 270 Q130 262 118 210 Z" fill={visual.cabelo} opacity={0.18} />
+        {/* barba rala só na linha do queixo, abaixo da boca (nunca por cima dela) */}
+        <path d="M120 222 Q132 296 200 300 Q268 296 280 222 Q274 284 236 290 Q200 296 164 290 Q126 284 120 222 Z" fill={visual.cabelo} opacity={0.16} />
         {p.rubor > 0 && <g fill={z.rubor} opacity={p.rubor * 0.55}><ellipse cx={142} cy={236} rx={20} ry={10} /><ellipse cx={258} cy={236} rx={20} ry={10} /></g>}
       </g>
       {/* rosto sem grão (traços limpos) */}
