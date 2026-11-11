@@ -147,16 +147,16 @@ export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Vi
         {/* braços soltos com cotovelo */}
         {pose === "pe" || pose === "celular" || pose === "estende" || pose === "pano" ? (
           <>
-            <path d="M80 248 L66 378 L76 506" stroke={pele} {...braco} />
+            <path d="M86 292 L66 378 L76 506" stroke={pele} {...braco} />
             <rect x={56} y={496} width={42} height={48} rx={20} fill={pele} />
           </>
-        ) : <path d="M80 248 L66 370" stroke={pele} {...braco} />}
+        ) : <path d="M86 292 L66 370" stroke={pele} {...braco} />}
         {pose === "pe" ? (
           <>
-            <path d="M220 248 L234 378 L224 506" stroke={sombra} {...braco} />
+            <path d="M214 292 L234 378 L224 506" stroke={sombra} {...braco} />
             <rect x={202} y={496} width={42} height={48} rx={20} fill={sombra} />
           </>
-        ) : <path d={pose === "estende" ? "M220 248 L254 326" : "M220 248 L236 370"} stroke={sombra} {...braco} />}
+        ) : <path d={pose === "estende" ? "M214 290 L254 326" : "M214 292 L236 370"} stroke={sombra} {...braco} />}
         {/* tronco: camiseta com mangas, dobras */}
         <path d="M74 236 Q86 212 150 210 Q214 212 226 236 L250 330 L216 342 L214 506 Q150 518 86 506 L84 342 L50 330 Z" fill={v.camiseta} />
         <path d="M150 210 Q214 212 226 236 L250 330 L216 342 L214 506 Q186 512 164 514 Z" fill={v.camisetaSombra} />
