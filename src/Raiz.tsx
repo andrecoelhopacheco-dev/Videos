@@ -4,6 +4,7 @@ import { duracaoTotal } from "./videos/pau-de-arara/dados";
 import { PauDeArara } from "./videos/pau-de-arara/PauDeArara";
 import { FolhaRafa } from "./videos/empreender-do-zero/FolhaRafa";
 import { Previa } from "./videos/empreender-do-zero/Previa";
+import { FrameTracoC } from "./videos/empreender-do-zero/FrameTracoC";
 import { TesteArgila } from "./videos/empreender-do-zero/Argila";
 import { DURACAO as DURACAO_EP01, Ep01, FPS as FPS_EP01 } from "./videos/empreender-do-zero/ep01/Ep01";
 import { TesteCamera } from "./videos/empreender-do-zero/TesteCamera";
@@ -34,6 +35,7 @@ export const Raiz: React.FC = () => (
     <Composition id="TesteExpressoes" component={TesteExpressoes} durationInFrames={DURACAO_TESTE} fps={30} width={1080} height={1920} />
     <Composition id="TesteArgila" component={TesteArgila} durationInFrames={90} fps={30} width={1080} height={1920} />
     <Composition id="Ep01" component={Ep01} durationInFrames={DURACAO_EP01} fps={FPS_EP01} width={1080} height={1920} />
+    <Composition id="FrameTracoC" component={FrameTracoC} durationInFrames={1} fps={30} width={1080} height={1920} />
     <Composition id="PreviaZero" component={Previa} durationInFrames={4} fps={30} width={1080} height={1920} />
   </>
 );
