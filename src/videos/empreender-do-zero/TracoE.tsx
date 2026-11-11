@@ -1,5 +1,5 @@
-// Estilo E (referência do Grozk, 11/11 — "unidosdobrejo"): adulto e simpático. Proporção de adulto (cabeça ≈ 1/5,5 da
-// altura), olhos brancos grandes com PÁLPEBRA PESADA (o ar cansado/sereno que é a marca do estilo), sobrancelha
+// Estilo E (referência do Grozk, 11/11 — "unidosdobrejo"): adulto e simpático. Proporção de adulto, olhos brancos
+// grandes com pálpebra que ACOMPANHA a emoção e o estado do personagem (nunca fixa), sobrancelha
 // grossa, nariz em "c", barba e cabelo como formas sólidas, roupa com dobras e manchas de uso, cor chapada com grão.
 // Mesmo motor de expressões (slider) e emotes do Rosto.tsx.
 import { useVideoConfig } from "remotion";
@@ -59,8 +59,9 @@ const Cabelo: React.FC<{ v: VisualE }> = ({ v }) => {
 };
 
 /** Personagem inteiro (viewBox 300×900; pés em ~880). olhar: −1 esquerda … +1 direita. */
-export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: VisualE; altura?: number; olhar?: number }> = ({
-  emocao, ator, visual: v = RAFA_E, altura = 900, olhar = 0 }) => {
+export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: VisualE; altura?: number; olhar?: number;
+  /** Estado do personagem NA CENA (0 = descansado … 1 = exausto, madrugada, sem dormir). Não é regra do estilo. */
+  cansaco?: number }> = ({ emocao, ator, visual: v = RAFA_E, altura = 900, olhar = 0, cansaco = 0 }) => {
   const { fps } = useVideoConfig();
   const e = ator?.emocao ?? emocao;
   const i = ator ? ator.intensidade : 0.5;
@@ -153,8 +154,9 @@ export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Vi
           if (p.coracao > 0.55) return <path key={lado} d={`M${x} ${y + 12} C${x - 20} ${y} ${x - 12} ${y - 18} ${x} ${y - 7} C${x + 12} ${y - 18} ${x + 20} ${y} ${x} ${y + 12} Z`} fill={z.coracao} />;
           if (p.arco > 0.6) return <path key={lado} d={`M${x - 18} ${y + 4} Q${x} ${y - 12} ${x + 18} ${y + 4}`} stroke="#1A1210" strokeWidth={6} strokeLinecap="round" fill="none" />;
           const ry = 17 * Math.min(1.3, abre);
-          const pesada = abre > 1.12 ? 0 : 0.42; // a pálpebra pesada do estilo, que some quando ele arregala
-          const cobre = Math.min(0.92, pesada + p.palpebra * 0.6) * ry * 2;
+          // A pálpebra é expressão: vem da emoção (p.palpebra: brava, triste, determinada…) e do estado da cena
+          // (cansaço). Neutro e descansado = olho aberto. Arregalado (surpresa, pavor) = pálpebra some.
+          const cobre = abre > 1.12 ? 0 : Math.min(0.92, p.palpebra * 0.85 + cansaco * 0.45) * ry * 2;
           const incl = p.inclPalp * 7 * -lado;
           return (
             <g key={lado}>

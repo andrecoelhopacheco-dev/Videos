@@ -20,6 +20,10 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
   contra-plongée. Nunca uma cena inteira num enquadramento só.
 - **Estética da série = a do Ep. 1 finalizado** (Grozk, 10/11/2026): personagens em código no traço B, mundos em
   escala real, câmera com cuidado cinematográfico e coerência de mundo. Manter; não trocar o personagem por arte gerada.
+- **Pálpebra é expressão, não regra de mundo** (Grozk, 11/11): olhos são o principal canal de emoção; a pálpebra segue a
+  emoção (slider) e o estado do personagem na cena (cansaço, sono), nunca fica pesada por padrão em todo mundo.
+- **Estilo de personagem da série = estilo E** (`TracoE.tsx`, referência unidosdobrejo): adulto e simpático, olhos
+  grandes, sobrancelha grossa, barba/cabelo sólidos, roupa com uso, grão. Mundo continua o do Ep. 1.
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca
