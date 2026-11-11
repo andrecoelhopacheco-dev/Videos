@@ -107,7 +107,7 @@ export const X_RAFA_OBRA = 380;
 export const X_CIDA = 2050;
 
 export const Avenida: React.FC<{ t: number; rafa?: Atuacao; cida?: Atuacao; onibus: number; carro: number; moto: number;
-  semPerto?: boolean }> = ({ t, rafa, cida, onibus, carro, moto, semPerto }) => {
+  semPerto?: boolean; semGente?: boolean }> = ({ t, rafa, cida, onibus, carro, moto, semPerto, semGente }) => {
   const andar = 470 * K_OBRA * 1.3;
   const topo = CHAO_OBRA - andar * 5;
   const grua = Math.sin(t / 40) * 0.08;
@@ -162,8 +162,8 @@ export const Avenida: React.FC<{ t: number; rafa?: Atuacao; cida?: Atuacao; onib
         <rect x={-1300} y={CHAO_OBRA - 230} width={420} height={140} fill="#2E6FB0" />
         <text x={-1090} y={CHAO_OBRA - 150} textAnchor="middle" fontFamily="Anton" fontSize={60} fill="#FFF7EC">OBRA</text>
         <rect x={60} y={CHAO_OBRA - 260} width={80} height={260} fill="#9E978A" />
-        <Gente x={X_RAFA_OBRA} chao={CHAO_OBRA} k={K_OBRA} pose="isopor" ator={rafa} />
-        <Gente x={X_RAFA_OBRA + 230} chao={CHAO_OBRA} k={K_OBRA} visual={PEDREIRO} espelha />
+        {!semGente && <Gente x={X_RAFA_OBRA} chao={CHAO_OBRA} k={K_OBRA} pose="isopor" ator={rafa} />}
+        {!semGente && <Gente x={X_RAFA_OBRA + 230} chao={CHAO_OBRA} k={K_OBRA} visual={PEDREIRO} espelha />}
         <rect x={X0} y={CHAO_OBRA} width={LW} height={70} fill={z.calcada} />
       </Plano>
       <Plano dist={1100}>

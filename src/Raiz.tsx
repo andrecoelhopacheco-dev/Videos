@@ -7,6 +7,7 @@ import { Previa } from "./videos/empreender-do-zero/Previa";
 import { FrameTracoC } from "./videos/empreender-do-zero/FrameTracoC";
 import { FrameTracoD } from "./videos/empreender-do-zero/FrameTracoD";
 import { FramePixel } from "./videos/empreender-do-zero/FramePixel";
+import { FrameTracoE } from "./videos/empreender-do-zero/FrameTracoE";
 import { TesteArgila } from "./videos/empreender-do-zero/Argila";
 import { DURACAO as DURACAO_EP01, Ep01, FPS as FPS_EP01 } from "./videos/empreender-do-zero/ep01/Ep01";
 import { TesteCamera } from "./videos/empreender-do-zero/TesteCamera";
@@ -40,6 +41,7 @@ export const Raiz: React.FC = () => (
     <Composition id="FrameTracoC" component={FrameTracoC} durationInFrames={1} fps={30} width={1080} height={1920} />
     <Composition id="FrameTracoD" component={FrameTracoD} durationInFrames={1} fps={30} width={1080} height={1920} />
     <Composition id="FramePixel" component={FramePixel} durationInFrames={1} fps={30} width={1080} height={1920} />
+    <Composition id="FrameTracoE" component={FrameTracoE} durationInFrames={1} fps={30} width={1080} height={1920} />
     <Composition id="PreviaZero" component={Previa} durationInFrames={4} fps={30} width={1080} height={1920} />
   </>
 );
