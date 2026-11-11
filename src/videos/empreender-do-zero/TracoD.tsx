@@ -9,24 +9,72 @@ import { RAFA, Visual } from "./Rafa";
 
 const z = theme.zero;
 
-/** Filtro de grão: escurece levemente com ruído (multiplica), sem mudar a cor de base. */
+/** Grão: pontinhos escuros de ruído aplicados SÓ dentro da forma (sem mexer nas bordas, sem halo claro). */
 export const Grao: React.FC<{ id: string; forca?: number }> = ({ id, forca = 0.22 }) => (
-  <filter id={id} x="-10%" y="-10%" width="120%" height="120%">
+  <filter id={id} x="0" y="0" width="100%" height="100%">
     <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="n" />
-    <feColorMatrix in="n" type="saturate" values="0" result="g" />
-    <feComponentTransfer in="g" result="gc">
-      <feFuncR type="linear" slope={forca} intercept={1 - forca / 2} />
-      <feFuncG type="linear" slope={forca} intercept={1 - forca / 2} />
-      <feFuncB type="linear" slope={forca} intercept={1 - forca / 2} />
-    </feComponentTransfer>
-    <feComposite in="gc" in2="SourceGraphic" operator="in" result="gi" />
-    <feBlend in="SourceGraphic" in2="gi" mode="multiply" />
+    <feColorMatrix in="n" type="matrix" values={`0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  ${forca * 2.2} 0 0 0 ${-forca * 0.6}`} result="pontos" />
+    <feComposite in="pontos" in2="SourceAlpha" operator="in" result="dentro" />
+    <feMerge><feMergeNode in="SourceGraphic" /><feMergeNode in="dentro" /></feMerge>
   </filter>
 );
 
+export type PoseD = "pe" | "explica" | "maos-na-cintura";
+
+/** Braço em duas partes (ombro → cotovelo → pulso) com mão de luva e polegar. */
+const Braco: React.FC<{ o: [number, number]; c: [number, number]; m: [number, number]; pele: string; manga: string; mangaSombra: string;
+  lado: 1 | -1; aberta?: boolean }> = ({ o, c, m, pele, manga, mangaSombra, lado, aberta }) => {
+  const ang = (Math.atan2(m[1] - c[1], m[0] - c[0]) * 180) / Math.PI;
+  return (
+    <g>
+      <path d={`M${o[0]} ${o[1]} L${c[0]} ${c[1]} L${m[0]} ${m[1]}`} stroke={pele} strokeWidth={46} strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      {/* manga curta cobrindo o ombro e metade do braço */}
+      <path d={`M${o[0]} ${o[1]} L${o[0] + (c[0] - o[0]) * 0.55} ${o[1] + (c[1] - o[1]) * 0.55}`} stroke={manga} strokeWidth={64} strokeLinecap="round" fill="none" />
+      <path d={`M${o[0] + (c[0] - o[0]) * 0.55 - 30} ${o[1] + (c[1] - o[1]) * 0.55 + 14} L${o[0] + (c[0] - o[0]) * 0.55 + 30} ${o[1] + (c[1] - o[1]) * 0.55 + 6}`}
+        stroke={mangaSombra} strokeWidth={10} strokeLinecap="round" />
+      <g transform={`translate(${m[0]} ${m[1]}) rotate(${ang - 90})`}>
+        <rect x={-30} y={-8} width={60} height={aberta ? 54 : 56} rx={aberta ? 20 : 28} fill={pele} />
+        {aberta && [-22, -7, 8, 23].map((x, k) => <rect key={x} x={x - 7} y={34} width={14} height={k === 1 || k === 2 ? 44 : 36} rx={7} fill={pele} />)}
+        <ellipse cx={28 * lado} cy={12} rx={13} ry={20} fill={pele} transform={`rotate(${-30 * lado} ${28 * lado} 12)`} />
+      </g>
+    </g>
+  );
+};
+
+/** Corpo do estilo D (abaixo do pescoço): tronco, braços com cotovelo, calça e tênis. Coordenadas do viewBox 400×1130. */
+const CorpoD: React.FC<{ v: Visual; pele: string; sombra: string; pose: PoseD; filtro: string; ombro: number }> = ({ v, pele, sombra, pose, filtro, ombro }) => {
+  const oE: [number, number] = [100, 418 + ombro];
+  const oD: [number, number] = [300, 418 + ombro];
+  const bracos: Record<PoseD, { e: [[number, number], [number, number]]; d: [[number, number], [number, number]]; abertaD?: boolean }> = {
+    pe: { e: [[78, 552], [104, 676]], d: [[322, 552], [296, 676]] },
+    explica: { e: [[78, 552], [104, 676]], d: [[360, 520], [368, 400]], abertaD: true },
+    "maos-na-cintura": { e: [[34, 530], [112, 640]], d: [[366, 530], [288, 640]] },
+  };
+  const b = bracos[pose];
+  return (
+    <g filter={filtro}>
+      {/* pernas (jeans) e tênis */}
+      <path d="M118 668 L120 1030 L194 1030 L200 704 Z" fill={v.calca} />
+      <path d="M200 704 L206 1030 L280 1030 L282 668 Z" fill={v.calcaSombra} />
+      <path d="M110 1024 L196 1024 Q204 1062 186 1070 L106 1070 Q90 1060 110 1024 Z" fill={v.tenis} />
+      <path d="M204 1024 L290 1024 Q310 1060 294 1070 L214 1070 Q196 1062 204 1024 Z" fill={v.tenisSombra} />
+      <rect x={104} y={1062} width={92} height={10} rx={5} fill="#9AA0A8" /><rect x={208} y={1062} width={92} height={10} rx={5} fill="#9AA0A8" />
+      {/* braço de trás */}
+      <Braco o={oE} c={b.e[0]} m={b.e[1]} pele={pele} manga={v.camiseta} mangaSombra={v.camisetaSombra} lado={-1} />
+      {/* tronco: camiseta com cintura, bloco de cor diagonal e gola */}
+      <path d={`M92 ${410 + ombro} Q104 ${372 + ombro} 200 ${368 + ombro} Q296 ${372 + ombro} 308 ${410 + ombro} L294 694 Q200 712 106 694 Z`} fill={v.camiseta} />
+      <path d={`M200 ${368 + ombro} Q296 ${372 + ombro} 308 ${410 + ombro} L294 694 Q250 704 218 706 Z`} fill={v.camisetaSombra} />
+      <path d="M100 604 L298 556 L296 646 L104 684 Z" fill="#F2C44E" opacity={0.8} />
+      <ellipse cx={200} cy={378 + ombro} rx={46} ry={14} fill={v.camisetaSombra} />
+      {/* braço da frente */}
+      <Braco o={oD} c={b.d[0]} m={b.d[1]} pele={sombra} manga={v.camiseta} mangaSombra={v.camisetaSombra} lado={1} aberta={b.abertaD} />
+    </g>
+  );
+};
+
 /** Busto (viewBox 400×520): ombros, pescoço longo e cabeça em ovo. olhar: −1 esquerda … +1 direita. */
-export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual; largura?: number; olhar?: number }> = ({
-  emocao, ator, visual = RAFA, largura = 400, olhar = 0.4 }) => {
+export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual; largura?: number; olhar?: number;
+  corpo?: boolean; pose?: PoseD }> = ({ emocao, ator, visual = RAFA, largura = 400, olhar = 0.4, corpo = false, pose = "pe" }) => {
   const { fps } = useVideoConfig();
   const e = ator?.emocao ?? emocao;
   const i = ator ? ator.intensidade : 0.7;
@@ -39,20 +87,21 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
   const id = `grao-${visual.camiseta.slice(1)}`;
   const yBoca = 262;
   return (
-    <svg viewBox="0 0 400 520" width={largura} height={(largura * 520) / 400} style={{ overflow: "visible" }}>
+    <svg viewBox={`0 0 400 ${corpo ? 1130 : 520}`} width={largura} height={(largura * (corpo ? 1130 : 520)) / 400} style={{ overflow: "visible" }}>
       <defs><Grao id={id} /></defs>
       <g filter={`url(#${id})`} transform={`translate(0 ${p.desce * 0.5})`}>
         {/* pescoço longo (atrás da gola), com a sombra do queixo */}
         <rect x={172} y={280} width={56} height={108} rx={10} fill={pele} />
         <path d="M172 290 Q200 316 228 290 L228 312 Q200 330 172 312 Z" fill={sombra} opacity={0.55} />
       </g>
-      <g filter={`url(#${id})`} transform={`translate(0 ${p.ombro * 0.5})`}>
+      {corpo && <CorpoD v={visual} pele={pele} sombra={sombra} pose={pose} filtro={`url(#${id})`} ombro={p.ombro * 0.4} />}
+      {!corpo && <g filter={`url(#${id})`} transform={`translate(0 ${p.ombro * 0.5})`}>
         {/* camiseta: ombros arredondados, mangas, bloco de cor diagonal e gola */}
         <path d="M40 520 Q46 400 120 380 L280 380 Q354 400 360 520 Z" fill={visual.camiseta} />
         <path d="M200 380 L280 380 Q354 400 360 520 L250 520 Z" fill={visual.camisetaSombra} />
         <path d="M60 470 L340 430 L350 520 L50 520 Z" fill="#F2C44E" opacity={0.85} />
         <ellipse cx={200} cy={384} rx={62} ry={18} fill={visual.camisetaSombra} />
-      </g>
+      </g>}
       <g filter={`url(#${id})`} transform={`translate(0 ${p.desce * 0.5}) rotate(${p.inclina * 0.6} 200 380)`}>
         {/* orelhas */}
         <ellipse cx={108} cy={200} rx={14} ry={20} fill={pele} />
