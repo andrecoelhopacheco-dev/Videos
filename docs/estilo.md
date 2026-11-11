@@ -23,6 +23,7 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 - **Pálpebra é expressão, não regra de mundo** (Grozk, 11/11): olhos são o principal canal de emoção; a pálpebra segue a
   emoção (slider) e o estado do personagem na cena (cansaço, sono), nunca fica pesada por padrão em todo mundo.
 - **Estilo de personagem da série = estilo E** (`TracoE.tsx`, referência unidosdobrejo): adulto e simpático, olhos
+- **Episódio 0 = Ep. 1 refeito no estilo E** (Grozk, 11/11): mesmo roteiro, câmera e som; composição `Ep00` usa `<Ep01 estilo="E" />` (contexto `EstiloPersonagem` troca Rafa/RafaCorpo pelo `PersonagemE` sem mexer no layout) e a abertura nova (`Abertura.tsx`). Abertura aprovada: "agora sim o nível de tudo melhorou muito".
   grandes, sobrancelha grossa, barba/cabelo sólidos, roupa com uso, grão. Mundo continua o do Ep. 1.
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 

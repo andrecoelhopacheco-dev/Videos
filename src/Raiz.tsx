@@ -11,7 +11,7 @@ import { FrameTracoE } from "./videos/empreender-do-zero/FrameTracoE";
 import { AberturaTeste } from "./videos/empreender-do-zero/AberturaTeste";
 import { DURACAO_ABERTURA } from "./videos/empreender-do-zero/Abertura";
 import { TesteArgila } from "./videos/empreender-do-zero/Argila";
-import { DURACAO as DURACAO_EP01, Ep01, FPS as FPS_EP01 } from "./videos/empreender-do-zero/ep01/Ep01";
+import { DURACAO as DURACAO_EP01, Ep00, Ep01, FPS as FPS_EP01 } from "./videos/empreender-do-zero/ep01/Ep01";
 import { TesteCamera } from "./videos/empreender-do-zero/TesteCamera";
 import { DURACAO_TESTE, FolhaExpressoes, TesteExpressoes } from "./videos/empreender-do-zero/TesteExpressoes";
 
@@ -39,6 +39,7 @@ export const Raiz: React.FC = () => (
     <Composition id="FolhaExpressoes" component={FolhaExpressoes} durationInFrames={1} fps={30} width={1080} height={1920} />
     <Composition id="TesteExpressoes" component={TesteExpressoes} durationInFrames={DURACAO_TESTE} fps={30} width={1080} height={1920} />
     <Composition id="TesteArgila" component={TesteArgila} durationInFrames={90} fps={30} width={1080} height={1920} />
+    <Composition id="Ep00" component={Ep00} durationInFrames={DURACAO_EP01} fps={FPS_EP01} width={1080} height={1920} />
     <Composition id="Ep01" component={Ep01} durationInFrames={DURACAO_EP01} fps={FPS_EP01} width={1080} height={1920} />
     <Composition id="FrameTracoC" component={FrameTracoC} durationInFrames={1} fps={30} width={1080} height={1920} />
     <Composition id="FrameTracoD" component={FrameTracoD} durationInFrames={1} fps={30} width={1080} height={1920} />

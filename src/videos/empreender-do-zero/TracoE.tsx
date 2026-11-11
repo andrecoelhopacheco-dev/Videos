@@ -2,9 +2,10 @@
 // grandes com pálpebra que ACOMPANHA a emoção e o estado do personagem (nunca fixa), sobrancelha
 // grossa, nariz em "c", barba e cabelo como formas sólidas, roupa com dobras e manchas de uso, cor chapada com grão.
 // Mesmo motor de expressões (slider) e emotes do Rosto.tsx.
-import { useVideoConfig } from "remotion";
+import { useCurrentFrame, useVideoConfig } from "remotion";
 import { theme } from "../../tema";
-import { Atuacao, Emocao, Emote, params, peleTingida } from "./Rosto";
+import { Atuacao, Choro, Emocao, Emote, params, peleTingida } from "./Rosto";
+import type { Visual } from "./Rafa";
 import { Grao } from "./TracoD";
 
 const z = theme.zero;
@@ -32,6 +33,30 @@ export const CIDA_E: VisualE = {
   camiseta: "#B5473A", camisetaSombra: "#963A2F", calca: "#3E3A52", calcaSombra: "#322F44", calcado: "chinelo", corCalcado: "#2E6FB0",
   avental: "#EFE7D6", saia: true,
 };
+
+export const JUNINHO_E: VisualE = {
+  pele: "#E0A57D", peleSombra: "#C4875F", cabelo: "#3A2A1E", penteado: "raspado",
+  camiseta: "#3F7F6A", camisetaSombra: "#2F6553", calca: "#5B5F6B", calcaSombra: "#474B56", calcado: "chinelo", corCalcado: "#2B2B2B",
+};
+export const SEGURANCA_E: VisualE = {
+  pele: "#6B3F27", peleSombra: "#55311E", cabelo: "#151010", penteado: "raspado", bigode: true,
+  camiseta: "#26304A", camisetaSombra: "#1B2336", calca: "#1F2638", calcaSombra: "#161B29", calcado: "bota", corCalcado: "#111111",
+};
+
+/** Converte o visual do traço B (Ep. 1) para o estilo E, guardando cores e penteado. */
+export const paraE = (v?: Visual): VisualE => {
+  if (!v || v.penteado === "cachos" && v.camiseta === RAFA_B_CAMISETA.cor) return RAFA_E;
+  if (v.penteado === "coque") return CIDA_E;
+  const base: VisualE = { pele: v.pele, peleSombra: v.peleSombra, cabelo: v.cabelo, penteado: v.penteado, oculos: v.oculos, avental: v.avental,
+    camiseta: v.camiseta, camisetaSombra: v.camisetaSombra, calca: v.calca, calcaSombra: v.calcaSombra, calcado: "tenis", corCalcado: v.tenis };
+  if (v.penteado === "capacete") return { ...base, colete: "#F08A2C", manchas: true, calcado: "bota", corCalcado: "#3A2A1E", barba: true };
+  if (v.camiseta === "#3F7F6A") return JUNINHO_E;
+  if (v.camiseta === "#26304A") return SEGURANCA_E;
+  return base;
+};
+const RAFA_B_CAMISETA = { cor: z.camiseta };
+
+export type PoseE = "pe" | "celular" | "isopor" | "cruzados" | "estende" | "pano";
 
 const Cabelo: React.FC<{ v: VisualE }> = ({ v }) => {
   if (v.penteado === "capacete")
@@ -61,8 +86,11 @@ const Cabelo: React.FC<{ v: VisualE }> = ({ v }) => {
 /** Personagem inteiro (viewBox 300×900; pés em ~880). olhar: −1 esquerda … +1 direita. */
 export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: VisualE; altura?: number; olhar?: number;
   /** Estado do personagem NA CENA (0 = descansado … 1 = exausto, madrugada, sem dormir). Não é regra do estilo. */
-  cansaco?: number }> = ({ emocao, ator, visual: v = RAFA_E, altura = 900, olhar = 0, cansaco = 0 }) => {
+  cansaco?: number; pose?: PoseE;
+  /** "busto": recorte de cabeça e ombros, `altura` vira a largura (mesmo quadro do busto do traço B, 300×400). */
+  recorte?: "corpo" | "busto" }> = ({ emocao, ator, visual: v = RAFA_E, altura = 900, olhar = 0, cansaco = 0, pose = "pe", recorte = "corpo" }) => {
   const { fps } = useVideoConfig();
+  const frame = useCurrentFrame();
   const e = ator?.emocao ?? emocao;
   const i = ator ? ator.intensidade : 0.5;
   const p = params(e, i);
@@ -73,9 +101,16 @@ export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Vi
   const id = `graoE-${v.camiseta.slice(1)}`;
   const sb = (y: number) => 96 + (y - 138) * 1.1;
   const yb = 170;
+  const treme = p.treme * Math.sin(frame * 1.9);
+  const take = ator?.take ?? 1;
+  const braco = { strokeWidth: 40, strokeLinecap: "round" as const, strokeLinejoin: "round" as const, fill: "none" };
+  const panoX = 292 + Math.cos(frame / 4) * 24;
+  const panoY = 420 + Math.sin(frame / 4) * 18;
+  const mao = (x: number, y: number, c: string) => <circle cx={x} cy={y} r={22} fill={c} />;
   const mancha = (x: number, y: number, r: number) => <path d={`M${x - r} ${y} Q${x - r} ${y - r} ${x} ${y - r * 0.8} Q${x + r * 1.2} ${y - r} ${x + r} ${y + r * 0.2} Q${x + r * 0.4} ${y + r} ${x - r * 0.6} ${y + r * 0.7} Z`} fill="#8E8A80" opacity={0.55} />;
   return (
-    <svg viewBox="0 0 300 900" width={(altura * 300) / 900} height={altura} style={{ overflow: "visible" }}>
+    <svg viewBox={recorte === "busto" ? "0 -73 300 400" : "0 0 300 900"} width={recorte === "busto" ? altura : (altura * 300) / 900}
+      height={recorte === "busto" ? (altura * 4) / 3 : altura} style={{ overflow: "visible" }}>
       <defs><Grao id={id} forca={0.25} /></defs>
       <ellipse cx={150} cy={884} rx={110} ry={12} fill="#000" opacity={0.25} />
       <g filter={`url(#${id})`}>
@@ -110,10 +145,18 @@ export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Vi
           </>
         )}
         {/* braços soltos com cotovelo */}
-        <path d="M80 248 L66 378 L76 506" stroke={pele} strokeWidth={40} strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <path d="M220 248 L234 378 L224 506" stroke={sombra} strokeWidth={40} strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <rect x={56} y={496} width={42} height={48} rx={20} fill={pele} />
-        <rect x={202} y={496} width={42} height={48} rx={20} fill={sombra} />
+        {pose === "pe" || pose === "celular" || pose === "estende" || pose === "pano" ? (
+          <>
+            <path d="M80 248 L66 378 L76 506" stroke={pele} {...braco} />
+            <rect x={56} y={496} width={42} height={48} rx={20} fill={pele} />
+          </>
+        ) : <path d="M80 248 L66 370" stroke={pele} {...braco} />}
+        {pose === "pe" ? (
+          <>
+            <path d="M220 248 L234 378 L224 506" stroke={sombra} {...braco} />
+            <rect x={202} y={496} width={42} height={48} rx={20} fill={sombra} />
+          </>
+        ) : <path d={pose === "estende" ? "M220 248 L254 326" : "M220 248 L236 370"} stroke={sombra} {...braco} />}
         {/* tronco: camiseta com mangas, dobras */}
         <path d="M74 236 Q86 212 150 210 Q214 212 226 236 L250 330 L216 342 L214 506 Q150 518 86 506 L84 342 L50 330 Z" fill={v.camiseta} />
         <path d="M150 210 Q214 212 226 236 L250 330 L216 342 L214 506 Q186 512 164 514 Z" fill={v.camisetaSombra} />
@@ -130,12 +173,49 @@ export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Vi
         )}
         {v.avental && <path d="M104 290 L196 290 L208 640 L92 640 Z" fill={v.avental} />}
         {v.avental && <path d="M104 290 Q150 270 196 290" stroke={v.avental} strokeWidth={6} fill="none" />}
+        {/* antebraços na frente do corpo, conforme a pose */}
+        {pose === "celular" && (
+          <>
+            <path d="M236 370 L176 404" stroke={sombra} {...braco} />
+            <g transform="rotate(-14 168 380)"><rect x={146} y={340} width={46} height={78} rx={8} fill="#10141C" /><rect x={151} y={347} width={36} height={62} rx={5} fill="#7FB6E8" opacity={0.85} /></g>
+            {mao(176, 404, sombra)}
+          </>
+        )}
+        {pose === "estende" && (
+          <>
+            <path d="M254 326 L328 338" stroke={sombra} {...braco} />
+            <rect x={326} y={300} width={78} height={40} rx={4} fill={z.nota20} stroke="#8A6A2A" strokeWidth={3} transform="rotate(-8 365 320)" />
+            {mao(330, 338, sombra)}
+          </>
+        )}
+        {pose === "pano" && (
+          <>
+            <path d={`M236 370 L${panoX} ${panoY}`} stroke={sombra} {...braco} />
+            <rect x={panoX - 38} y={panoY - 32} width={76} height={58} rx={12} fill={z.pano} transform={`rotate(${Math.sin(frame / 4) * 12} ${panoX} ${panoY})`} />
+            {mao(panoX, panoY, sombra)}
+          </>
+        )}
+        {pose === "cruzados" && (
+          <>
+            <path d="M236 370 L104 384" stroke={sombra} {...braco} />
+            <path d="M66 370 L198 394" stroke={pele} {...braco} />
+            {mao(198, 394, pele)}{mao(102, 380, sombra)}
+          </>
+        )}
+        {pose === "isopor" && (
+          <>
+            <path d="M66 370 L82 426" stroke={pele} {...braco} /><path d="M236 370 L220 426" stroke={sombra} {...braco} />
+            <rect x={60} y={404} width={180} height={112} rx={10} fill={z.isopor} />
+            <rect x={52} y={392} width={196} height={26} rx={9} fill={z.isoporTampa} />
+            {mao(78, 430, pele)}{mao(222, 430, sombra)}
+          </>
+        )}
         {/* pescoço curto e firme */}
         <rect x={128} y={186} width={44} height={36} fill={sombra} />
       </g>
       {/* cabeça */}
       {/* cabeça grande (≈ 1/4,6 da altura, como na referência), escalada a partir da base do pescoço */}
-      <g transform={`translate(0 ${p.desce * 0.4}) rotate(${p.inclina * 0.6} 150 210) translate(150 214) scale(1.28) translate(-150 -214)`}>
+      <g transform={`translate(${treme} ${p.desce * 0.4}) rotate(${p.inclina * 0.6} 150 210) translate(150 214) scale(${1.28 * take}) translate(-150 -214)`}>
         <g filter={`url(#${id})`}>
           <ellipse cx={80} cy={132} rx={12} ry={18} fill={pele} />
           <ellipse cx={220} cy={132} rx={12} ry={18} fill={sombra} />
@@ -191,6 +271,8 @@ export const PersonagemE: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Vi
           <path d={`M136 ${yb - p.curva * 6} Q150 ${yb + p.curva * 10} 164 ${yb - p.curva * 6}`} stroke="#3A1712" strokeWidth={5} strokeLinecap="round" fill="none" />
         )}
         {v.barba && <path d="M122 160 Q150 146 178 160 Q164 168 150 164 Q136 168 122 160 Z" fill={v.cabelo} />}
+        <g transform="translate(0 -56)"><Choro p={p} t={t} /></g>
+        {v.bigode && <path d="M126 162 Q150 150 174 162 Q160 166 150 162 Q140 166 126 162 Z" fill={v.cabelo} />}
         <g transform="translate(150 120) scale(0.95) translate(-150 -172)"><Emote e={e} i={i} t={t} fps={fps} /></g>
       </g>
     </svg>

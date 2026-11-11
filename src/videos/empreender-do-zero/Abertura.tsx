@@ -21,7 +21,7 @@ export const DURACAO_ABERTURA = 112;
 
 const contornoTexto = "0 0 0 transparent, -5px -5px 0 #120D0A, 5px -5px 0 #120D0A, -5px 5px 0 #120D0A, 5px 5px 0 #120D0A, 0 10px 0 #120D0A, 0 16px 24px rgba(0,0,0,0.6)";
 
-export const Abertura: React.FC<{ episodio?: string }> = ({ episodio = "EP. 1" }) => {
+export const Abertura: React.FC<{ episodio?: string; semSom?: boolean }> = ({ episodio = "EP. 1", semSom }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const impactos = [
@@ -32,7 +32,7 @@ export const Abertura: React.FC<{ episodio?: string }> = ({ episodio = "EP. 1" }
   // saída: encolhe e voa para o canto superior esquerdo
   const sai = spring({ frame: frame - F_SAI, fps, config: { damping: 16, stiffness: 140 } });
   const escala = interpolate(sai, [0, 1], [1, 0.3]);
-  const desloc = [interpolate(sai, [0, 1], [0, -330]), interpolate(sai, [0, 1], [0, -560])];
+  const desloc = [interpolate(sai, [0, 1], [0, -330]), interpolate(sai, [0, 1], [0, -390])];
   const risco = interpolate(frame, [F_RISCO, F_RISCO + 7], [0, 1], { ...travar, easing: (t) => 1 - Math.pow(1 - t, 3) });
   const escreve = interpolate(frame, [F_ESCREVE, F_ESCREVE + 26], [0, 1], travar);
   const zero = spring({ frame: frame - F_ZERO, fps, config: { damping: 9, stiffness: 220, mass: 0.7 } });
@@ -44,7 +44,7 @@ export const Abertura: React.FC<{ episodio?: string }> = ({ episodio = "EP. 1" }
       <AbsoluteFill style={{ background: "radial-gradient(ellipse at 50% 46%, rgba(10,14,24,0.35) 0%, rgba(4,6,12,0.88) 70%)",
         opacity: interpolate(sai, [0, 0.6], [1, 0], travar) }} />
       <AbsoluteFill style={{ background: "#FFF7EC", opacity: flash(frame, F_ZERO + 2, 6) * 0.22 }} />
-      <div style={{ position: "absolute", left: 0, right: 0, top: 640, display: "flex", flexDirection: "column", alignItems: "center",
+      <div style={{ position: "absolute", left: 0, right: 0, top: 470, display: "flex", flexDirection: "column", alignItems: "center",
         transform: `translate(${tx + desloc[0]}px, ${ty + desloc[1]}px) scale(${escala * respira})`, transformOrigin: "50% 40%" }}>
         {/* SOBREVIVENDO à mão, por cima */}
         <div style={{ position: "relative", height: 170, marginBottom: 6, zIndex: 2 }}>
@@ -90,12 +90,14 @@ export const Abertura: React.FC<{ episodio?: string }> = ({ episodio = "EP. 1" }
         )}
       </div>
       {/* som */}
+      {!semSom && <>
       {PALAVRA.split("").map((_, i) => (i % 2 === 0 ? <Efeito key={i} arquivo="interface/tick/fs528561.ogg" no={2 + i * 2 + 3} db={-10} dur={8} /> : null))}
       <Efeito arquivo="interface/impact/kenney-impact-impactpunch-heavy-000.ogg" no={F_ZERO + 3} db={-6} dur={30} />
       <Efeito arquivo="interface/whoosh/fs830856.ogg" no={F_RISCO} antes={1} db={-6} dur={20} />
       <Efeito arquivo="interface/riser/fs867126.ogg" no={F_CARIMBO + 5} antes={26} db={-14} dur={30} />
       <Efeito arquivo="interface/impact/kenney-impact-impactsoft-heavy-001.ogg" no={F_CARIMBO + 5} db={-6} dur={30} />
       <Efeito arquivo="interface/whoosh/fs810485.ogg" no={F_SAI + 2} antes={2} db={-10} dur={20} />
+      </>}
     </AbsoluteFill>
   );
 };

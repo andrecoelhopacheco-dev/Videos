@@ -1,7 +1,9 @@
 // Personagens em SVG no traço B (luz e sombra). O Rafa é o padrão; outros personagens (Juninho, Dona Cida,
 // segurança) usam o mesmo corpo e rosto com outro `visual` — mesmo traço, outra pessoa.
 // Expressões, emotes e atuação ficam em Rosto.tsx. Use `atuar(frame, reacoes)` e passe o resultado em `ator`.
+import { createContext, useContext } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
+import { paraE, PersonagemE } from "./TracoE";
 import { theme } from "../../tema";
 import { Atuacao, Boca, Choro, CorDoRosto, Emocao, Emote, Olhos, params, peleTingida, Sobrancelhas } from "./Rosto";
 
@@ -13,6 +15,9 @@ export type { Emocao } from "./Rosto";
 const z = theme.zero;
 
 export type Variante = "A" | "B" | "C";
+
+/** Traço dos personagens no episódio. "E" (Ep. 0 em diante) troca Rafa/RafaCorpo pelo estilo E sem mexer no layout. */
+export const EstiloPersonagem = createContext<"B" | "E">("B");
 
 export type Visual = {
   pele: string; peleSombra: string; cabelo: string; penteado: "cachos" | "raspado" | "coque" | "capacete";
@@ -113,7 +118,9 @@ export const Cabeca: React.FC<PropsCabeca> = ({ variante: v, emocao, ator, visua
 
 export const Rafa: React.FC<{ variante: Variante; emocao: Emocao; largura?: number; ator?: Atuacao; visual?: Visual }> = ({
   variante: v, emocao, largura = 300, ator, visual = RAFA }) => {
+  const estilo = useContext(EstiloPersonagem);
   const p = pDo(emocao, ator);
+  if (estilo === "E") return <PersonagemE recorte="busto" emocao={emocao} ator={ator} visual={paraE(visual === RAFA ? undefined : visual)} altura={largura} />;
   const linha = v === "A" ? { stroke: z.contorno, strokeWidth: 6, strokeLinejoin: "round" as const } : {};
   const ombroY = 300 + p.ombro;
   return (
@@ -132,6 +139,19 @@ export type Pose = "pe" | "celular" | "isopor" | "cruzados" | "estende" | "pano"
 // Corpo inteiro (viewBox 300×800).
 export const RafaCorpo: React.FC<{ emocao: Emocao; altura?: number; pose?: Pose; ator?: Atuacao; visual?: Visual }> = ({
   emocao, altura = 800, pose = "pe", ator, visual = RAFA }) => {
+  const estilo = useContext(EstiloPersonagem);
+  if (estilo === "E") {
+    // mesmo quadro do corpo B (300×800, pés em 94%): o E é mais estreito, fica centrado
+    const largura = (altura * 300) / 800;
+    const aE = altura * 0.97;
+    return (
+      <div style={{ position: "relative", width: largura, height: altura }}>
+        <div style={{ position: "absolute", left: (largura - aE / 3) / 2, top: 0 }}>
+          <PersonagemE emocao={emocao} ator={ator} pose={pose} altura={aE} visual={paraE(visual === RAFA ? undefined : visual)} />
+        </div>
+      </div>
+    );
+  }
   const braco = { strokeLinecap: "round" as const, strokeWidth: 30, fill: "none" };
   const om = pDo(emocao, ator).ombro * 0.6;
   const vs = visual;

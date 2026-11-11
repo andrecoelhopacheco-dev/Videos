@@ -1,12 +1,13 @@
 // Empreender do Zero — Episódio 1 ("R$ 700 e 21 dias"). Tudo sincronizado com a narração do Grozk
 // (public/ep01/narracao.m4a; tempos por palavra em palavras.json). Tempos abaixo em SEGUNDOS da narração.
-import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, Freeze, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
 import { Cena, camNoQuadro, ChaveCam, focalDollyZoom } from "../../../componentes/camera";
 import { Ambiente, Efeito, Falas } from "../../../componentes/som";
 import { BarraRastro, carimbo, flash, Flutuante, Odometro, soco, surgir, trauma, tremor, valorNoQuadro } from "../../../componentes/suculento";
 import { Caixa, z } from "../kit";
 import { PlanoCidade, PlanoComodo, PlanoFrente, PlanoParede } from "../KitnetCena";
-import { Rafa, RafaCorpo } from "../Rafa";
+import { EstiloPersonagem, Rafa, RafaCorpo } from "../Rafa";
+import { Abertura, F_SAI } from "../Abertura";
 import { atuar, Reacao } from "../Rosto";
 import { Calendario, CelularPOV, CIDA, Espelho, JUNINHO, Porta, SEGURANCA } from "./Cenarios";
 import { Avenida, CHAO_FR, CHAO_OBRA, CHAO_PERTO, Chuva, KitLavagem, Lote, Marmitas, Mercado, mirar, OmbroCida, PratoReal, X_CIDA, X_RAFA_FR, X_RAFA_OBRA, X_SEG } from "./Mundos";
@@ -214,7 +215,11 @@ const Vinheta: React.FC<{ forca?: number }> = ({ forca = 0 }) => (
 
 const IMPACTOS = [21.7, 44.5, 52.0, 62.8, 66.6, 132.2, 139.5, 148.0].map((s, i) => ({ f: F(s), forca: [0.45, 0.4, 0.5, 0.3, 0.3, 0.45, 0.6, 0.5][i] }));
 
-export const Ep01: React.FC = () => {
+/** Ep. 0 = o Ep. 1 refeito no estilo E (11/11): mesmo roteiro, câmera e som; personagens no estilo E e abertura nova. */
+export const Ep00: React.FC = () => <Ep01 estilo="E" />;
+
+export const Ep01: React.FC<{ estilo?: "B" | "E" }> = ({ estilo = "B" }) => {
+  const novo = estilo === "E";
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const s = frame / fps;
@@ -528,23 +533,25 @@ export const Ep01: React.FC = () => {
       );
       break;
     case "fim":
-      fundo = <><KitnetRafa frame={frame} chaves={[{ f: 0, x: 380, y: 1000, z: 40 }]} mao={6} /><Vinheta forca={0.2} /><Titulo frame={999} sai={99999} final /></>;
+      fundo = <><KitnetRafa frame={frame} chaves={[{ f: 0, x: 380, y: 1000, z: 40 }]} mao={6} /><Vinheta forca={0.2} />{novo ? <Freeze frame={F_SAI - 1}><Abertura episodio="EP. 0" semSom /></Freeze> : <Titulo frame={999} sai={99999} final />}</>;
       break;
   }
 
   return (
+    <EstiloPersonagem.Provider value={estilo}>
     <AbsoluteFill style={{ background: z.cidadeCeu }}>
       <div style={{ position: "absolute", inset: 0, transform: `translate(${sacode[0]}px, ${sacode[1]}px)` }}>{fundo}</div>
-      {cena === "s1" && <Titulo frame={frame} sai={F(4.6)} />}
+      {cena === "s1" && (novo ? <Abertura episodio="EP. 0" /> : <Titulo frame={frame} sai={F(4.6)} />)}
       <div style={{ position: "absolute", inset: 0, transform: `translate(${sacode[0] * 0.4}px, ${sacode[1] * 0.4}px)` }}><Painel s={s} frame={frame} /></div>
       {cena !== "fim" && <Legenda s={s} />}
-      <Trilha />
+      <Trilha novo={novo} />
     </AbsoluteFill>
+    </EstiloPersonagem.Provider>
   );
 };
 
 // ——— Som: narração, ambientes por lugar (abaixam sob a voz), efeitos nos eventos
-const Trilha: React.FC = () => (
+const Trilha: React.FC<{ novo?: boolean }> = ({ novo }) => (
   <>
     <Audio src={staticFile("ep01/narracao.m4a")} />
     <Ambiente arquivo="ambiente-casa/bsb-0080-kitnet-janela-fechada.ogg" de={0} ate={F(72.4)} db={-6} falas={FALAS} />
@@ -552,8 +559,8 @@ const Trilha: React.FC = () => (
     <Ambiente arquivo="ambiente-obra/bsb-3526-obra-urbana.ogg" de={F(96.6)} ate={F(113.6)} db={-4} falas={FALAS} />
     <Ambiente arquivo="ambiente-cidade/bsb-0608-rua-e-avenidas.ogg" de={F(113.0)} ate={F(130.5)} db={-5} falas={FALAS} />
     <Ambiente arquivo="ambiente-casa/bsb-0080-kitnet-janela-fechada.ogg" de={F(130.0)} ate={DURACAO} db={-8} falas={FALAS} />
-    <Efeito arquivo="interface/whoosh/fs830856.ogg" no={12} antes={2} db={-10} dur={20} />
-    <Efeito arquivo="interface/impact/kenney-impact-impactsoft-heavy-000.ogg" no={16} db={-8} dur={30} />
+    {!novo && <Efeito arquivo="interface/whoosh/fs830856.ogg" no={12} antes={2} db={-10} dur={20} />}
+    {!novo && <Efeito arquivo="interface/impact/kenney-impact-impactsoft-heavy-000.ogg" no={16} db={-8} dur={30} />}
     <Efeito arquivo="celular/bsb-1111-mensagem.ogg" no={F(17.2)} db={-12} dur={40} />
     <Efeito arquivo="dinheiro/bsb-0339-moeda-no-copo.ogg" no={F(18.7)} db={-10} dur={30} />
     <Efeito arquivo="interface/whoosh/fs830856.ogg" no={F(21.7)} antes={2} db={-10} dur={20} />
