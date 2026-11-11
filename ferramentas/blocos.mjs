@@ -29,7 +29,8 @@ if (!id) {
 }
 const opt = (k) => args.find((a) => a.startsWith(`--${k}=`))?.split("=")[1];
 const flag = (k) => args.includes(`--${k}`);
-const scale = Number(opt("scale") ?? 1);
+// Padrão 0,5 (540×960): regra do Grozk de 10/11/2026 — a versão final é a de meia resolução.
+const scale = Number(opt("scale") ?? 0.5);
 const dir = path.resolve(`saidas/blocos/${id}/s${scale}`);
 if (flag("tudo")) rmSync(dir, { recursive: true, force: true });
 mkdirSync(dir, { recursive: true });

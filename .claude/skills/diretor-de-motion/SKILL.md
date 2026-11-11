@@ -43,7 +43,7 @@ código e guarda o gosto do dono para que cada vídeo novo comece de onde o últ
    Conserte e renderize de novo até passar no checklist.
    **Portões (`docs/processo.md`)**: confira o nível de autonomia do nicho. No nível 1, mande o resumo da análise +
    roteiro + direção no chat e espere o portão A antes de implementar.
-5. **Entrega**: mande o rascunho (`--scale=0.5`) ao dono pelo app (SendUserFile, `display: "render"`) para o
+5. **Entrega** (sempre em 540×960; não existe mais etapa de render em 1080, regra do Grozk de 10/11/2026): mande o rascunho (`--scale=0.5`) ao dono pelo app (SendUserFile, `display: "render"`) para o
    portão B, com 3–5 linhas dizendo o que ele deve sentir e onde olhar. Aprovado: render final + legendas por rede
    na pasta do Drive (`docs/processo.md`) e uma linha no registro de aprovações. Dúvida real de gosto → **2 variantes** curtas e nomeadas ("A: seca e rápida ·
    B: antecipação maior"). Versão aprovada vai para `entregas/<nome>.mp4` (commitada; até ~50 MB).

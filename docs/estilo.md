@@ -18,6 +18,8 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
   todo lugar novo abre com plano geral de situação (grua/afastamento) mostrando o contexto inteiro, em ESCALA REAL
   (pessoa, carro, ônibus e prédio proporcionais), e depois varia: médio, detalhe, chicote, close, por cima do ombro,
   contra-plongée. Nunca uma cena inteira num enquadramento só.
+- **Estética da série = a do Ep. 1 finalizado** (Grozk, 10/11/2026): personagens em código no traço B, mundos em
+  escala real, câmera com cuidado cinematográfico e coerência de mundo. Manter; não trocar o personagem por arte gerada.
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca
