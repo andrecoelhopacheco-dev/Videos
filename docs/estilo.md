@@ -23,7 +23,8 @@ Memória do gosto do Grozk e do Mirage para vídeos. Regras de uso em
 - **Narração em "você"** (Grozk em 09/11: "eu sempre falo você, é bem raro falar tu"). Ele mesmo grava a voz.
 
 ## Nunca
-_(nada ainda)_
+- **Barba rala/por fazer no Rafa** (11/11): mancha transparente pareceu bug e pelos desenhados ficaram "horríveis".
+  Rosto limpo; barba só se for cheia e de forma sólida, num personagem que peça.
 
 ## Aprovado
 - 2026-11-10 · Empreender do Zero, Ep. 1: traço B, painel com cara de jogo e palavras do dia a dia, expressões em slider
