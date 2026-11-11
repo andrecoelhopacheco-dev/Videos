@@ -80,10 +80,11 @@ const OlhosAdulto: React.FC<{ p: ReturnType<typeof params>; abre: number; olhar:
       const y = 196;
       if (p.coracao > 0.55) return <path key={lado} d={`M${x} ${y + 12} C${x - 20} ${y} ${x - 12} ${y - 18} ${x} ${y - 7} C${x + 12} ${y - 18} ${x + 20} ${y} ${x} ${y + 12} Z`} fill={z.coracao} />;
       if (p.arco > 0.6) return <path key={lado} d={`M${x - 22} ${y + 4} Q${x} ${y - 12} ${x + 22} ${y + 4}`} stroke="#1A1210" strokeWidth={6} strokeLinecap="round" fill="none" />;
-      const cima = 15 * Math.min(1.45, abre);
-      const baixo = 10 * Math.min(1.3, abre);
-      const olho = `M${x - 25} ${y} Q${x - 4} ${y - cima * 1.25} ${x + 25} ${y - 2} Q${x + 4} ${y + baixo * 1.2} ${x - 25} ${y} Z`;
-      const cobre = p.palpebra * cima * 1.6;
+      const cima = 13 * Math.min(1.5, abre);
+      const baixo = 9 * Math.min(1.3, abre);
+      const olho = `M${x - 22} ${y} Q${x - 4} ${y - cima * 1.25} ${x + 22} ${y - 2} Q${x + 4} ${y + baixo * 1.2} ${x - 22} ${y} Z`;
+      // pálpebra um pouco caída por padrão (cansaço), menos quando ele arregala
+      const cobre = (p.palpebra + (abre < 1.12 ? 0.28 : 0)) * cima * 1.6;
       const incl = p.inclPalp * 8 * -lado;
       const clip = `olho${lado > 0 ? "d" : "e"}`;
       return (
@@ -96,7 +97,9 @@ const OlhosAdulto: React.FC<{ p: ReturnType<typeof params>; abre: number; olhar:
             <circle cx={x + olhar * 7 + 3} cy={y - 3} r={2} fill={z.branco} />
             {cobre > 1 && <path d={`M${x - 30} ${y - 30} L${x + 30} ${y - 30} L${x + 30} ${y - cima + cobre - incl} L${x - 30} ${y - cima + cobre + incl} Z`} fill={pele} />}
           </g>
-          <path d={`M${x - 26} ${y + 1} Q${x - 4} ${y - cima * 1.25 + Math.max(0, cobre * 0.8)} ${x + 26} ${y - 1}`} stroke="#1A1210" strokeWidth={4.5} strokeLinecap="round" fill="none" />
+          <path d={`M${x - 23} ${y + 1} Q${x - 4} ${y - cima * 1.25 + Math.max(0, cobre * 0.8)} ${x + 23} ${y - 1}`} stroke="#1A1210" strokeWidth={4.5} strokeLinecap="round" fill="none" />
+          {/* olheira */}
+          <path d={`M${x - 16} ${y + baixo + 6} Q${x} ${y + baixo + 12} ${x + 16} ${y + baixo + 5}`} stroke="#5A3020" strokeWidth={3} strokeLinecap="round" fill="none" opacity={0.45} />
         </g>
       );
     })}
@@ -116,7 +119,7 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
   const abre = Math.max(0.12, p.abre * (1 - 0.85 * (ator?.aperto ?? 0)));
   // Adulto (Grozk, 11/11: "infantilizado demais"): cabeça menor (~1/6,5 da altura no corpo inteiro), mandíbula,
   // olhos amendoados com íris, sobrancelha grossa mais perto do olho, nariz com ponte e base, lábio inferior.
-  const k = adulto ? (corpo ? 0.78 : 0.9) : 1;
+  const k = adulto ? (corpo ? 0.8 : 0.9) : 1;
   const cab = `translate(200 380) scale(${k}) translate(-200 -380)`;
   const sb = (y: number) => (adulto ? 168 : 150) + (y - 138) * 1.2;
   const id = `grao-${visual.camiseta.slice(1)}`;
@@ -128,8 +131,8 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
         {/* pescoço longo (atrás da gola), com a sombra do queixo */}
         {adulto ? (
           <>
-            <path d={`M168 ${380 - (380 - 290) * k} L232 ${380 - (380 - 290) * k} L236 388 L164 388 Z`} fill={pele} />
-            <path d={`M168 ${380 - (380 - 300) * k} Q200 ${380 - (380 - 326) * k} 232 ${380 - (380 - 300) * k} L232 ${380 - (380 - 316) * k} Q200 ${380 - (380 - 340) * k} 168 ${380 - (380 - 316) * k} Z`} fill={sombra} opacity={0.5} />
+            <path d={`M160 ${380 - (380 - 292) * k} L240 ${380 - (380 - 292) * k} L248 388 L152 388 Z`} fill={pele} />
+            <path d={`M160 ${380 - (380 - 300) * k} Q200 ${380 - (380 - 328) * k} 240 ${380 - (380 - 300) * k} L240 ${380 - (380 - 318) * k} Q200 ${380 - (380 - 344) * k} 160 ${380 - (380 - 318) * k} Z`} fill={sombra} opacity={0.5} />
           </>
         ) : (
           <>
@@ -148,13 +151,13 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
       </g>}
       <g filter={`url(#${id})`} transform={`translate(0 ${p.desce * 0.5}) rotate(${p.inclina * 0.6} 200 380) ${cab}`}>
         {/* orelhas */}
-        <ellipse cx={adulto ? 114 : 108} cy={adulto ? 196 : 200} rx={adulto ? 11 : 14} ry={adulto ? 18 : 20} fill={pele} />
-        <ellipse cx={adulto ? 286 : 292} cy={adulto ? 196 : 200} rx={adulto ? 11 : 14} ry={adulto ? 18 : 20} fill={sombra} />
+        <ellipse cx={adulto ? 106 : 108} cy={adulto ? 198 : 200} rx={adulto ? 14 : 14} ry={adulto ? 22 : 20} fill={pele} />
+        <ellipse cx={adulto ? 294 : 292} cy={adulto ? 198 : 200} rx={adulto ? 14 : 14} ry={adulto ? 22 : 20} fill={sombra} />
         {adulto ? (
           <>
             {/* cabeça adulta: crânio arredondado, maçã do rosto, mandíbula marcada e queixo */}
-            <path d="M118 150 Q118 56 200 56 Q282 56 282 150 L282 202 Q280 250 252 280 Q228 304 200 306 Q172 304 148 280 Q120 250 118 202 Z" fill={pele} />
-            <path d="M282 160 L282 202 Q280 250 252 280 Q228 304 200 306 L206 300 Q246 286 266 240 Q276 214 276 170 Z" fill={sombra} opacity={0.35} />
+            <path d="M110 150 Q110 58 200 56 Q290 58 290 150 L292 214 Q292 262 262 288 Q234 308 200 308 Q166 308 138 288 Q108 262 108 214 Z" fill={pele} />
+            <path d="M290 160 L292 214 Q292 262 262 288 Q234 308 200 308 L206 302 Q250 290 274 248 Q286 222 284 170 Z" fill={sombra} opacity={0.35} />
           </>
         ) : (
           /* cabeça em ovo: topo largo, queixo mais estreito */
@@ -162,8 +165,11 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
         )}
         {/* cabelo crespo: mancha com borda de arcos (adulto: mais rente) */}
         {visual.penteado === "cachos" && adulto && (
-          <path d="M112 156 A20 20 0 0 1 118 112 A22 22 0 0 1 152 74 A24 24 0 0 1 200 60 A24 24 0 0 1 248 74 A22 22 0 0 1 282 112 A20 20 0 0 1 288 156
-            Q278 118 250 112 Q228 100 200 102 Q172 100 150 112 Q122 118 112 156 Z" fill={visual.cabelo} />
+          <g>
+            <path d="M110 176 Q108 92 200 84 Q292 92 290 176 Q284 128 262 116 L138 116 Q116 128 110 176 Z" fill={visual.cabelo} opacity={0.45} />
+            <path d="M132 120 A18 18 0 0 1 148 84 A20 20 0 0 1 182 66 A20 20 0 0 1 218 66 A20 20 0 0 1 252 84 A18 18 0 0 1 268 120
+              Q250 108 232 112 Q200 104 168 112 Q150 108 132 120 Z" fill={visual.cabelo} />
+          </g>
         )}
         {visual.penteado === "cachos" && !adulto && (
           <path d="M104 160 A26 26 0 0 1 112 104 A28 28 0 0 1 150 62 A30 30 0 0 1 200 46 A30 30 0 0 1 250 62 A28 28 0 0 1 288 104 A26 26 0 0 1 296 160
@@ -199,9 +205,9 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
         {adulto ? (
           <g>
             {/* nariz: ponte, base e narinas */}
-            <path d="M206 192 Q212 214 214 228" stroke={sombra} strokeWidth={5} strokeLinecap="round" fill="none" />
-            <path d="M184 230 Q190 242 200 242 Q210 242 216 230" stroke={sombra} strokeWidth={5} strokeLinecap="round" fill="none" />
-            <ellipse cx={191} cy={236} rx={4} ry={2.5} fill="#5A3020" opacity={0.6} /><ellipse cx={209} cy={236} rx={4} ry={2.5} fill="#5A3020" opacity={0.6} />
+            <path d="M208 198 Q213 214 214 226" stroke={sombra} strokeWidth={5} strokeLinecap="round" fill="none" />
+            <path d="M176 228 Q182 244 200 244 Q218 244 224 228" stroke={sombra} strokeWidth={6} strokeLinecap="round" fill="none" />
+            <ellipse cx={188} cy={237} rx={5} ry={3} fill="#5A3020" opacity={0.6} /><ellipse cx={212} cy={237} rx={5} ry={3} fill="#5A3020" opacity={0.6} />
           </g>
         ) : (
           <path d="M192 228 Q200 238 210 230" stroke={sombra} strokeWidth={4} strokeLinecap="round" fill="none" />
@@ -216,8 +222,8 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
           </g>
         ) : (
           <g>
-            <path d={`M174 ${yBoca - p.curva * 8} Q200 ${yBoca + p.curva * 14} 226 ${yBoca - p.curva * 8}`} stroke="#3A1712" strokeWidth={adulto ? 5 : 6} strokeLinecap="round" fill="none" />
-            {adulto && <path d={`M184 ${yBoca + 9 + p.curva * 3} Q200 ${yBoca + 17 + p.curva * 4} 216 ${yBoca + 9 + p.curva * 3}`} stroke={sombra} strokeWidth={5} strokeLinecap="round" fill="none" opacity={0.7} />}
+            <path d={`M${adulto ? 166 : 174} ${yBoca - p.curva * 8} Q200 ${yBoca + p.curva * 14} ${adulto ? 234 : 226} ${yBoca - p.curva * 8}`} stroke="#3A1712" strokeWidth={adulto ? 5 : 6} strokeLinecap="round" fill="none" />
+            {adulto && <path d={`M180 ${yBoca + 8 + p.curva * 3} Q200 ${yBoca + 20 + p.curva * 4} 220 ${yBoca + 8 + p.curva * 3}`} stroke={sombra} strokeWidth={8} strokeLinecap="round" fill="none" opacity={0.75} />}
           </g>
         )}
         <g transform={`translate(200 186) scale(${adulto ? 1.25 : 1.45}) translate(-150 -172)`}><Emote e={e} i={i} t={t} fps={fps} /></g>
