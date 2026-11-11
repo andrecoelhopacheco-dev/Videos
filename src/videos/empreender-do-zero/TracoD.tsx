@@ -24,6 +24,30 @@ export const Grao: React.FC<{ id: string; forca?: number }> = ({ id, forca = 0.2
   </filter>
 );
 
+/** Pelos curtos espalhados (determinístico): faixa da mandíbula/queixo abaixo da boca e bigode ralo acima do lábio. */
+const BarbaPorFazer: React.FC<{ cor: string }> = ({ cor }) => {
+  const pelos: [number, number, number][] = [];
+  let sem = 7;
+  const rnd = () => ((sem = (sem * 9301 + 49297) % 233280) / 233280);
+  for (let k = 0; k < 900; k++) {
+    const x = 122 + rnd() * 156;
+    const y = 214 + rnd() * 90;
+    const dx = (x - 200) / 82;
+    const borda = 214 + (1 - dx * dx) * 84; // contorno do queixo
+    const naFaixa = y > 272 - Math.abs(dx) * 50 && y < borda - 3; // mandíbula/queixo
+    const bigode = y > 238 && y < 247 && Math.abs(x - 200) < 34;
+    const boca = ((x - 200) / 50) ** 2 + ((y - 263) / 24) ** 2 < 1; // nunca em volta da boca
+    if ((naFaixa || bigode) && !boca) pelos.push([x, y, rnd() * 40 - 20]);
+  }
+  return (
+    <g stroke={cor} strokeWidth={1.7} strokeLinecap="round" opacity={0.55}>
+      {pelos.map(([x, y, a], i) => (
+        <line key={i} x1={x} y1={y} x2={x + Math.sin((a * Math.PI) / 180) * 2.6} y2={y + Math.cos((a * Math.PI) / 180) * 2.6} />
+      ))}
+    </g>
+  );
+};
+
 /** Busto (viewBox 400×520): ombros, pescoço longo e cabeça em ovo. olhar: −1 esquerda … +1 direita. */
 export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual; largura?: number; olhar?: number }> = ({
   emocao, ator, visual = RAFA, largura = 400, olhar = 0.4 }) => {
@@ -65,8 +89,8 @@ export const BustoD: React.FC<{ emocao: Emocao; ator?: Atuacao; visual?: Visual;
             Q284 120 252 112 Q230 96 200 100 Q170 96 148 112 Q116 120 104 160 Z" fill={visual.cabelo} />
         )}
         {visual.penteado === "raspado" && <path d="M110 150 Q110 50 200 48 Q290 50 290 150 Q280 100 200 92 Q120 100 110 150 Z" fill={visual.cabelo} opacity={0.9} />}
-        {/* barba rala só na linha do queixo, abaixo da boca (nunca por cima dela) */}
-        <path d="M120 222 Q132 296 200 300 Q268 296 280 222 Q274 284 236 290 Q200 296 164 290 Q126 284 120 222 Z" fill={visual.cabelo} opacity={0.16} />
+        {/* barba por fazer: pontinhos e risquinhos de pelo na mandíbula, no queixo e acima do lábio (fora da boca) */}
+        {visual.penteado === "cachos" && <BarbaPorFazer cor={visual.cabelo} />}
         {p.rubor > 0 && <g fill={z.rubor} opacity={p.rubor * 0.55}><ellipse cx={142} cy={236} rx={20} ry={10} /><ellipse cx={258} cy={236} rx={20} ry={10} /></g>}
       </g>
       {/* rosto sem grão (traços limpos) */}
