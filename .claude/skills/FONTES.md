@@ -70,3 +70,12 @@ de estilos), zhuyansen/awesome-claude-video-skills (lista curada, usada para ach
 
 Avaliadas e não instaladas: sxhzju/sound (sem arquivo de licença), bianbianzhu/procedural-sfx e whaleyxbt/claude-motion
 (sintetizam som em código; para o painel preferimos gravação real).
+
+## Ganchos e retenção (12/11/2026)
+- `viral-hooks`, `viral-short-form`, `viral-tiktok-content`, `viral-captions-and-ctas`: github.com/vyralcontent/content-skills
+  (MIT, commit 349e495). Gancho em 3 camadas (imagem, fala, texto na tela), arquétipos, anti-padrões (vinheta/logo na abertura),
+  espinha Gancho → Escalada → Recompensa → CTA, "mas/então" entre batidas.
+- `short-form-video`: github.com/iart-ai/tiktok-video-skills (MIT, commit 88e7152). Retenção em Remotion: texto do gancho no
+  quadro 1, quebra de padrão a cada 2–4 s com cortes desiguais, loop do último quadro para o primeiro, zona segura 9:16.
+- Só consulta (licença CC BY-NC-SA, não copiar para cá): github.com/shixinzhang/tiktok-viral-hooks, biblioteca de ganchos
+  de TikTok destrinchados.

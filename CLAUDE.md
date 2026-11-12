@@ -106,6 +106,8 @@ Economia de tokens:
 - Som: `sonoplastia` (própria) com `ferramentas/sons.py` (busca e baixa CC0 do BigSoundBank), biblioteca
   `public/sons/` (catálogo e licenças em `catalogo.json`) e `src/componentes/som.tsx`.
 - Pesquisa: `tendencias-virais`, `assistir-video` (próprias deste repositório).
+- Gancho e retenção (desde 2026-11-12): `viral-hooks`, `viral-short-form`, `viral-tiktok-content`, `viral-captions-and-ctas`
+  (Vyral, MIT) e `short-form-video` (iart.ai, MIT, com Remotion). Usar no roteiro de todo vídeo curto, junto com o `diretor-de-motion`.
 - Motion e vídeo: `remotion-motion-graphics`, `motion-design`, `game-development` (12 princípios), `game-feel`,
   `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`,
   `animation-performance`, `emil-design-eng`, `apple-design`, `text-to-lottie`, `rive`, `gsap-*`, `threejs-*`.
