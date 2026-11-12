@@ -28,17 +28,22 @@ código e guarda o gosto do dono para que cada vídeo novo comece de onde o últ
    - Edição de vídeo existente (cortar, juntar, legendar, reenquadrar, trocar áudio, comprimir) → skill
      `edicao-de-video` (ffmpeg). Misturou os dois? Edite com ffmpeg e traga o resultado para o Remotion
      com `<OffthreadVideo>`.
+   - Câmera e planos → skill `camera-2d` (executa) + `cinematography-director` (decide o motivo). Painel/HUD
+     → skill `interface-suculenta`. Som (ambiente, foley, interface) → skill `sonoplastia`.
    - Base teórica quando precisar: `motion-design` (emoção → movimento, coreografia), `game-development`
      (12 princípios), `game-feel` (impacto), `animation-vocabulary` (nome certo do efeito), `text-to-lottie`,
      `rive`, `threejs-*` (3D dentro do Remotion via `@remotion/three`), `gsap-*` (só se der para controlar
      pelo quadro).
-4. **Validação** (obrigatória, `references/validacao.md`): `npm run render -- <id>` gera
+4. **Validação** (obrigatória, `references/validacao.md`). **Economia de render (Grozk, 09/11):** primeiro quadros
+   soltos (`node ferramentas/quadros.mjs`), depois o rascunho por blocos (`node ferramentas/blocos.mjs <id> --scale=0.5`);
+   em toda correção, `--refazer=<de>-<até>` só do trecho mexido, nunca o vídeo inteiro. Para vídeo curto de teste,
+   `npm run render -- <id>` gera
    `saidas/<id>.mp4` + `saidas/<id>_folha.png`. **Abra a folha (Read) e olhe**; para trechos rápidos, rode a
    folha só do intervalo (`--frames=30-60`) ou com mais quadros (`ferramentas/folha.sh <mp4> 16`).
    Conserte e renderize de novo até passar no checklist.
    **Portões (`docs/processo.md`)**: confira o nível de autonomia do nicho. No nível 1, mande o resumo da análise +
    roteiro + direção no chat e espere o portão A antes de implementar.
-5. **Entrega**: mande o rascunho (`--scale=0.5`) ao dono pelo app (SendUserFile, `display: "render"`) para o
+5. **Entrega** (sempre em 540×960; não existe mais etapa de render em 1080, regra do Grozk de 10/11/2026): mande o rascunho (`--scale=0.5`) ao dono pelo app (SendUserFile, `display: "render"`) para o
    portão B, com 3–5 linhas dizendo o que ele deve sentir e onde olhar. Aprovado: render final + legendas por rede
    na pasta do Drive (`docs/processo.md`) e uma linha no registro de aprovações. Dúvida real de gosto → **2 variantes** curtas e nomeadas ("A: seca e rápida ·
    B: antecipação maior"). Versão aprovada vai para `entregas/<nome>.mp4` (commitada; até ~50 MB).

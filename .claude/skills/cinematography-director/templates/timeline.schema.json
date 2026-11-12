@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shared narrative timeline (cinematography-director v1)",
+  "description": "Written by the cinematography skill. 'beats' and 'music_hints' can be read by a music skill (for example Scorewright, spotting step) without either skill depending on the other. Checked by scripts/cdcheck.py.",
+  "type": "object",
+  "required": ["version", "duration", "fps", "shots"],
+  "properties": {
+    "version": {"const": 1},
+    "duration": {"type": "number", "description": "seconds"},
+    "fps": {"type": "number"},
+    "mode": {"type": "array", "items": {"enum": ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08"]}},
+    "adapter": {"enum": ["physical_camera", "blender", "motion_graphics_2d", "ai_video", "edit_resolve"]},
+    "source_words": {"type": "string", "description": "path to measured word timings (words.json / Scorewright facts.json)"},
+    "timing": {"enum": ["measured", "estimated"]},
+    "beats": {"type": "array", "items": {"type": "object", "required": ["t", "kind", "label"],
+      "properties": {"t": {"type": "number"}, "kind": {"enum": ["hook", "context", "development", "key_info", "reveal", "turn", "climax", "resolution", "cta", "section"]},
+        "label": {"type": "string"}, "emotion": {"type": "string"}, "secondary": {"type": "string"},
+        "intensity": {"type": "integer", "minimum": 0, "maximum": 5}, "word": {"type": "string"}}}},
+    "geography": {"type": "array", "items": {"type": "object", "required": ["scene", "line", "camera_side"],
+      "properties": {"scene": {"type": "string"}, "line": {"type": "array", "items": {"type": "number"}, "minItems": 4, "maxItems": 4, "description": "x1,y1,x2,y2 of the line of action, top-down"},
+        "camera_side": {"enum": [-1, 1]}}}},
+    "shots": {"type": "array", "items": {"type": "object", "required": ["id", "t0", "t1", "type"],
+      "properties": {
+        "id": {"type": "string"}, "t0": {"type": "number"}, "t1": {"type": "number"},
+        "type": {"type": "string", "description": "EWS, WS, FS, MWS, MS, MCU, CU, BCU, ECU, OTS, POV, 2S, INSERT, ..."},
+        "angle": {"type": "string"}, "subject": {"type": "string"}, "scene": {"type": "string"},
+        "lens_mm": {"type": "number"}, "distance_m": {"type": "number"}, "dof": {"enum": ["deep", "moderate", "shallow"]},
+        "camera_xy": {"type": "array", "items": {"type": "number"}}, "cross": {"type": "boolean"},
+        "camera": {"type": "array", "items": {"type": "object", "required": ["move"],
+          "properties": {"move": {"type": "string"}, "t0": {"type": "number"}, "t1": {"type": "number"}, "trigger": {"type": "string"},
+            "amount": {}, "ease": {"type": "string"}, "motivation": {"enum": ["FOLLOW", "REVEAL", "APPROACH", "WITHDRAW", "RELATE", "ORIENT", "SUBJECTIVE", "RHYTHM", "EXPRESSIVE"]},
+            "reason": {"type": "string"}, "parallax": {"type": "boolean"}, "fallback": {"type": "string"}}}},
+        "focus": {"type": "array", "items": {"type": "object", "required": ["from", "to", "reason"],
+          "properties": {"t0": {"type": "number"}, "t1": {"type": "number"}, "trigger": {"type": "string"}, "from": {"type": "string"}, "to": {"type": "string"},
+            "ease": {"type": "string"}, "attention": {"type": "string"}, "reason": {"type": "string"}, "fallback": {"type": "string"}}}},
+        "subject_motion": {"type": "array"},
+        "hold_for_text": {"description": "[t0,t1] or a list of [t0,t1] windows where the camera must hold"},
+        "transition_out": {"type": "string"}
+      }}},
+    "music_hints": {"type": "array", "items": {"type": "object", "properties": {"t": {"type": "number"}, "hint": {"type": "string"}}},
+      "description": "free text for a music skill; the cinematography skill never decides music"}
+  }
+}

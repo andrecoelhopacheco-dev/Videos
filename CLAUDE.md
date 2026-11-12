@@ -59,6 +59,12 @@ ferramentas/             render.mjs, folha.sh (folha de quadros), info.sh (ffpro
 Comandos:
 - `npm run render -- <id>` → `saidas/<id>.mp4` + `saidas/<id>_folha.png` + resumo. Aceita opções do Remotion
   (`--scale=0.5`, `--frames=0-59`, `--props='{"titulo":"…"}'`).
+- **Resolução: só meia (540×960), inclusive na versão final** (Grozk, 10/11/2026: a de 1080×1920 não teve melhora
+  perceptível). `blocos.mjs` já usa `--scale=0.5` por padrão; não renderizar em 1080 sem ele pedir.
+- **Render custa caro: nunca refaça o vídeo inteiro para corrigir.** `node ferramentas/blocos.mjs <id> --scale=0.5`
+  renderiza em blocos de 5 s com cache; correção = `--refazer=<de>-<até>` (segundos) refaz só os blocos do trecho e
+  remonta por cópia; `--audio` refaz só o som; `--semear=saidas/X.mp4` corta um render inteiro antigo em blocos.
+  Antes de renderizar, confira com quadros soltos: `node ferramentas/quadros.mjs <id> saidas/<pasta> 12.5 40 93…`.
 - `npm run tipos` (TypeScript) · `npm run verificar` (tipos + render pequeno do Exemplo: prova que o ambiente funciona).
 - `npm run estudio` abre o Remotion Studio (só útil com navegador; no celular use a folha de quadros).
 - `ferramentas/folha.sh <mp4> [n]` · `ferramentas/info.sh <mp4>`.
@@ -95,7 +101,13 @@ Economia de tokens:
 
 ## Skills instaladas (origem em `.claude/skills/FONTES.md`)
 - Direção e edição: `diretor-de-motion`, `edicao-de-video` (próprias deste repositório).
+- Câmera e interface (desde 2026-11-09): `camera-2d` e `interface-suculenta` (próprias, com
+  `src/componentes/camera.tsx` e `suculento.tsx`) + `cinematography-director` (teoria de direção de fotografia).
+- Som: `sonoplastia` (própria) com `ferramentas/sons.py` (busca e baixa CC0 do BigSoundBank), biblioteca
+  `public/sons/` (catálogo e licenças em `catalogo.json`) e `src/componentes/som.tsx`.
 - Pesquisa: `tendencias-virais`, `assistir-video` (próprias deste repositório).
+- Gancho e retenção (desde 2026-11-12): `viral-hooks`, `viral-short-form`, `viral-tiktok-content`, `viral-captions-and-ctas`
+  (Vyral, MIT) e `short-form-video` (iart.ai, MIT, com Remotion). Usar no roteiro de todo vídeo curto, junto com o `diretor-de-motion`.
 - Motion e vídeo: `remotion-motion-graphics`, `motion-design`, `game-development` (12 princípios), `game-feel`,
   `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`,
   `animation-performance`, `emil-design-eng`, `apple-design`, `text-to-lottie`, `rive`, `gsap-*`, `threejs-*`.

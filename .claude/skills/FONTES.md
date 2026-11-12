@@ -44,3 +44,38 @@ instruções) e instaladas a pedido do dono para roteiro, narração, legenda e 
 
 O `ew` guarda o perfil de voz em `~/.everyday-writer/`, que some quando a sessão na nuvem acaba; as amostras que
 duram ficam em `docs/voz/`.
+
+## Direção de câmera e interface suculenta (2026-11-09)
+
+Pesquisa pedida pelo Grozk para a série "Empreender do Zero". Repositórios clonados num diretório temporário,
+lidos e revisados (o único script, `cdcheck.py`, só usa a biblioteca padrão do Python e não acessa a rede).
+
+| Skill(s) | Fonte (commit) | Licença | Para quê aqui |
+| - | - | - | - |
+| `cinematography-director` | jayaprakash-pixel/cinematography-director (0005e0a), sem `docs/`, `examples/` e `tests/` | Apache-2.0 | teoria de direção de fotografia: motivo de cada movimento, zoom × dolly, planos, ritmo, modos Shorts e animação |
+| `camera-2d` | própria; seção de atuação adaptada de JohnHeibel/ClaudeAnimationBase (MIT) e balanço de câmera inspirado em vincentwei1021/video-shotcraft (Apache-2.0), sem copiar código | — | adaptador para a câmera multiplano `src/componentes/camera.tsx` |
+| `interface-suculenta` | própria; base em "Juice it or lose it" (GDC 2012), "The Art of Screenshake" (2013), MoreMountains Feel e na skill `game-feel` | — | painel/HUD com feedback: odômetro, soco, flash, rastro, trauma (`src/componentes/suculento.tsx`) |
+
+Também avaliadas e não instaladas: joost/ai-camera-shots e Rylaispirit/cinematic-video-prompt-skill (vocabulário
+para prompt de vídeo por IA, não para câmera em código), RajaskaJanuardani/motion-craft (MIT; útil como consulta
+de estilos), zhuyansen/awesome-claude-video-skills (lista curada, usada para achar as outras).
+
+## Sonoplastia (2026-11-09)
+
+| Skill / material | Fonte (commit) | Licença | Para quê aqui |
+| - | - | - | - |
+| `sonoplastia` | própria; regras de alinhamento (pico no quadro, whoosh 2 quadros antes, riser termina no impacto) e de licença inspiradas em Barty-Bart/motion-graphics `sound-effects` (MIT) e vincentwei1021/video-shotcraft `sound-design`/`sfx-sourcing` (Apache-2.0), sem copiar código | — | camadas, níveis, onde buscar, como posicionar e medir |
+| `public/sons/interface/`, `public/sons/ambiente-casa/fs-*` | pacote CC0 de Barty-Bart/motion-graphics (3d83d98), sons de Kenney e Freesound | CC0 1.0 (`public/sons/LICENCAS-pacote-cc0.md`) | sons de interface e room tone |
+| `public/sons/*/bsb-*` | BigSoundBank (Joseph Sardin), baixados por `ferramentas/sons.py` | CC0 1.0, conferida na página de cada som | ambientes, foley, dinheiro |
+
+Avaliadas e não instaladas: sxhzju/sound (sem arquivo de licença), bianbianzhu/procedural-sfx e whaleyxbt/claude-motion
+(sintetizam som em código; para o painel preferimos gravação real).
+
+## Ganchos e retenção (12/11/2026)
+- `viral-hooks`, `viral-short-form`, `viral-tiktok-content`, `viral-captions-and-ctas`: github.com/vyralcontent/content-skills
+  (MIT, commit 349e495). Gancho em 3 camadas (imagem, fala, texto na tela), arquétipos, anti-padrões (vinheta/logo na abertura),
+  espinha Gancho → Escalada → Recompensa → CTA, "mas/então" entre batidas.
+- `short-form-video`: github.com/iart-ai/tiktok-video-skills (MIT, commit 88e7152). Retenção em Remotion: texto do gancho no
+  quadro 1, quebra de padrão a cada 2–4 s com cortes desiguais, loop do último quadro para o primeiro, zona segura 9:16.
+- Só consulta (licença CC BY-NC-SA, não copiar para cá): github.com/shixinzhang/tiktok-viral-hooks, biblioteca de ganchos
+  de TikTok destrinchados.

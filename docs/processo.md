@@ -7,10 +7,26 @@ Combinado com o Grozk em 22/10/2026. Vale para todo vídeo; a skill `diretor-de-
 | - | - | - | - |
 | 1 | Análise da referência (`assistir-video`) + roteiro e direção da nossa versão (`diretor-de-motion`) | **Resumo curto no chat** (gancho, por que funciona, nosso ângulo, roteiro cena a cena, direção visual) | **A**: aprova ou ajusta |
 | 2 | Produção (Remotion/ffmpeg) + validação pela folha de quadros | **Rascunho 540×960** no chat (`npm run render -- <id> --scale=0.5`) | **B**: aprova ou ajusta |
-| 3 | Render final 1080×1920 + legendas SEO por rede | Link da pasta no Drive | — |
+| 3 | Versão final em **540×960** (meia resolução; decisão do Grozk em 10/11/2026) + legendas SEO por rede | Link da pasta no Drive | — |
 
 Rascunho: o pedido foi 480p, mas 1080 → 480 não dá número inteiro no Remotion; `--scale=0.5` (540×960) custa o
 mesmo e foi testado.
+
+## Resolução (Grozk, 10/11/2026)
+Só se produz em meia resolução (540×960), rascunho e versão final. O render em 1080×1920 do Ep. 1 não trouxe
+melhora perceptível no celular. 1080 só se o Grozk pedir.
+
+## Render por blocos (Grozk, 09/11/2026)
+Render completo custa caro. Todo vídeo é renderizado em blocos de 5 s guardados em `saidas/blocos/` (`ferramentas/blocos.mjs`);
+uma correção refaz só os blocos do trecho corrigido e remonta o MP4 por cópia em segundos. Mudança que desloca o tempo
+(cortar ou alongar cena, áudio novo) refaz do ponto da mudança até o fim.
+
+## Duração nas redes de vídeo curto (Grozk, 09/11/2026)
+Todo episódio publicado em Instagram, YouTube Shorts, TikTok e Kwai fica **entre 61 e 178 s** (nunca acima). O
+limite mais curto entre as quatro é o do YouTube Shorts (3 min); Instagram recomenda até 3 min (aceita até 20),
+TikTok aceita 10 min no app e Kwai 5 min. Nenhuma rede exige menos que isso, então as quatro ficam. A composição
+do episódio trava a renderização se a duração sair dessa faixa (`DURACAO_S` em `ep01/Ep01.tsx`).
+Rede que passar a exigir bem menos que as outras: abandonar essa rede, não encurtar o episódio.
 
 ## Saída final no Google Drive
 ```
@@ -55,3 +71,4 @@ Cada nicho sobe de nível sozinho, com base nas respostas do dono registradas na
 | Data | Nicho | Vídeo | Portão | Resultado | Ajuste pedido |
 | - | - | - | - | - | - |
 | 2026-10-23 | politica-lula | Do pau de arara ao Planalto | B | ajuste grande | refazer em documentário questionador, tudo animado, menos imagem GPT, sem rima |
+| 2026-11-10 | empreender-do-zero | Ep. 1 — R$ 700 e 21 dias | B | aprovado após ajustes | prato com PNGs do dono; rua e mercado em escala real com planos variados; calendário coerente com a fala; marmitas com comida |
